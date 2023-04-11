@@ -11,6 +11,7 @@ function Typography<T extends keyof JSX.IntrinsicElements>({
   font,
   level,
   color,
+  ...props
 }: TypographyProps<T>) {
   const theme = Theme.useContext();
   const Element = el ?? 'p';
@@ -36,6 +37,7 @@ function Typography<T extends keyof JSX.IntrinsicElements>({
             `,
             className,
           )}
+          {...props}
         >
           {children}
         </Element>

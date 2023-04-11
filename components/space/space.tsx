@@ -23,7 +23,6 @@ function Space<T extends keyof JSX.IntrinsicElements>({
     <ClassNames>
       {({ css, cx }) => {
         return (
-          // @ts-ignore
           <Element
             className={cx(
               css`
