@@ -1,7 +1,7 @@
-import { SpaceSizeType } from '../space/space.types';
+import type { SpaceSizeType } from '../space/space.types';
 
 export interface ThemeProps {
-  size: 10;
+  size: number;
   components: {
     button: {};
     divider: {};
