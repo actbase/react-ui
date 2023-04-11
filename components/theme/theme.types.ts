@@ -1,4 +1,9 @@
 import type { SpaceSizeType } from '../space/space.types';
+import type {
+  TypographyColorType,
+  TypographyFontType,
+  TypographyLevelType,
+} from '../typography/typography.types';
 
 export interface ThemeProps {
   size?: number;
@@ -11,6 +16,11 @@ export interface ThemeProps {
       size?: Record<SpaceSizeType, number>;
     };
     table?: {};
-    typography?: {};
+    typography?: {
+      defaultFont?: keyof TypographyFontType;
+      font?: TypographyFontType;
+      level?: TypographyLevelType;
+      color?: TypographyColorType;
+    };
   };
 }
