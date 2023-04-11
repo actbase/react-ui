@@ -7,6 +7,8 @@ export default {
     input: {
       style: css`
         position: relative;
+        display: flex;
+        align-items: center;
       `,
       label: {
         font: 'noto',
@@ -15,14 +17,15 @@ export default {
           width: 50px;
           left: 10px;
         `,
-        level: 6,
+        level: 7,
         color: 'label',
       },
       input: {
         style: css`
+          width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 15px 8px 55px;
-          border-radius: 8px;
+          border-radius: 4px;
         `,
       },
     },
