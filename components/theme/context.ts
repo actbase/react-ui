@@ -1,6 +1,6 @@
 import React from 'react';
-import type { ThemeProps } from './theme.types';
+import type { ThemeType } from './theme.types';
 
-const context = React.createContext<ThemeProps | undefined>(undefined);
+const context = React.createContext<ThemeType | undefined>(undefined);
 
 export default context;

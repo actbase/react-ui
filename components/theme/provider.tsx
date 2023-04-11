@@ -1,10 +1,10 @@
 import context from './context';
 import React from 'react';
-import type { ThemeProps } from './theme.types';
+import type { ThemeType } from './theme.types';
 
 export interface ProviderProps {
   children?: React.ReactNode;
-  theme?: ThemeProps;
+  theme?: ThemeType;
 }
 
 const Provider = React.memo<ProviderProps>(function Provider({

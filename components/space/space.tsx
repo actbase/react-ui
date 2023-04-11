@@ -46,45 +46,12 @@ function Space<T extends keyof JSX.IntrinsicElements>({
                   end: 'flex-end',
                 }[align ?? 'center']};
                 gap: ${typeof size === 'number'
-                  ? `${getSize(theme?.size ?? 10, size)}px`
-                  : {
-                      xxs: `${getSize(
+                    ? `${getSize(theme?.size ?? 10, size)}px`
+                    : getSize(
                         theme?.size ?? 10,
-                        theme?.components?.space?.size?.xxs ?? 6,
-                      )}px`,
-                      xs: `${getSize(
-                        theme?.size ?? 10,
-                        theme?.components?.space?.size?.xs ?? 10,
-                      )}px`,
-                      s: `${getSize(
-                        theme?.size ?? 10,
-                        theme?.components?.space?.size?.s ?? 14,
-                      )}px`,
-                      sm: `${getSize(
-                        theme?.size ?? 10,
-                        theme?.components?.space?.size?.sm ?? 16,
-                      )}px`,
-                      m: `${getSize(
-                        theme?.size ?? 10,
-                        theme?.components?.space?.size?.m ?? 18,
-                      )}px`,
-                      ml: `${getSize(
-                        theme?.size ?? 10,
-                        theme?.components?.space?.size?.ml ?? 24,
-                      )}px`,
-                      l: `${getSize(
-                        theme?.size ?? 10,
-                        theme?.components?.space?.size?.l ?? 30,
-                      )}px`,
-                      xl: `${getSize(
-                        theme?.size ?? 10,
-                        theme?.components?.space?.size?.xl ?? 36,
-                      )}px`,
-                      xxl: `${getSize(
-                        theme?.size ?? 10,
-                        theme?.components?.space?.size?.xxl ?? 40,
-                      )}px`,
-                    }[size ?? 'm']};
+                        theme?.components?.space?.size?.[size ?? 'sm'] ?? 16,
+                      )}
+                  ${theme?.components?.space?.style};
               `,
               className,
             )}

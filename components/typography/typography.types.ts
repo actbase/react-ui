@@ -9,16 +9,22 @@ export type TypographyLevelType = Record<
 
 export type TypographyColorType = Record<string, string>;
 
-export type TypographyProps<T extends keyof JSX.IntrinsicElements> =
-  JSX.IntrinsicElements[T] & {
-    // Element
-    el?: T;
-    // Children
-    children?: React.ReactNode;
-    // Font
-    font?: keyof TypographyFontType;
-    // Level
-    level?: keyof TypographyLevelType;
-    // Color
-    color?: keyof TypographyColorType;
-  };
+export type TypographyProps<T extends keyof JSX.IntrinsicElements> = Omit<
+  JSX.IntrinsicElements[T],
+  'color'
+> & {
+  // Element
+  el?: T;
+  // Children
+  children?: React.ReactNode;
+  // Font
+  font?: keyof TypographyFontType;
+  // Level
+  level?: keyof TypographyLevelType;
+  // Font Size
+  size?: number;
+  // Font Weight
+  weight?: number;
+  // Color
+  color?: keyof TypographyColorType;
+};

@@ -10,6 +10,8 @@ function Typography<T extends keyof JSX.IntrinsicElements>({
   className,
   font,
   level,
+  weight,
+  size,
   color,
   ...props
 }: TypographyProps<T>) {
@@ -27,13 +29,17 @@ function Typography<T extends keyof JSX.IntrinsicElements>({
               ]};
               font-size: ${getSize(
                 theme?.size ?? 10,
-                theme?.components?.typography?.[level ?? 5]?.size ?? 16,
+                size ??
+                  theme?.components?.typography?.level?.[level ?? 5]?.size ??
+                  16,
               )}px;
-              font-weight: ${theme?.components?.typography?.[level ?? 5]
-                .weight ?? 400};
+              font-weight: ${weight ??
+              theme?.components?.typography?.level?.[level ?? 5]?.weight ??
+              400};
               color: ${theme?.components?.typography?.color?.[
                 color ?? 'default'
               ] ?? '#333333'};
+              ${theme?.components?.typography?.style}
             `,
             className,
           )}
