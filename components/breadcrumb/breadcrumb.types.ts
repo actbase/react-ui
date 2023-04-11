@@ -7,7 +7,7 @@ interface BreadCrumbProps {
     key: string;
     // 항목에 부여할 이름
     label: string;
-    // 항목을 클릭했을 때 이동할 주소 
+    // 항목을 클릭했을 때 이동할 주소
     href: string;
   }[];
 }

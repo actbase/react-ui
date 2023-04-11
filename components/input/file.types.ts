@@ -1,4 +1,4 @@
-import { InputProps } from "./input.types";
+import { InputProps } from './input.types';
 
 interface FileProps extends InputProps {
   // 받아들이는 파일 형식

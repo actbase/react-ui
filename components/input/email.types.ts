@@ -1,4 +1,3 @@
-import { InputProps } from "./input.types";
+import { InputProps } from './input.types';
 
-interface EmailProps extends InputProps {
-}
+type EmailProps = InputProps;

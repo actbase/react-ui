@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { SerializedStyles } from '@emotion/react';
 import type { SpaceSizeType } from '../space/space.types';
 import type {
   TypographyColorType,
@@ -8,16 +8,16 @@ import type {
 } from '../typography/typography.types';
 
 export type InputThemeType = {
-  style?: React.CSSProperties;
+  style?: SerializedStyles;
   label?: TypographyProps<'span'>;
   input?: {
-    style?: React.CSSProperties;
+    style?: SerializedStyles;
   };
 };
 
 export type SpaceThemeType = {
   size?: Record<SpaceSizeType, number>;
-  style?: React.CSSProperties;
+  style?: SerializedStyles;
 };
 
 export type TypographyThemeType = {
@@ -25,7 +25,7 @@ export type TypographyThemeType = {
   font?: TypographyFontType;
   level?: TypographyLevelType;
   color?: TypographyColorType;
-  style?: React.CSSProperties;
+  style?: SerializedStyles;
 };
 
 export type ThemeType = {

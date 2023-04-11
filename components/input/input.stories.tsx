@@ -9,7 +9,7 @@ export default {
     label: 'label',
   },
   component: InitialInput,
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof InitialInput>;
 
 type Story = StoryObj<typeof InitialInput>;
 export const Input: Story = {

@@ -1,4 +1,5 @@
 import type React from 'react';
+import type { SerializedStyles } from '@emotion/react';
 
 export type TypographyFontType = Record<string, string>;
 
@@ -11,7 +12,7 @@ export type TypographyColorType = Record<string, string>;
 
 export type TypographyProps<T extends keyof JSX.IntrinsicElements> = Omit<
   JSX.IntrinsicElements[T],
-  'color'
+  'color' | 'style'
 > & {
   // Element
   el?: T;
@@ -27,4 +28,6 @@ export type TypographyProps<T extends keyof JSX.IntrinsicElements> = Omit<
   weight?: number;
   // Color
   color?: keyof TypographyColorType;
+  // Style
+  style?: SerializedStyles;
 };
