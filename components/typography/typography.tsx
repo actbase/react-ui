@@ -38,7 +38,9 @@ function Typography<T extends keyof JSX.IntrinsicElements>({
               400};
               color: ${theme?.components?.typography?.color?.[
                 color ?? 'default'
-              ] ?? '#333333'};
+              ] ??
+              color ??
+              '#333333'};
               ${theme?.components?.typography?.style}
             `,
             className,
