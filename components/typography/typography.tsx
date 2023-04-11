@@ -25,9 +25,9 @@ function Typography<T extends keyof JSX.IntrinsicElements>({
                 font ?? theme?.components?.typography?.defaultFont
               ]};
               font-size: ${getSize(
-                theme?.components?.typography?.[level ?? 5].size,
-                10,
-              )};
+                theme?.size ?? 10,
+                theme?.components?.typography?.[level ?? 5]?.size ?? 16,
+              )}px;
               font-weight: ${theme?.components?.typography?.[level ?? 5]
                 .weight ?? 400};
               color: ${theme?.components?.typography?.color?.[
