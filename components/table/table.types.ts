@@ -1,3 +1,5 @@
+import { ColumnProps } from "./column.types";
+
 interface TableProps {
   // 클래스 이름
   classNames?: string;
