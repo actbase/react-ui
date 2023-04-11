@@ -1,4 +1,4 @@
-import { InputProps } from "./input.types";
+import { InputProps } from './input.types';
 
 interface TextAreaProps extends InputProps {
   // 사이즈 조절 가능여부

@@ -1,4 +1,4 @@
-import { InputProps } from "./input.types";
+import { InputProps } from './input.types';
 
 interface RadioProps extends InputProps {
   // radio input간에 공유할 name
