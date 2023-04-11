@@ -12,10 +12,10 @@ type Story = StoryObj<typeof InitialSpace>;
 export const Space: Story = {
   render: (props) => (
     <InitialSpace {...props}>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
-      <p>Test</p>
+      <p>Test1</p>
+      <p>Test2</p>
+      <p>Test3</p>
+      <p>Test4</p>
     </InitialSpace>
   ),
 };

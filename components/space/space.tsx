@@ -12,6 +12,9 @@ function Space<T extends keyof JSX.IntrinsicElements>({
   justify,
   className,
   size,
+  direction,
+  wrap,
+  reverse,
   ...props
 }: SpaceProps<T>) {
   const theme = Theme.useContext();
@@ -33,6 +36,11 @@ function Space<T extends keyof JSX.IntrinsicElements>({
                   'space-around': 'space-around',
                   'space-evenly': 'space-evenly',
                 }[justify ?? 'start']};
+                flex-direction: ${{
+                  row: reverse ? 'row-reverse' : 'row',
+                  column: reverse ? 'column-reverse' : 'column',
+                }[direction ?? 'row']};
+                flex-wrap: ${wrap ? 'wrap' : 'no-wrap'};
                 align-items: ${{
                   start: 'flex-start',
                   center: 'center',
@@ -47,35 +55,35 @@ function Space<T extends keyof JSX.IntrinsicElements>({
                       )}px`,
                       xs: `${getSize(
                         theme?.size ?? 10,
-                        theme?.components?.space?.size?.xxs ?? 10,
+                        theme?.components?.space?.size?.xs ?? 10,
                       )}px`,
                       s: `${getSize(
                         theme?.size ?? 10,
-                        theme?.components?.space?.size?.xxs ?? 14,
+                        theme?.components?.space?.size?.s ?? 14,
                       )}px`,
                       sm: `${getSize(
                         theme?.size ?? 10,
-                        theme?.components?.space?.size?.xxs ?? 16,
+                        theme?.components?.space?.size?.sm ?? 16,
                       )}px`,
                       m: `${getSize(
                         theme?.size ?? 10,
-                        theme?.components?.space?.size?.xxs ?? 18,
+                        theme?.components?.space?.size?.m ?? 18,
                       )}px`,
                       ml: `${getSize(
                         theme?.size ?? 10,
-                        theme?.components?.space?.size?.xxs ?? 24,
+                        theme?.components?.space?.size?.ml ?? 24,
                       )}px`,
                       l: `${getSize(
                         theme?.size ?? 10,
-                        theme?.components?.space?.size?.xxs ?? 30,
+                        theme?.components?.space?.size?.l ?? 30,
                       )}px`,
                       xl: `${getSize(
                         theme?.size ?? 10,
-                        theme?.components?.space?.size?.xxs ?? 36,
+                        theme?.components?.space?.size?.xl ?? 36,
                       )}px`,
                       xxl: `${getSize(
                         theme?.size ?? 10,
-                        theme?.components?.space?.size?.xxs ?? 40,
+                        theme?.components?.space?.size?.xxl ?? 40,
                       )}px`,
                     }[size ?? 'm']};
               `,

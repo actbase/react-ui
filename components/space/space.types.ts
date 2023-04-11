@@ -25,8 +25,14 @@ export type SpaceProps<T extends keyof JSX.IntrinsicElements> =
     align?: SpaceAlignType;
     // Justify Content
     justify?: SpaceJustifyType;
-    // Align Size
+    // Gap Size
     size?: SpaceSizeType | number;
     // Inline
     inline?: boolean;
+    // Flex Direction
+    direction?: 'row' | 'column';
+    // Flex Wrap
+    wrap?: boolean;
+    // Reverse
+    reverse?: boolean;
   };
