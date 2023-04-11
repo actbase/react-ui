@@ -1,6 +1,6 @@
 import context from './context';
 import React from 'react';
-import type { ThemeProps } from './index';
+import type { ThemeProps } from './theme.types';
 
 export interface ProviderProps {
   children?: React.ReactNode;
