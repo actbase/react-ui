@@ -1,3 +1,5 @@
+import { SpaceSizeType } from '../space/space.types';
+
 export interface ThemeProps {
   size: 10;
   components: {
@@ -5,7 +7,9 @@ export interface ThemeProps {
     divider: {};
     form: {};
     input: {};
-    space: {};
+    space: {
+      size: Record<SpaceSizeType, number>;
+    };
     table: {};
     typography: {};
   };
