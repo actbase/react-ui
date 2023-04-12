@@ -1,3 +1,4 @@
+import React from 'react';
 import { css } from '@storybook/theming';
 import type { ThemeType } from './components';
 
@@ -30,6 +31,7 @@ export default {
       },
     },
     typography: {
+      defaultFont: 'noto',
       font: {
         noto: 'NotoSansKR, sans-serif',
       },
@@ -78,6 +80,55 @@ export default {
       color: {
         label: '#999999',
       },
+    },
+    button: {
+      style: css`
+        background-color: transparent;
+        border: none;
+        font-size: 12px;
+        cursor: pointer;
+        transition: 0.2s all ease;
+        &:disabled {
+          background-color: #cccccc !important;
+          cursor: not-allowed;
+        }
+      `,
+      type: {
+        primary: css`
+          background-color: #029cfd;
+          color: #ffffff;
+          &:hover {
+            background-color: #6cc0f6;
+          }
+        `,
+        danger: css`
+          background-color: #ee0000;
+          color: #ffffff;
+          &:hover {
+            background-color: #ff0000;
+          }
+        `,
+      },
+      defaultType: 'primary',
+      size: {
+        small: css`
+          font-size: 14px;
+          padding: 4px 8px;
+          border-radius: 6px;
+        `,
+        medium: css`
+          font-size: 16px;
+          padding: 6px 15px;
+          border-radius: 10px;
+        `,
+        large: css`
+          font-size: 20px;
+          padding: 10px 20px;
+          border-radius: 12px;
+        `,
+      },
+      defaultSize: 'medium',
+      renderLoadingComponent: () => <span>is Loading</span>,
     },
   },
 } satisfies ThemeType;
