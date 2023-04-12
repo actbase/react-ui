@@ -2,7 +2,6 @@ import React from 'react';
 import { TypographyProps } from './typography.types';
 import { ClassNames } from '@storybook/theming';
 import Theme from '../theme';
-import getSize from '../_util/getSize';
 
 function Typography<T extends keyof JSX.IntrinsicElements>({
   children,
@@ -29,17 +28,6 @@ function Typography<T extends keyof JSX.IntrinsicElements>({
                 // @ts-ignore
                 font ?? theme?.components?.typography?.defaultFont
               ]};
-              font-size: ${getSize(
-                theme?.size ?? 10,
-                size ??
-                  theme?.components?.typography?.level?.[
-                    level ?? theme?.components?.typography?.defaultLevel ?? 5
-                  ]?.size ??
-                  16,
-              )}px;
-              font-weight: ${weight ??
-              theme?.components?.typography?.level?.[level ?? 5]?.weight ??
-              400};
               color: ${theme?.components?.typography?.color?.[
                 color ??
                   theme?.components?.typography?.defaultColor ??
@@ -48,6 +36,12 @@ function Typography<T extends keyof JSX.IntrinsicElements>({
               color ??
               '#333333'};
               ${theme?.components?.typography?.style}
+              ${theme?.components?.typography?.level?.[
+                // @ts-ignore
+                level ?? theme?.components?.typography?.defaultLevel
+              ]}
+              ${size && `font-size: ${size}px`}
+              ${weight && `font-weight: ${weight}`}
             `,
             className,
           )}

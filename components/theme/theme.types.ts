@@ -1,10 +1,8 @@
 import type { SerializedStyles } from '@emotion/react';
-import type { SpaceSizeType } from '../space/space.types';
+import type { SpaceThemeType } from '../space/space.types';
 import type {
-  TypographyColorType,
-  TypographyFontType,
-  TypographyLevelType,
   TypographyProps,
+  TypographyThemeType,
 } from '../typography/typography.types';
 import { ButtonThemeType } from '../button/button.types';
 
@@ -20,23 +18,7 @@ export type InputThemeType = {
   };
 };
 
-export type SpaceThemeType = {
-  size?: Record<SpaceSizeType, number>;
-  style?: SerializedStyles;
-};
-
-export type TypographyThemeType = {
-  defaultFont?: keyof TypographyFontType;
-  font?: TypographyFontType;
-  defaultLevel?: keyof TypographyLevelType;
-  level?: TypographyLevelType;
-  defaultColor?: keyof TypographyColorType;
-  color?: TypographyColorType;
-  style?: SerializedStyles;
-};
-
 export type ThemeType = {
-  size?: number;
   components?: {
     button?: ButtonThemeType;
     divider?: {};

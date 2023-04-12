@@ -2,7 +2,6 @@ import React from 'react';
 import { SpaceProps } from './space.types';
 import { ClassNames } from '@storybook/theming';
 import Theme from '../theme';
-import getSize from '../_util/getSize';
 
 function Space<T extends keyof JSX.IntrinsicElements>({
   el,
@@ -47,11 +46,13 @@ function Space<T extends keyof JSX.IntrinsicElements>({
                   end: 'flex-end',
                 }[align ?? 'center']};
                 gap: ${typeof size === 'number'
-                    ? `${getSize(theme?.size ?? 10, size)}px`
-                    : getSize(
-                        theme?.size ?? 10,
-                        theme?.components?.space?.size?.[size ?? 'sm'] ?? 16,
-                      )}
+                    ? `${size}px`
+                    : `${
+                        theme?.components?.space?.size?.[
+                          // @ts-ignore
+                          size ?? theme?.components?.space?.defaultSize
+                        ]
+                      }px`}
                   ${theme?.components?.space?.style};
               `,
               className,

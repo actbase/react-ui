@@ -1,3 +1,5 @@
+import { SerializedStyles } from '@emotion/react';
+
 export type SpaceAlignType = 'start' | 'center' | 'end';
 export type SpaceJustifyType =
   | 'start'
@@ -6,16 +8,7 @@ export type SpaceJustifyType =
   | 'space-between'
   | 'space-around'
   | 'space-evenly';
-export type SpaceSizeType =
-  | 'xxs'
-  | 'xs'
-  | 's'
-  | 'sm'
-  | 'm'
-  | 'ml'
-  | 'l'
-  | 'xl'
-  | 'xxl';
+export type SpaceSizeType = Record<string, number>;
 
 export type SpaceProps<T extends keyof JSX.IntrinsicElements> =
   JSX.IntrinsicElements[T] & {
@@ -26,7 +19,7 @@ export type SpaceProps<T extends keyof JSX.IntrinsicElements> =
     // Justify Content
     justify?: SpaceJustifyType;
     // Gap Size
-    size?: SpaceSizeType | number;
+    size?: keyof SpaceSizeType | number;
     // Inline
     inline?: boolean;
     // Flex Direction
@@ -36,3 +29,12 @@ export type SpaceProps<T extends keyof JSX.IntrinsicElements> =
     // Reverse
     reverse?: boolean;
   };
+
+export type SpaceThemeType = {
+  // default size
+  defaultSize?: keyof SpaceSizeType;
+  // size
+  size?: SpaceSizeType;
+  // style
+  style?: SerializedStyles;
+};
