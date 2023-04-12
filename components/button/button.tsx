@@ -2,24 +2,34 @@ import React from 'react';
 import { ButtonProps } from './button.types';
 import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
+import Form from '../form';
 
-function Button({
-  type,
-  htmlType,
-  children,
-  className,
-  radius,
-  loading,
-  disabled,
-  renderLoadingComponent,
-  size,
-  ...props
-}: ButtonProps) {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  {
+    type,
+    htmlType,
+    children,
+    className,
+    radius,
+    loading,
+    disabled,
+    renderLoadingComponent,
+    size,
+    ...props
+  },
+  ref,
+) {
+  const form = Form.useContext();
   const theme = Theme.useContext();
+  const _loading = React.useMemo(
+    () => loading || (htmlType === 'submit' && form.loading),
+    [loading, form.loading, htmlType],
+  );
   return (
     <ClassNames>
       {({ css, cx }) => (
         <button
+          ref={ref}
           type={htmlType ?? 'button'}
           className={cx(
             css`
@@ -39,10 +49,10 @@ function Button({
             `,
             className,
           )}
-          disabled={disabled || loading}
+          disabled={disabled || _loading}
           {...props}
         >
-          {loading &&
+          {_loading &&
           (renderLoadingComponent ||
             theme?.components?.button?.renderLoadingComponent)
             ? renderLoadingComponent
@@ -54,6 +64,6 @@ function Button({
       )}
     </ClassNames>
   );
-}
+});
 
 export default Button;

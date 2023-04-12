@@ -4,7 +4,7 @@ import React from 'react';
 import InitialCheckbox from './checkbox';
 
 export default {
-  title: 'Input/Checkbox',
+  title: 'Input',
   args: {},
   component: InitialCheckbox,
 } satisfies Meta<typeof InitialCheckbox>;

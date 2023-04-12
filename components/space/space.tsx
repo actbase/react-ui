@@ -34,17 +34,18 @@ function Space<T extends keyof JSX.IntrinsicElements>({
                   'space-between': 'space-between',
                   'space-around': 'space-around',
                   'space-evenly': 'space-evenly',
-                }[justify ?? 'start']};
+                }[justify ?? theme?.components?.space?.justify ?? 'start']};
                 flex-direction: ${{
-                  row: reverse ? 'row-reverse' : 'row',
-                  column: reverse ? 'column-reverse' : 'column',
-                }[direction ?? 'row']};
+                  horizontal: reverse ? 'row-reverse' : 'row',
+                  vertical: reverse ? 'column-reverse' : 'column',
+                }[direction ?? 'horizontal']};
                 flex-wrap: ${wrap ? 'wrap' : 'no-wrap'};
                 align-items: ${{
                   start: 'flex-start',
                   center: 'center',
                   end: 'flex-end',
-                }[align ?? 'center']};
+                  stretch: 'stretch',
+                }[align ?? theme?.components?.space?.align ?? 'stretch']};
                 gap: ${typeof size === 'number'
                     ? `${size}px`
                     : `${
