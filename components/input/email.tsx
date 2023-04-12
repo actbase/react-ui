@@ -1,7 +1,7 @@
 import React from 'react';
 import { EmailProps } from './email.types';
 import Theme from '../theme';
-import { ClassNames } from '@storybook/theming';
+import { ClassNames } from '@emotion/react';
 
 const Email = React.forwardRef(function Email({
   className,

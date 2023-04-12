@@ -1,6 +1,6 @@
 import React from 'react';
 import { SpaceProps } from './space.types';
-import { ClassNames } from '@storybook/theming';
+import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 
 function Space<T extends keyof JSX.IntrinsicElements>({

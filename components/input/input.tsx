@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputProps } from './input.types';
 import Theme from '../theme';
-import { ClassNames } from '@storybook/theming';
+import { ClassNames } from '@emotion/react';
 
 const Input = React.forwardRef(function Input({
   className,

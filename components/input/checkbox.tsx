@@ -1,9 +1,7 @@
 import React from 'react';
 import { CheckboxProps } from './checkbox.types';
-import Typography from '../typography';
 import Theme from '../theme';
-import { ClassNames } from '@storybook/theming';
-import Space from '../space';
+import { ClassNames } from '@emotion/react';
 
 const Checkbox = React.forwardRef(function Checkbox({
   name,

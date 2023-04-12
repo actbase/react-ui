@@ -1,6 +1,6 @@
 import React from 'react';
 import { TypographyProps } from './typography.types';
-import { ClassNames } from '@storybook/theming';
+import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 
 function Typography<T extends keyof JSX.IntrinsicElements>({
