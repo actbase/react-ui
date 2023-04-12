@@ -7,4 +7,5 @@ export * from './space/space.types';
 export { default as Space } from './space';
 export * from './theme/theme.types';
 export { default as Theme } from './theme';
-export * from './typography/typography.types';
+export * from './typography/typography';
+export { default as Typography } from './typography/typography';

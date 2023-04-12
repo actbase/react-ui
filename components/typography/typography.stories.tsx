@@ -9,7 +9,7 @@ export default {
     children: 'children',
   },
   component: InitialTypography,
-} satisfies Meta<typeof Typography>;
+} satisfies Meta<typeof InitialTypography>;
 
 type Story = StoryObj<typeof InitialTypography>;
 export const Typography: Story = {

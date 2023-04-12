@@ -1,3 +1,2 @@
-export type * from './space.types';
-
+export * from './space.types';
 export { default } from './space';

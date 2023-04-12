@@ -34,7 +34,7 @@ export function createRollupConfig(options, callback) {
       typescript({
         tsconfig: options.tsconfig,
         clean: true,
-        exclude: ['**/__tests__', '**/*.test.ts'],
+        exclude: ['**/__tests__', '**/*.test.ts', '**/*.stories.{ts,tsx}'],
       }),
       image(),
       options.format === 'umd' &&

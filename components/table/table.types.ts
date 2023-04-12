@@ -1,6 +1,4 @@
-import { ColumnProps } from './column.types';
-
-interface TableProps {
+export interface TableProps {
   // 클래스 이름
   classNames?: string;
   // 로딩 여부 표시

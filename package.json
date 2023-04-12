@@ -7,7 +7,7 @@
   "unpkg": "dist/index.umd.js",
   "jsdelivr": "dist/index.umd.js",
   "jsnext:main": "dist/index.esm.mjs",
-  "source": "src/index.ts",
+  "source": "components/index.ts",
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
