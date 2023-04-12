@@ -22,7 +22,6 @@ const InputTextArea = React.forwardRef<HTMLTextAreaElement, InputTextAreaProps>(
               css`
                 ${theme?.components?.input?.style};
                 resize: ${resize ? 'both' : 'none'};
-                width: ${'auto'};
               `,
               getClassName(theme?.namespace, 'input__textarea'),
               className,
