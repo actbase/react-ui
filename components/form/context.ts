@@ -6,6 +6,10 @@ const context = React.createContext<FormContext>({
   error: undefined,
   setError: undefined,
   inputs: {},
+  getValue() {
+    return undefined;
+  },
+  setValue() {},
 });
 
 export default context;
