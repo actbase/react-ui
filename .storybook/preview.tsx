@@ -1,8 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import type { Preview } from '@storybook/react';
-import Theme from '../components/theme';
-import themeConfig from '../theme';
+import UI from '../components';
 
 const preview: Preview = {
   parameters: {
@@ -16,9 +15,9 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <Theme.Provider theme={themeConfig}>
+      <UI.Theme.Provider theme={themeConfig}>
         <Story />
-      </Theme.Provider>
+      </UI.Theme.Provider>
     ),
   ],
 };
