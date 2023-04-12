@@ -7,6 +7,7 @@ export default {
   title: 'Input/Password',
   args: {
     hidden: true,
+    placeholder: 'Enter your password',
   },
   component: InitialPassword,
 } satisfies Meta<typeof InitialPassword>;

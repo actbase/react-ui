@@ -5,7 +5,9 @@ import InitialInput from './input';
 
 export default {
   title: 'Input/Input',
-  args: {},
+  args: {
+    placeholder: 'Enter your input placeholder',
+  },
   component: InitialInput,
 } satisfies Meta<typeof InitialInput>;
 

@@ -5,6 +5,7 @@ import { ClassNames } from '@emotion/react';
 
 const Input = React.forwardRef(function Input({
   className,
+  placeholder,
   ...props
 }: InputProps) {
   const theme = Theme.useContext();
@@ -16,6 +17,7 @@ const Input = React.forwardRef(function Input({
           className={cx(css`
             ${theme?.components?.input?.style}
           `)}
+          placeholder={placeholder}
           {...props}
         />
       )}

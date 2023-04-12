@@ -16,7 +16,8 @@ const Checkbox = React.forwardRef(function Checkbox({
         <input
           type="checkbox"
           className={cx(css`
-            ${theme?.components?.input?.style}
+            ${theme?.components?.input?.style};
+            width: ${'auto'};
           `)}
           defaultChecked={defaultChecked ? true : false}
           name={name ?? ''}

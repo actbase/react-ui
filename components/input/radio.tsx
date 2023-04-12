@@ -1,6 +1,5 @@
 import React from 'react';
 import { RadioProps } from './radio.types';
-import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
 
 const Radio = React.forwardRef(function Radio({
@@ -9,7 +8,6 @@ const Radio = React.forwardRef(function Radio({
   className,
   ...props
 }: RadioProps) {
-  const theme = Theme.useContext();
   return (
     <ClassNames>
       {({ css, cx }) => (

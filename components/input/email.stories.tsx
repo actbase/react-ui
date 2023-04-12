@@ -5,7 +5,9 @@ import InitialEmail from './email';
 
 export default {
   title: 'Input/Email',
-  args: {},
+  args: {
+    placeholder: 'Enter your email address',
+  },
   component: InitialEmail,
 } satisfies Meta<typeof InitialEmail>;
 
