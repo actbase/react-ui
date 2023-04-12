@@ -2,6 +2,7 @@ import React from 'react';
 import { ButtonProps } from './button.types';
 import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
+import Form from '../form';
 
 function Button({
   type,
@@ -15,7 +16,12 @@ function Button({
   size,
   ...props
 }: ButtonProps) {
+  const form = Form.useContext();
   const theme = Theme.useContext();
+  const _loading = React.useMemo(
+    () => loading || (htmlType === 'submit' && form.loading),
+    [loading, form.loading, htmlType],
+  );
   return (
     <ClassNames>
       {({ css, cx }) => (
@@ -39,10 +45,10 @@ function Button({
             `,
             className,
           )}
-          disabled={disabled || loading}
+          disabled={disabled || _loading}
           {...props}
         >
-          {loading &&
+          {_loading &&
           (renderLoadingComponent ||
             theme?.components?.button?.renderLoadingComponent)
             ? renderLoadingComponent

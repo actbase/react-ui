@@ -1,14 +1,15 @@
-import type { SpaceThemeType } from '../space/space.types';
-import type { TypographyThemeType } from '../typography/typography.types';
-import { ButtonThemeType } from '../button/button.types';
-import { DividerThemeType } from '../divider/divider.types';
-import { InputThemeType } from '../input/input.types';
+import type { ButtonThemeType } from '../button';
+import type { DividerThemeType } from '../divider';
+import type { FormThemeType } from '../form';
+import type { InputThemeType } from '../input';
+import type { SpaceThemeType } from '../space';
+import type { TypographyThemeType } from '../typography';
 
 export type ThemeType = {
   components?: {
     button?: ButtonThemeType;
     divider?: DividerThemeType;
-    form?: {};
+    form?: FormThemeType;
     input?: InputThemeType;
     space?: SpaceThemeType;
     table?: {};
