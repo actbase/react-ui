@@ -1,9 +1,9 @@
 import { InputProps } from './input.types';
 import { SerializedStyles } from '@emotion/react';
 
-export type FileProps = InputProps;
+export type InputFileProps = InputProps;
 
-export type FileThemeType = {
+export type InputFileThemeType = {
   // default style
   style?: SerializedStyles;
 };
