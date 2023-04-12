@@ -6,28 +6,11 @@ export default {
   components: {
     input: {
       style: css`
-        position: relative;
-        display: flex;
-        align-items: center;
+        width: 100%;
+        border: 1px solid #cccccc;
+        padding: 8px 15px;
+        border-radius: 4px;
       `,
-      label: {
-        font: 'noto',
-        style: css`
-          position: absolute;
-          width: 50px;
-          left: 10px;
-        `,
-        level: 7,
-        color: 'label',
-      },
-      input: {
-        style: css`
-          width: 100%;
-          border: 1px solid #cccccc;
-          padding: 8px 15px 8px 55px;
-          border-radius: 4px;
-        `,
-      },
     },
     typography: {
       defaultFont: 'noto',

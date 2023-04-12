@@ -1,9 +1,9 @@
 import React from 'react';
+import { SerializedStyles } from '@emotion/react';
 
-export type InputErrorType = {};
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'label'> {
-  label?: React.ReactNode;
-  error?: InputErrorType;
-}
+export type InputThemeType = {
+  // default input style
+  style?: SerializedStyles;
+};
