@@ -2,6 +2,7 @@
 import React from 'react';
 import type { Preview } from '@storybook/react';
 import UI from '../components';
+import themeConfig from '../theme';
 
 const preview: Preview = {
   parameters: {
