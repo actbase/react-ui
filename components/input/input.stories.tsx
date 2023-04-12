@@ -4,7 +4,7 @@ import React from 'react';
 import InitialInput from './input';
 
 export default {
-  title: 'Input',
+  title: 'Input/Input',
   args: {},
   component: InitialInput,
 } satisfies Meta<typeof InitialInput>;

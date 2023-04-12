@@ -4,7 +4,7 @@ import React from 'react';
 import InitialRadio from './radio';
 
 export default {
-  title: 'Radio',
+  title: 'Input/Radio',
   args: {
     name: 'name',
   },

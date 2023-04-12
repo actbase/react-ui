@@ -4,7 +4,7 @@ import React from 'react';
 import InitialEmail from './email';
 
 export default {
-  title: 'Email',
+  title: 'Input/Email',
   args: {},
   component: InitialEmail,
 } satisfies Meta<typeof InitialEmail>;

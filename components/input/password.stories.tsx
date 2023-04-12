@@ -4,7 +4,7 @@ import React from 'react';
 import InitialPassword from './password';
 
 export default {
-  title: 'Password',
+  title: 'Input/Password',
   args: {
     hidden: true,
   },
