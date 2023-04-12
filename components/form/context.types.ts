@@ -16,4 +16,6 @@ export interface FormContext {
   getValue: (name: string) => string | undefined;
   // set value
   setValue: (name: string, value: string) => void;
+  // allow submitting even if there is an error
+  allowForceSubmit: boolean;
 }

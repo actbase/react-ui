@@ -19,6 +19,7 @@ function FormItem<T extends keyof JSX.IntrinsicElements>({
   name,
   defaultValue,
   validate,
+  resetErrorOnChange = true,
   ...props
 }: FormItemProps<T>) {
   const theme = Theme.useContext();
@@ -81,8 +82,18 @@ function FormItem<T extends keyof JSX.IntrinsicElements>({
                 },
                 onChange: async (event: Event) => {
                   (children as React.ReactElement).props.onChange?.(event);
-                  if (validate?.rules) {
-                    if (name) {
+                  if (name) {
+                    if (resetErrorOnChange) {
+                      form.setError?.((prevState) => {
+                        const obj = { ...prevState };
+                        obj[name] = {
+                          status: FORM_ITEM_ERROR_STATUS.READY,
+                          message: undefined,
+                        };
+                        return obj;
+                      });
+                    }
+                    if (validate?.rules) {
                       for (let i = 0; i < validate.rules.length; i++) {
                         const rule = validate.rules[i];
                         if (

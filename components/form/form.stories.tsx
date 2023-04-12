@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import InitialForm from './form';
 import FormItem from './item';
 import Input from '../input';
@@ -10,41 +10,59 @@ export default {
   title: 'Form',
   component: InitialForm,
   args: {
-    onSubmit: () => {
-      return new Promise((_resolve, reject) => {
-        setTimeout(
-          () =>
-            reject({
-              username: 'Error Username',
-              password: 'Error Password',
-            }),
-          3000,
-        );
-      });
-    },
     defaultValues: {
       username: 'default_username',
       password: 'default_password',
     },
-    children: (
+    allowForceSubmit: false,
+    validates: {
+      username: {
+        rules: [
+          {
+            validate: (value) => {
+              return value.length > 5;
+            },
+            message: 'Check your username',
+          },
+        ],
+      },
+      password: {
+        rules: [
+          {
+            validate: (value) => {
+              return value.length > 5;
+            },
+            message: 'Check your password',
+          },
+        ],
+      },
+    },
+  },
+} satisfies Meta<typeof InitialForm>;
+
+type Story = StoryObj<typeof InitialForm>;
+export const Form: Story = {
+  render: (args) => (
+    <InitialForm
+      onSubmit={() => {
+        return new Promise((_resolve, reject) => {
+          setTimeout(
+            () =>
+              reject({
+                username: 'Error Username',
+                password: 'Error Password',
+              }),
+            3000,
+          );
+        });
+      }}
+      {...args}
+    >
       <Space direction="vertical">
         <FormItem name="username" label="username">
           <Input placeholder="username" />
         </FormItem>
-        <FormItem
-          name="password"
-          label="password"
-          validate={{
-            rules: [
-              {
-                validate: (value) => {
-                  return value.length > 5;
-                },
-                message: 'Check your password',
-              },
-            ],
-          }}
-        >
+        <FormItem name="password" label="password">
           <Input placeholder="password" />
         </FormItem>
         <Space justify="end">
@@ -56,7 +74,6 @@ export default {
           </Button>
         </Space>
       </Space>
-    ),
-  },
-} satisfies Meta<typeof InitialForm>;
-export const Form = {};
+    </InitialForm>
+  ),
+};

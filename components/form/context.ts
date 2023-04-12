@@ -10,6 +10,7 @@ const context = React.createContext<FormContext>({
     return undefined;
   },
   setValue() {},
+  allowForceSubmit: false,
 });
 
 export default context;

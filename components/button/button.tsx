@@ -2,9 +2,10 @@ import React from 'react';
 import { ButtonProps } from './button.types';
 import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
-import Form from '../form';
+import Form, { FormItemErrorStatusType } from '../form';
 import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
+import { FORM_ITEM_ERROR_STATUS } from '../form/constants';
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
@@ -26,6 +27,23 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   const _loading = React.useMemo(
     () => loading || (htmlType === 'submit' && form.loading),
     [loading, form.loading, htmlType],
+  );
+  const _disabled = React.useMemo(
+    () =>
+      disabled ||
+      (htmlType === 'submit' &&
+        (_loading ||
+          (!form.allowForceSubmit &&
+            form.error &&
+            Object.values(form.error).some((error) =>
+              (
+                [
+                  FORM_ITEM_ERROR_STATUS.PENDING,
+                  FORM_ITEM_ERROR_STATUS.ERROR,
+                ] as FormItemErrorStatusType[]
+              ).includes(error.status),
+            )))),
+    [disabled, htmlType, _loading, form.error, form.allowForceSubmit],
   );
   return (
     <ClassNames>
@@ -55,7 +73,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
             size && getClassName(theme?.namespace, `button--size--${size}`),
             className,
           )}
-          disabled={disabled || _loading}
+          disabled={_disabled}
           {...props}
         >
           {_loading &&

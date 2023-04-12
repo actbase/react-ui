@@ -24,6 +24,8 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
     prevent = true,
     onReset,
     validateTiming,
+    allowForceSubmit,
+    validates,
     ...props
   },
   ref,
@@ -46,8 +48,9 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
           inputsRef.current[name].value = value;
         }
       },
+      allowForceSubmit: !!allowForceSubmit,
     }),
-    [loading, error, setError],
+    [loading, error, setError, allowForceSubmit],
   );
   function renderChildren(
     children: React.ReactNode,
@@ -63,6 +66,17 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
           defaultValue:
             defaultValues?.[(children as React.ReactElement)?.props?.name],
           ...((children as React.ReactElement)?.props ?? {}),
+          validate: validates?.[(children as React.ReactElement)?.props?.name]
+            ?.rules
+            ? {
+                rules: [
+                  ...((children as React.ReactElement)?.props?.validate
+                    ?.rules ?? []),
+                  ...validates?.[(children as React.ReactElement)?.props?.name]
+                    ?.rules,
+                ],
+              }
+            : (children as React.ReactElement)?.props?.validate,
           children: Array.isArray(
             (children as React.ReactElement).props.children,
           )
