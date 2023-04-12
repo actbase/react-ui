@@ -4,18 +4,21 @@ import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 import Form from '../form';
 
-function Button({
-  type,
-  htmlType,
-  children,
-  className,
-  radius,
-  loading,
-  disabled,
-  renderLoadingComponent,
-  size,
-  ...props
-}: ButtonProps) {
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  {
+    type,
+    htmlType,
+    children,
+    className,
+    radius,
+    loading,
+    disabled,
+    renderLoadingComponent,
+    size,
+    ...props
+  },
+  ref,
+) {
   const form = Form.useContext();
   const theme = Theme.useContext();
   const _loading = React.useMemo(
@@ -26,6 +29,7 @@ function Button({
     <ClassNames>
       {({ css, cx }) => (
         <button
+          ref={ref}
           type={htmlType ?? 'button'}
           className={cx(
             css`
@@ -60,6 +64,6 @@ function Button({
       )}
     </ClassNames>
   );
-}
+});
 
 export default Button;
