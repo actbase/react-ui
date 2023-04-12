@@ -2,6 +2,7 @@ import React from 'react';
 import { InputFileProps } from './file.types';
 import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
+import getNamespace from '../_util/getNamespace';
 import getClassName from '../_util/getClassName';
 
 const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
@@ -15,6 +16,7 @@ const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
               ref={ref}
               type="file"
               className={cx(
+                getNamespace(theme?.namespace),
                 css`
                   display: ${'none'};
                 `,

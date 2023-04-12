@@ -2,6 +2,7 @@ import React from 'react';
 import { InputPasswordProps } from './password.types';
 import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
+import getNamespace from '../_util/getNamespace';
 import getClassName from '../_util/getClassName';
 
 const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
@@ -17,6 +18,7 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
             ref={ref}
             type={hidden ? 'password' : 'text'}
             className={cx(
+              getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.input?.style}
               `,
