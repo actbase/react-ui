@@ -1,3 +1,3 @@
 import { InputProps } from './input.types';
 
-export type EmailProps = InputProps;
+export type InputEmailProps = InputProps;

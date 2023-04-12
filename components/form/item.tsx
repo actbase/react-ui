@@ -44,12 +44,12 @@ function FormItem<T extends keyof JSX.IntrinsicElements>({
           {label && (
             <legend
               className={cx(
-                'label',
                 css`
                   padding: 0;
                   margin: 0 0 5px;
                   ${theme?.components?.form?.item?.label?.style}
                 `,
+                getClassName(theme?.namespace, 'form__item__label'),
               )}
             >
               {label}
@@ -71,11 +71,11 @@ function FormItem<T extends keyof JSX.IntrinsicElements>({
           {_error && (
             <p
               className={cx(
-                'error',
                 css`
                   margin: 5px 0 0;
                   ${theme?.components?.form?.item?.error?.style}
                 `,
+                getClassName(theme?.namespace, 'form__item__error'),
               )}
             >
               {_error}

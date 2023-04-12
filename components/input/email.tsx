@@ -1,22 +1,27 @@
 import React from 'react';
-import { EmailProps } from './email.types';
+import { InputEmailProps } from './email.types';
 import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
+import getClassName from '../_util/getClassName';
 
-const Email = React.forwardRef(function Email({
+const InputEmail = React.forwardRef(function InputEmail({
   className,
   placeholder,
   ...props
-}: EmailProps) {
+}: InputEmailProps) {
   const theme = Theme.useContext();
   return (
     <ClassNames>
       {({ css, cx }) => (
         <input
           type="email"
-          className={cx(css`
-            ${theme?.components?.input?.style}
-          `)}
+          className={cx(
+            css`
+              ${theme?.components?.input?.style}
+            `,
+            getClassName(theme?.namespace, 'input__email'),
+            className,
+          )}
           placeholder={placeholder}
           {...props}
         />
@@ -25,4 +30,4 @@ const Email = React.forwardRef(function Email({
   );
 });
 
-export default Email;
+export default InputEmail;
