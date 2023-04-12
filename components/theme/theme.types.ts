@@ -6,6 +6,7 @@ import type { SpaceThemeType } from '../space';
 import type { TypographyThemeType } from '../typography';
 
 export type ThemeType = {
+  namespace?: string;
   components?: {
     button?: ButtonThemeType;
     divider?: DividerThemeType;

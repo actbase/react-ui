@@ -2,6 +2,7 @@ import React from 'react';
 import { SpaceProps } from './space.types';
 import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
+import getClassName from '../_util/getClassName';
 
 function Space<T extends keyof JSX.IntrinsicElements>({
   el,
@@ -56,6 +57,7 @@ function Space<T extends keyof JSX.IntrinsicElements>({
                       }px`}
                   ${theme?.components?.space?.style};
               `,
+              getClassName(theme?.namespace, 'space'),
               className,
             )}
             {...props}

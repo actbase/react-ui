@@ -2,6 +2,7 @@ import React from 'react';
 import { ClassNames } from '@emotion/react';
 import { DividerProps } from './divider.types';
 import Theme from '../theme';
+import getClassName from '../_util/getClassName';
 
 function Divider({ color, className, ...props }: DividerProps) {
   const theme = Theme.useContext();
@@ -25,6 +26,7 @@ function Divider({ color, className, ...props }: DividerProps) {
               theme?.components?.divider?.defaultColor ??
               '#eeeeee'};
             `,
+            getClassName(theme?.namespace, 'divider'),
             className,
           )}
           {...props}

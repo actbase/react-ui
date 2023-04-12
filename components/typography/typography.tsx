@@ -2,6 +2,7 @@ import React from 'react';
 import { TypographyProps } from './typography.types';
 import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
+import getClassName from '../_util/getClassName';
 
 function Typography<T extends keyof JSX.IntrinsicElements>({
   children,
@@ -43,6 +44,7 @@ function Typography<T extends keyof JSX.IntrinsicElements>({
               ${size && `font-size: ${size}px`}
               ${weight && `font-weight: ${weight}`}
             `,
+            getClassName(theme?.namespace, 'typography'),
             className,
           )}
           {...props}

@@ -3,6 +3,7 @@ import { ButtonProps } from './button.types';
 import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 import Form from '../form';
+import getClassName from '../_util/getClassName';
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
@@ -47,6 +48,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
                 radius ?? theme?.components?.button?.radius
               }px`};
             `,
+            getClassName(theme?.namespace, 'button'),
             className,
           )}
           disabled={disabled || _loading}

@@ -6,6 +6,7 @@ import React from 'react';
 import { FormItemProps } from './item.types';
 import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
+import getClassName from '../_util/getClassName';
 
 function FormItem<T extends keyof JSX.IntrinsicElements>({
   el,
@@ -32,10 +33,10 @@ function FormItem<T extends keyof JSX.IntrinsicElements>({
         <Element
           // @ts-ignore
           className={cx(
-            'form-item',
             css`
               ${theme?.components?.form?.item?.style}
             `,
+            getClassName(theme?.namespace, 'form__item'),
             className,
           )}
           {...props}

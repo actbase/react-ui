@@ -1,3 +1,5 @@
+import getClassName from '../_util/getClassName';
+
 export * from './form.types';
 
 import React from 'react';
@@ -5,6 +7,7 @@ import { ClassNames } from '@emotion/react';
 import context from './context';
 import { FormProps } from './form.types';
 import type { FormContext } from './context.types';
+import Theme from '../theme';
 
 const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
   {
@@ -19,6 +22,7 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
   },
   ref,
 ) {
+  const theme = Theme.useContext();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<Record<string, string>>();
   const inputsRef = React.useRef<Record<string, HTMLInputElement>>({});
@@ -69,7 +73,11 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
         {({ css, cx }) => (
           <form
             ref={ref}
-            className={cx(css``, className)}
+            className={cx(
+              css``,
+              getClassName(theme?.namespace, 'form'),
+              className,
+            )}
             onSubmit={async (event) => {
               if (prevent) {
                 event.preventDefault();
