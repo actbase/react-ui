@@ -21,7 +21,7 @@
       "require": "./dist/index.cjs.js"
     }
   },
-  "repository": "git@git.actbase.io:maybeone/bizprint/editor.git",
+  "repository": "https://github.com/actbase/react-ui",
   "author": "Seung Ju <seung-ju@actbase.io>",
   "license": "MIT",
   "scripts": {
