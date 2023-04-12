@@ -5,8 +5,6 @@ import { ClassNames } from '@emotion/react';
 const Input = React.forwardRef(function Input({
   className,
   accept,
-  maxSize,
-  maxCount,
   ...props
 }: FileProps) {
   return (
