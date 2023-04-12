@@ -3,7 +3,6 @@ import { css } from '@storybook/theming';
 import type { ThemeType } from './components';
 
 export default {
-  size: 10,
   components: {
     input: {
       style: css`
@@ -35,50 +34,46 @@ export default {
       font: {
         noto: 'NotoSansKR, sans-serif',
       },
+      defaultLevel: 5,
       level: {
-        1: {
-          size: 48,
-          weight: 800,
-        },
-        2: {
-          size: 40,
-          weight: 700,
-        },
-        3: {
-          size: 36,
-          weight: 600,
-        },
-        4: {
-          size: 26,
-          weight: 500,
-        },
-        5: {
-          size: 20,
-          weight: 500,
-        },
-        6: {
-          size: 16,
-          weight: 400,
-        },
-        7: {
-          size: 14,
-          weight: 400,
-        },
-        8: {
-          size: 13,
-          weight: 300,
-        },
-        9: {
-          size: 10,
-          weight: 300,
-        },
-        10: {
-          size: 8,
-          weight: 300,
-        },
+        1: css`
+          font-size: 26px;
+          font-weight: 800;
+        `,
+        2: css`
+          font-size: 24px;
+          font-weight: 600;
+        `,
+        3: css`
+          font-size: 22px;
+          font-weight: 500;
+        `,
+        4: css`
+          font-size: 20px;
+          font-weight: 500;
+        `,
+        5: css`
+          font-size: 18px;
+          font-weight: 500;
+        `,
+        6: css`
+          font-size: 16px;
+          font-weight: 400;
+        `,
       },
+      defaultColor: 'default',
       color: {
-        label: '#999999',
+        default: '#333333',
+      },
+    },
+    space: {
+      defaultSize: 'm',
+      size: {
+        xs: 10,
+        s: 12,
+        m: 14,
+        l: 16,
+        xl: 18,
       },
     },
     button: {
