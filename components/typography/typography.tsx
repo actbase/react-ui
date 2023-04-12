@@ -20,24 +20,30 @@ function Typography<T extends keyof JSX.IntrinsicElements>({
   return (
     <ClassNames>
       {({ css, cx }) => (
+        // @ts-ignore
         <Element
           className={cx(
             css`
               margin: 0;
               font-family: ${theme?.components?.typography?.font?.[
+                // @ts-ignore
                 font ?? theme?.components?.typography?.defaultFont
               ]};
               font-size: ${getSize(
                 theme?.size ?? 10,
                 size ??
-                  theme?.components?.typography?.level?.[level ?? 5]?.size ??
+                  theme?.components?.typography?.level?.[
+                    level ?? theme?.components?.typography?.defaultLevel ?? 5
+                  ]?.size ??
                   16,
               )}px;
               font-weight: ${weight ??
               theme?.components?.typography?.level?.[level ?? 5]?.weight ??
               400};
               color: ${theme?.components?.typography?.color?.[
-                color ?? 'default'
+                color ??
+                  theme?.components?.typography?.defaultColor ??
+                  'default'
               ] ??
               color ??
               '#333333'};

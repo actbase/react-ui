@@ -1,5 +1,4 @@
-export type * from './theme.types';
-
+export * from './theme.types';
 export * from './context';
 export * from './provider';
 export * from './hooks/useContext';
