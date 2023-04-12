@@ -4,13 +4,14 @@ import { FormItemValidateType } from './item';
 
 export type FormValidateTimingType = 'ON_SUBMIT' | 'ON_CHANGE';
 
-export interface FormProps<T = FormData>
+export interface FormProps<T = FormData, P = any>
   extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> {
   children?: React.ReactNode;
   // default values
   defaultValues?: Record<string, string>;
   // on submit
-  onSubmit?: (data: T, event: React.FormEvent) => Promise<void> | void;
+  onSubmit?: (data: T, event: React.FormEvent) => Promise<P> | P;
+  onSuccess?: (data: P) => Promise<void> | void;
   // serialize form data when on submit
   serialize: (data: Record<string, string>) => T;
   // prevent event when on submit

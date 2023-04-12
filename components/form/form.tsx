@@ -19,6 +19,7 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
     children,
     className,
     onSubmit,
+    onSuccess,
     onError,
     serialize,
     prevent = true,
@@ -109,11 +110,16 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
               }
               try {
                 setLoading(true);
-                const data = Object.entries(inputsRef.current).reduce(
-                  (p, [key, value]) => ({ ...p, [key]: value.value }),
-                  {},
-                );
-                await onSubmit?.(serialize?.(data) ?? data, event);
+                const data = await (() => {
+                  const data = Object.entries(inputsRef.current).reduce(
+                    (p, [key, value]) => ({ ...p, [key]: value.value }),
+                    {},
+                  );
+                  return onSubmit?.(serialize?.(data) ?? data, event);
+                })();
+                if (onSuccess) {
+                  await onSuccess(data);
+                }
               } catch (error) {
                 if (error instanceof Object) {
                   setError((prevState) => {

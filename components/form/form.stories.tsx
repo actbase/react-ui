@@ -15,6 +15,7 @@ export default {
       password: 'default_password',
     },
     allowForceSubmit: false,
+    onSuccess: alert,
     validates: {
       username: {
         rules: [
@@ -45,15 +46,8 @@ export const Form: Story = {
   render: (args) => (
     <InitialForm
       onSubmit={() => {
-        return new Promise((_resolve, reject) => {
-          setTimeout(
-            () =>
-              reject({
-                username: 'Error Username',
-                password: 'Error Password',
-              }),
-            3000,
-          );
+        return new Promise((resolve) => {
+          setTimeout(() => resolve(true), 1500);
         });
       }}
       {...args}
