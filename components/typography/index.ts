@@ -1,3 +1,2 @@
-export type * from './typography.types';
-
+export * from './typography.types';
 export { default } from './typography';
