@@ -5,6 +5,7 @@ import type {
   TypographyThemeType,
 } from '../typography/typography.types';
 import { ButtonThemeType } from '../button/button.types';
+import { DividerThemeType } from '../divider/divider.types';
 
 export type InputThemeType = {
   // default input style
@@ -21,7 +22,7 @@ export type InputThemeType = {
 export type ThemeType = {
   components?: {
     button?: ButtonThemeType;
-    divider?: {};
+    divider?: DividerThemeType;
     form?: {};
     input?: InputThemeType;
     space?: SpaceThemeType;
