@@ -1,31 +1,34 @@
 import React from 'react';
-import { CheckboxProps } from './checkbox.types';
+import { InputCheckboxProps } from './checkbox.types';
 import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
+import getClassName from '../_util/getClassName';
 
-const Checkbox = React.forwardRef(function Checkbox({
-  name,
-  defaultChecked,
-  className,
-  ...props
-}: CheckboxProps) {
-  const theme = Theme.useContext();
-  return (
-    <ClassNames>
-      {({ css, cx }) => (
-        <input
-          type="checkbox"
-          className={cx(css`
-            ${theme?.components?.input?.style};
-            width: ${'auto'};
-          `)}
-          defaultChecked={defaultChecked ? true : false}
-          name={name ?? ''}
-          {...props}
-        />
-      )}
-    </ClassNames>
-  );
-});
+const InputCheckbox = React.forwardRef<HTMLInputElement, InputCheckboxProps>(
+  function Checkbox({ name, defaultChecked, className, ...props }, ref) {
+    const theme = Theme.useContext();
+    return (
+      <ClassNames>
+        {({ css, cx }) => (
+          <input
+            ref={ref}
+            type="checkbox"
+            className={cx(
+              css`
+                ${theme?.components?.input?.style};
+                width: ${'auto'};
+              `,
+              getClassName(theme?.namespace, 'input__checkbox'),
+              className,
+            )}
+            defaultChecked={defaultChecked ? true : false}
+            name={name ?? ''}
+            {...props}
+          />
+        )}
+      </ClassNames>
+    );
+  },
+);
 
-export default Checkbox;
+export default InputCheckbox;
