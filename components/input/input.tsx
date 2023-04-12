@@ -2,6 +2,7 @@ import React from 'react';
 import { InputProps } from './input.types';
 import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
+import getClassName from '../_util/getClassName';
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
   { className, ...props },
@@ -14,9 +15,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
         <input
           ref={ref}
           type="text"
-          className={cx(css`
-            ${theme?.components?.input?.style}
-          `)}
+          className={cx(
+            css`
+              ${theme?.components?.input?.style}
+            `,
+            className,
+            getClassName(theme?.namespace, 'input'),
+          )}
           {...props}
         />
       )}
