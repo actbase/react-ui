@@ -23,7 +23,9 @@ export type SpaceThemeType = {
 export type TypographyThemeType = {
   defaultFont?: keyof TypographyFontType;
   font?: TypographyFontType;
+  defaultLevel?: keyof TypographyLevelType;
   level?: TypographyLevelType;
+  defaultColor?: keyof TypographyColorType;
   color?: TypographyColorType;
   style?: SerializedStyles;
 };
