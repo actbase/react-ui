@@ -1,27 +1,21 @@
 import React from 'react';
-import { CheckboxProps } from './checkbox.types';
-import Typography from '../typography';
+import { EmailProps } from './email.types';
 import Theme from '../theme';
 import { ClassNames } from '@storybook/theming';
-import Space from '../space';
 
-const Checkbox = React.forwardRef(function Checkbox({
-  name,
-  defaultChecked,
+const Email = React.forwardRef(function Email({
   className,
   ...props
-}: CheckboxProps) {
+}: EmailProps) {
   const theme = Theme.useContext();
   return (
     <ClassNames>
       {({ css, cx }) => (
         <input
-          type="checkbox"
+          type="email"
           className={cx(css`
             ${theme?.components?.input?.style}
           `)}
-          defaultChecked={defaultChecked ? true : false}
-          name={name ?? ''}
           {...props}
         />
       )}
@@ -29,4 +23,4 @@ const Checkbox = React.forwardRef(function Checkbox({
   );
 });
 
-export default Checkbox;
+export default Email;
