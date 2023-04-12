@@ -1,5 +1,7 @@
+import getNamespace from './getNamespace';
+
 function getClassName(namespace?: string, className?: string): string {
-  return `${namespace ?? 'react-ui'}--${className}`;
+  return `${getNamespace(namespace)}--${className}`;
 }
 
 export default getClassName;

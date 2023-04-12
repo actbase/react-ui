@@ -3,6 +3,7 @@ import { ClassNames } from '@emotion/react';
 import { DividerProps } from './divider.types';
 import Theme from '../theme';
 import getClassName from '../_util/getClassName';
+import getNamespace from '../_util/getNamespace';
 
 function Divider({ color, className, ...props }: DividerProps) {
   const theme = Theme.useContext();
@@ -11,6 +12,7 @@ function Divider({ color, className, ...props }: DividerProps) {
       {({ css, cx }) => (
         <hr
           className={cx(
+            getNamespace(theme?.namespace),
             css`
               border: none;
               height: 1px;
@@ -27,6 +29,13 @@ function Divider({ color, className, ...props }: DividerProps) {
               '#eeeeee'};
             `,
             getClassName(theme?.namespace, 'divider'),
+            (color ?? theme?.components?.divider?.defaultColor) &&
+              getClassName(
+                theme?.namespace,
+                `divider--color--${
+                  color ?? theme?.components?.divider?.defaultColor
+                }`,
+              ),
             className,
           )}
           {...props}

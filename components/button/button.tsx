@@ -4,6 +4,7 @@ import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 import Form from '../form';
 import getClassName from '../_util/getClassName';
+import getNamespace from '../_util/getNamespace';
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
@@ -33,6 +34,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
           ref={ref}
           type={htmlType ?? 'button'}
           className={cx(
+            getNamespace(theme?.namespace),
             css`
               ${theme?.components?.button?.style}
               ${theme?.components?.button?.type?.[
@@ -49,6 +51,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
               }px`};
             `,
             getClassName(theme?.namespace, 'button'),
+            type && getClassName(theme?.namespace, `button--type--${type}`),
+            size && getClassName(theme?.namespace, `button--size--${size}`),
             className,
           )}
           disabled={disabled || _loading}
