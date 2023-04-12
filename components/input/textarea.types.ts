@@ -1,6 +1,6 @@
 import React from 'react';
 
-export interface TextAreaProps
+export interface InputTextAreaProps
   extends React.InputHTMLAttributes<HTMLTextAreaElement> {
   // 사이즈 조절 가능여부
   resize?: boolean;
