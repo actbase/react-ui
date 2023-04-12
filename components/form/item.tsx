@@ -7,6 +7,7 @@ import { FormItemProps } from './item.types';
 import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 import getClassName from '../_util/getClassName';
+import getNamespace from '../_util/getNamespace';
 
 function FormItem<T extends keyof JSX.IntrinsicElements>({
   el,
@@ -33,6 +34,7 @@ function FormItem<T extends keyof JSX.IntrinsicElements>({
         <Element
           // @ts-ignore
           className={cx(
+            getNamespace(theme?.namespace),
             css`
               ${theme?.components?.form?.item?.style}
             `,
@@ -44,6 +46,7 @@ function FormItem<T extends keyof JSX.IntrinsicElements>({
           {label && (
             <legend
               className={cx(
+                getNamespace(theme?.namespace),
                 css`
                   padding: 0;
                   margin: 0 0 5px;
@@ -71,6 +74,7 @@ function FormItem<T extends keyof JSX.IntrinsicElements>({
           {_error && (
             <p
               className={cx(
+                getNamespace(theme?.namespace),
                 css`
                   margin: 5px 0 0;
                   ${theme?.components?.form?.item?.error?.style}

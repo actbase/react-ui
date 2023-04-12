@@ -3,6 +3,7 @@ import { SpaceProps } from './space.types';
 import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 import getClassName from '../_util/getClassName';
+import getNamespace from '../_util/getNamespace';
 
 function Space<T extends keyof JSX.IntrinsicElements>({
   el,
@@ -26,6 +27,7 @@ function Space<T extends keyof JSX.IntrinsicElements>({
           // @ts-ignore
           <Element
             className={cx(
+              getNamespace(theme?.namespace),
               css`
                 display: ${inline ? 'inline-flex' : 'flex'};
                 justify-content: ${{

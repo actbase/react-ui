@@ -8,6 +8,7 @@ import context from './context';
 import { FormProps } from './form.types';
 import type { FormContext } from './context.types';
 import Theme from '../theme';
+import getNamespace from '../_util/getNamespace';
 
 const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
   {
@@ -74,6 +75,7 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
           <form
             ref={ref}
             className={cx(
+              getNamespace(theme?.namespace),
               css``,
               getClassName(theme?.namespace, 'form'),
               className,
