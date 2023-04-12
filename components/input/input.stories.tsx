@@ -4,7 +4,7 @@ import React from 'react';
 import InitialInput from './input';
 
 export default {
-  title: 'Input/Input',
+  title: 'Input',
   args: {
     placeholder: 'Enter your input placeholder',
   },

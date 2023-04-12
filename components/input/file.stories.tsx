@@ -4,7 +4,7 @@ import React from 'react';
 import InitialFile from './file';
 
 export default {
-  title: 'Input/File',
+  title: 'Input',
   component: InitialFile,
 } satisfies Meta<typeof InitialFile>;
 
