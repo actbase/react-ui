@@ -1,6 +1,5 @@
 import React from 'react';
 import { FileProps } from './file.types';
-import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
 
 const Input = React.forwardRef(function Input({
@@ -10,10 +9,22 @@ const Input = React.forwardRef(function Input({
   maxCount,
   ...props
 }: FileProps) {
-  const theme = Theme.useContext();
   return (
     <ClassNames>
-      {({ css, cx }) => <input type="file" className={cx(css``)} {...props} />}
+      {({ css, cx }) => (
+        <label>
+          <input
+            type="file"
+            className={cx(
+              css`
+                display: ${'none'};
+              `,
+            )}
+            {...props}
+          />
+          파일 업로드
+        </label>
+      )}
     </ClassNames>
   );
 });
