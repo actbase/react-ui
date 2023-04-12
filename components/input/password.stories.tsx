@@ -6,7 +6,6 @@ import InitialPassword from './password';
 export default {
   title: 'Password',
   args: {
-    label: 'label',
     hidden: true,
   },
   component: InitialPassword,

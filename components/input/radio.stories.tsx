@@ -6,7 +6,6 @@ import InitialRadio from './radio';
 export default {
   title: 'Radio',
   args: {
-    label: 'label',
     name: 'name',
   },
   component: InitialRadio,

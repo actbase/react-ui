@@ -5,9 +5,7 @@ import InitialEmail from './email';
 
 export default {
   title: 'Email',
-  args: {
-    label: 'label',
-  },
+  args: {},
   component: InitialEmail,
 } satisfies Meta<typeof InitialEmail>;
 

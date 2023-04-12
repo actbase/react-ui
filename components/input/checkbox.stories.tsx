@@ -5,9 +5,7 @@ import InitialCheckbox from './checkbox';
 
 export default {
   title: 'Checkbox',
-  args: {
-    label: 'Checkbox',
-  },
+  args: {},
   component: InitialCheckbox,
 } satisfies Meta<typeof InitialCheckbox>;
 
