@@ -17,7 +17,7 @@ const Checkbox = React.forwardRef(function Checkbox({
   return (
     <ClassNames>
       {({ css, cx }) => (
-        <Space el="label" className={cx(className)}>
+        <Space el="label" className={cx(className)} size={0}>
           <input
             type="checkbox"
             className={cx(css`
