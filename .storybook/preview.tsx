@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import type { Preview } from '@storybook/react';
 import Theme from '../components/theme';
