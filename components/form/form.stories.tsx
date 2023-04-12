@@ -31,7 +31,20 @@ export default {
         <FormItem name="username" label="username">
           <Input placeholder="username" />
         </FormItem>
-        <FormItem name="password" label="password">
+        <FormItem
+          name="password"
+          label="password"
+          validate={{
+            rules: [
+              {
+                validate: (value) => {
+                  return value.length > 5;
+                },
+                message: 'Check your password',
+              },
+            ],
+          }}
+        >
           <Input placeholder="password" />
         </FormItem>
         <Space justify="end">

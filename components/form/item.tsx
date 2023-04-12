@@ -8,6 +8,7 @@ import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
+import { FORM_ITEM_ERROR_STATUS, FORM_VALIDATE_TIMING } from './constants';
 
 function FormItem<T extends keyof JSX.IntrinsicElements>({
   el,
@@ -17,13 +18,22 @@ function FormItem<T extends keyof JSX.IntrinsicElements>({
   error,
   name,
   defaultValue,
+  validate,
   ...props
 }: FormItemProps<T>) {
   const theme = Theme.useContext();
   const form = useContext();
   const _error = React.useMemo(
-    // @ts-ignore
-    () => error ?? form.error?.[name],
+    () =>
+      // @ts-ignore
+      error?.message ??
+      error ??
+      // @ts-ignore
+      (form.error?.[name]?.status === FORM_ITEM_ERROR_STATUS.ERROR &&
+        // @ts-ignore
+        (form.error?.[name]?.message ??
+          // @ts-ignore
+          form.error?.[name])),
     [error, form.error, name],
   );
   const Element = el ?? 'label';
@@ -68,6 +78,53 @@ function FormItem<T extends keyof JSX.IntrinsicElements>({
                     form.inputs[name] = ref;
                   }
                   (children as React.ReactElement).props.ref?.(ref);
+                },
+                onChange: async (event: Event) => {
+                  (children as React.ReactElement).props.onChange?.(event);
+                  if (validate?.rules) {
+                    if (name) {
+                      for (let i = 0; i < validate.rules.length; i++) {
+                        const rule = validate.rules[i];
+                        if (
+                          rule.timing &&
+                          rule.timing !== FORM_VALIDATE_TIMING.ON_CHANGE
+                        ) {
+                          continue;
+                        }
+                        form.setError?.((prevState) => {
+                          const obj = { ...prevState };
+                          obj[name] = {
+                            status: FORM_ITEM_ERROR_STATUS.PENDING,
+                            message: undefined,
+                          };
+                          return obj;
+                        });
+                        const message = await rule.validate(
+                          (event.target as HTMLInputElement)?.value,
+                        );
+                        if (message) {
+                          form.setError?.((prevState) => {
+                            const obj = { ...prevState };
+                            obj[name] = {
+                              status: FORM_ITEM_ERROR_STATUS.ERROR,
+                              message: rule.message ?? message,
+                            };
+                            return obj;
+                          });
+                          return;
+                        } else {
+                          form.setError?.((prevState) => {
+                            const obj = { ...prevState };
+                            obj[name] = {
+                              status: FORM_ITEM_ERROR_STATUS.DONE,
+                              message: undefined,
+                            };
+                            return obj;
+                          });
+                        }
+                      }
+                    }
+                  }
                 },
               })
             : children}

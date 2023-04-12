@@ -2,13 +2,16 @@ import getClassName from '../_util/getClassName';
 
 export * from './form.types';
 
+import type { FormProps } from './form.types';
+import type { FormContext } from './context.types';
+import type { FormItemErrorType } from './item.types';
+
 import React from 'react';
 import { ClassNames } from '@emotion/react';
 import context from './context';
-import { FormProps } from './form.types';
-import type { FormContext } from './context.types';
 import Theme from '../theme';
 import getNamespace from '../_util/getNamespace';
+import { FORM_ITEM_ERROR_STATUS } from './constants';
 
 const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
   {
@@ -19,13 +22,15 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
     onError,
     serialize,
     prevent = true,
+    onReset,
+    validateTiming,
     ...props
   },
   ref,
 ) {
   const theme = Theme.useContext();
   const [loading, setLoading] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<Record<string, string>>();
+  const [error, setError] = React.useState<FormItemErrorType>();
   const inputsRef = React.useRef<Record<string, HTMLInputElement>>({});
   const contextValue = React.useMemo<FormContext>(
     () => ({
@@ -33,10 +38,10 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
       error,
       setError,
       inputs: inputsRef.current,
-      getValue: (name) => {
+      getValue(name) {
         return inputsRef.current[name]?.value;
       },
-      setValue: (name, value) => {
+      setValue(name, value) {
         if (inputsRef.current[name]) {
           inputsRef.current[name].value = value;
         }
@@ -80,6 +85,10 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
               getClassName(theme?.namespace, 'form'),
               className,
             )}
+            onReset={(event) => {
+              setError(undefined);
+              onReset?.(event);
+            }}
             onSubmit={async (event) => {
               if (prevent) {
                 event.preventDefault();
@@ -93,7 +102,19 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
                 await onSubmit?.(serialize?.(data) ?? data, event);
               } catch (error) {
                 if (error instanceof Object) {
-                  setError(error as Record<string, string>);
+                  setError((prevState) => {
+                    const obj = { ...prevState };
+                    Object.entries(error as Record<string, string>).forEach(
+                      ([name, message]) => {
+                        obj[name] = {
+                          // @ts-ignore
+                          status: FORM_ITEM_ERROR_STATUS.ERROR,
+                          message,
+                        };
+                      },
+                    );
+                    return obj;
+                  });
                 }
                 if (onError) {
                   // @ts-ignore

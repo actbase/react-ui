@@ -1,12 +1,15 @@
-export type FormContextErrorType = Record<string, string>;
+import type React from 'react';
+import type { FormItemErrorType } from './item.types';
 
 export interface FormContext {
   // loading
   loading?: boolean;
   // error
-  error?: FormContextErrorType;
+  error?: FormItemErrorType;
   // set error
-  setError?: (error: FormContextErrorType) => void;
+  setError?: React.Dispatch<
+    React.SetStateAction<FormItemErrorType | undefined>
+  >;
   // inputs
   inputs: Record<string, HTMLInputElement>;
   // get value
