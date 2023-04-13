@@ -4,7 +4,7 @@ import React from 'react';
 import InitialButton from './button';
 
 export default {
-  title: 'Button',
+  title: 'General/Button',
   args: {
     children: 'children',
   },

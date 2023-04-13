@@ -4,7 +4,7 @@ import React from 'react';
 import InitialEmail from './email';
 
 export default {
-  title: 'Input',
+  title: 'Data Entry/Input',
   args: {
     placeholder: 'Enter your email address',
   },

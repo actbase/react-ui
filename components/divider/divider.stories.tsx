@@ -4,7 +4,7 @@ import React from 'react';
 import InitialDivider from './divider';
 
 export default {
-  title: 'Divider',
+  title: 'Layout/Divider',
   component: InitialDivider,
 } satisfies Meta<typeof InitialDivider>;
 

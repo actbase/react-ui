@@ -3,14 +3,14 @@ import useContext from './hooks/useContext';
 export * from './item.types';
 
 import React from 'react';
-import { FormItemHandle, FormItemProps, FormItemRef } from './item.types';
+import { FormItemProps, FormItemRef } from './item.types';
 import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
 import { FORM_ITEM_ERROR_STATUS, FORM_VALIDATE_TIMING } from './constants';
 
-const FormItem = React.forwardRef<FormItemHandle>(function FormItem<
+const FormItem = React.forwardRef(function FormItem<
   T extends keyof JSX.IntrinsicElements,
 >(
   {

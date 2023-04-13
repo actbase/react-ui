@@ -4,7 +4,7 @@ import React from 'react';
 import InitialTypography from './typography';
 
 export default {
-  title: 'Typography',
+  title: 'General/Typography',
   args: {
     children: 'children',
   },

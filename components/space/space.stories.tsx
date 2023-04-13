@@ -4,7 +4,7 @@ import React from 'react';
 import InitialSpace from './space';
 
 export default {
-  title: 'Space',
+  title: 'Layout/Space',
   component: InitialSpace,
 } satisfies Meta<typeof Space>;
 

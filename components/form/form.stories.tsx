@@ -7,7 +7,7 @@ import Button from '../button';
 import Space from '../space';
 
 export default {
-  title: 'Form',
+  title: 'Data Entry/Form',
   component: InitialForm,
   args: {
     defaultValues: {

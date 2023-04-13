@@ -4,7 +4,7 @@ import React from 'react';
 import InitialTextarea from './textarea';
 
 export default {
-  title: 'Input',
+  title: 'Data Entry/Input',
   args: {
     placeholder: 'Enter your textarea placeholder',
     resize: false,

@@ -3,7 +3,7 @@ import InitialFormItem from './item';
 import Input from '../input';
 
 export default {
-  title: 'Form',
+  title: 'Data Entry/Form',
   component: InitialFormItem,
   args: {
     label: 'label',
