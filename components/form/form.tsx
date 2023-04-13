@@ -34,6 +34,7 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
   const theme = Theme.useContext();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<FormItemErrorType>();
+  const [resetDate, setResetDate] = React.useState<Date>();
   const inputsRef = React.useRef<Record<string, HTMLInputElement>>({});
   const contextValue = React.useMemo<FormContext>(
     () => ({
@@ -50,8 +51,9 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
         }
       },
       allowForceSubmit: !!allowForceSubmit,
+      resetDate,
     }),
-    [loading, error, setError, allowForceSubmit],
+    [loading, error, allowForceSubmit, resetDate],
   );
   function renderChildren(
     children: React.ReactNode,
@@ -103,6 +105,7 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
             onReset={(event) => {
               setError(undefined);
               onReset?.(event);
+              setResetDate(new Date());
             }}
             onSubmit={async (event) => {
               if (prevent) {

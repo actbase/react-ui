@@ -17,6 +17,11 @@ export type FormItemErrorValueType = {
 };
 export type FormItemErrorType = Record<string, FormItemErrorValueType>;
 
+export interface FormItemHandle {
+  validate: () => void;
+}
+export type FormItemRef = React.ForwardedRef<FormItemHandle>;
+
 export type FormItemProps<T extends keyof JSX.IntrinsicElements> = Omit<
   JSX.IntrinsicElements[T],
   'label'

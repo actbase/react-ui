@@ -18,4 +18,6 @@ export interface FormContext {
   setValue: (name: string, value: string) => void;
   // allow submitting even if there is an error
   allowForceSubmit: boolean;
+  // reset date
+  resetDate?: Date;
 }
