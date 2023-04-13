@@ -6,7 +6,7 @@ import InternalCheckbox from './checkbox';
 export default {
   title: 'Data Entry/Input',
   args: {
-    label: 'Checkbox',
+    children: 'Checkbox',
   },
   component: InternalCheckbox,
 } satisfies Meta<typeof InternalCheckbox>;
