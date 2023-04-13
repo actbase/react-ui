@@ -98,6 +98,22 @@ export const Form: Story = {
             </Input.Checkbox>
           </Space>
         </FormItem>
+        <FormItem name="input_radio" label="Input Radio">
+          <Input.Radio>Input Radio</Input.Radio>
+        </FormItem>
+        <FormItem el="div" label="Input Radios">
+          <Space direction="vertical" size={2}>
+            <Input.Radio name="input_radios" value="1">
+              Input Radio 1
+            </Input.Radio>
+            <Input.Radio name="input_radios" value="2">
+              Input Radio 2
+            </Input.Radio>
+            <Input.Radio name="input_radios" value="3">
+              Input Radio 3
+            </Input.Radio>
+          </Space>
+        </FormItem>
         <Space size={6} justify="end">
           <Button htmlType="reset" type="primary">
             Reset
