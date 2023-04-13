@@ -7,6 +7,7 @@ export default {
   title: 'General/Button',
   args: {
     children: 'children',
+    type: 'primary',
   },
   component: InitialButton,
 } satisfies Meta<typeof InitialButton>;

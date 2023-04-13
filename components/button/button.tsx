@@ -17,7 +17,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     loading,
     disabled,
     renderLoadingComponent,
-    size,
     ...props
   },
   ref,
@@ -55,22 +54,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
             getNamespace(theme?.namespace),
             css`
               ${theme?.components?.button?.style}
-              ${theme?.components?.button?.type?.[
-                // @ts-ignore
-                type ?? theme?.components?.button?.defaultType
-              ]}
-              ${theme?.components?.button?.size?.[
-                // @ts-ignore
-                size ?? theme?.components?.button?.defaultSize
-              ]}
-              ${(radius || theme?.components?.button?.radius) &&
-              `border-radius: ${
-                radius ?? theme?.components?.button?.radius
-              }px`};
+              ${type && theme?.components?.button?.type?.[type]}
             `,
             getClassName(theme?.namespace, 'button'),
             type && getClassName(theme?.namespace, `button--type--${type}`),
-            size && getClassName(theme?.namespace, `button--size--${size}`),
             className,
           )}
           disabled={_disabled}

@@ -1,17 +1,11 @@
 import type React from 'react';
-import { SerializedStyles } from '@emotion/react';
+import type { ElementProps, ElementThemeType } from '../element';
 
-export type ButtonType = Record<string, SerializedStyles>;
-export type ButtonSizeType = Record<string, SerializedStyles>;
-
-export interface ButtonProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+export interface ButtonProps<T extends string = string>
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'>,
+    ElementProps<T> {
   // HTML Type
   htmlType?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  // Type
-  type?: keyof ButtonType;
-  // Size
-  size?: keyof ButtonSizeType;
   // Radius
   radius?: number;
   // Loading
@@ -20,19 +14,7 @@ export interface ButtonProps
   renderLoadingComponent?: () => React.ReactNode;
 }
 
-export type ButtonThemeType = {
-  // default button style
-  style?: SerializedStyles;
-  // default button radius
-  radius?: ButtonProps['radius'];
-  // default button type
-  defaultType?: keyof ButtonType;
-  // button types
-  type?: ButtonType;
-  // default button size
-  defaultSize?: keyof ButtonSizeType;
-  // button sizes
-  size?: ButtonSizeType;
+export type ButtonThemeType<T extends string = string> = ElementThemeType<T> & {
   // default render loading component
   renderLoadingComponent?: ButtonProps['renderLoadingComponent'];
 };

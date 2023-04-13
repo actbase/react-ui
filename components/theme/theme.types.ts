@@ -5,6 +5,8 @@ import type { InputThemeType } from '../input';
 import type { SpaceThemeType } from '../space';
 import type { TypographyThemeType } from '../typography';
 
+export type ThemeColorType = Record<string, string>;
+
 export type ThemeType = {
   // theme namespace
   namespace?: string;
@@ -17,4 +19,6 @@ export type ThemeType = {
     table?: {};
     typography?: TypographyThemeType;
   };
+  // theme colors
+  color?: ThemeColorType;
 };

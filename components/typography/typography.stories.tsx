@@ -6,7 +6,8 @@ import InitialTypography from './typography';
 export default {
   title: 'General/Typography',
   args: {
-    children: 'children',
+    children: 'Typography',
+    type: 'h1',
   },
   component: InitialTypography,
 } satisfies Meta<typeof InitialTypography>;

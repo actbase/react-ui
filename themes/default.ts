@@ -1,15 +1,23 @@
-import { css } from '@storybook/theming';
-import type { ThemeType } from './components';
+import { css } from '@emotion/react';
+import type { ThemeType } from '../components';
 
 export default {
+  color: {
+    primary: '#029cfd',
+    danger: '#ee0000',
+    text: '#333333',
+  },
   components: {
     button: {
       style: css`
         background-color: transparent;
-        border: none;
-        font-size: 12px;
+        font-size: 16px;
         cursor: pointer;
         transition: 0.2s all ease;
+        border: 1px solid #999999;
+        color: #333333;
+        padding: 5px 10px;
+        border-radius: 8px;
 
         &:disabled {
           background-color: #cccccc !important;
@@ -19,40 +27,25 @@ export default {
       type: {
         primary: css`
           background-color: #029cfd;
+          border-color: #029cfd;
           color: #ffffff;
 
           &:hover {
             background-color: #6cc0f6;
+            border-color: #6cc0f6;
           }
         `,
         danger: css`
           background-color: #ee0000;
+          border-color: #ee0000;
           color: #ffffff;
 
           &:hover {
             background-color: #ff0000;
+            border-color: #ff0000;
           }
         `,
       },
-      defaultType: 'primary',
-      size: {
-        small: css`
-          font-size: 14px;
-          padding: 4px 8px;
-          border-radius: 6px;
-        `,
-        medium: css`
-          font-size: 16px;
-          padding: 6px 15px;
-          border-radius: 10px;
-        `,
-        large: css`
-          font-size: 20px;
-          padding: 10px 20px;
-          border-radius: 12px;
-        `,
-      },
-      defaultSize: 'medium',
       renderLoadingComponent: () => 'is loading',
     },
     form: {
@@ -99,40 +92,19 @@ export default {
       },
     },
     typography: {
-      defaultFont: 'noto',
-      font: {
-        noto: 'NotoSansKR, sans-serif',
-      },
-      defaultLevel: 5,
-      level: {
-        1: css`
-          font-size: 26px;
-          font-weight: 800;
-        `,
-        2: css`
-          font-size: 24px;
+      style: css`
+        font-size: 16px;
+        font-weight: 500;
+        color: #333333;
+        margin: 0;
+        font-family: 'NotoSansKR', sans-serif;
+      `,
+      type: {
+        h1: css`
+          font-size: 32px;
           font-weight: 600;
+          color: #333333;
         `,
-        3: css`
-          font-size: 22px;
-          font-weight: 500;
-        `,
-        4: css`
-          font-size: 20px;
-          font-weight: 500;
-        `,
-        5: css`
-          font-size: 18px;
-          font-weight: 500;
-        `,
-        6: css`
-          font-size: 16px;
-          font-weight: 400;
-        `,
-      },
-      defaultColor: 'default',
-      color: {
-        default: '#333333',
       },
     },
   },

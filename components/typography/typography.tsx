@@ -5,17 +5,19 @@ import Theme from '../theme';
 import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
 
-function Typography<T extends keyof JSX.IntrinsicElements>({
+function Typography<
+  T extends keyof JSX.IntrinsicElements,
+  P extends string = string,
+>({
   children,
   el,
   className,
-  font,
-  level,
   weight,
   size,
   color,
+  type,
   ...props
-}: TypographyProps<T>) {
+}: TypographyProps<T, P>) {
   const theme = Theme.useContext();
   const Element = el ?? 'p';
   return (
@@ -26,27 +28,14 @@ function Typography<T extends keyof JSX.IntrinsicElements>({
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              margin: 0;
-              font-family: ${theme?.components?.typography?.font?.[
-                // @ts-ignore
-                font ?? theme?.components?.typography?.defaultFont
-              ]};
-              color: ${theme?.components?.typography?.color?.[
-                color ??
-                  theme?.components?.typography?.defaultColor ??
-                  'default'
-              ] ??
-              color ??
-              '#333333'};
               ${theme?.components?.typography?.style}
-              ${theme?.components?.typography?.level?.[
-                // @ts-ignore
-                level ?? theme?.components?.typography?.defaultLevel
-              ]}
+              ${type && theme?.components?.typography?.type?.[type]}
+              color: ${color && (theme?.color?.[color] ?? color)};
               ${size && `font-size: ${size}px;`}
               ${weight && `font-weight: ${weight};`}
             `,
             getClassName(theme?.namespace, 'typography'),
+            type && getClassName(theme?.namespace, `typography--type--${type}`),
             className,
           )}
           {...props}

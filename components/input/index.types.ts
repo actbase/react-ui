@@ -5,8 +5,8 @@ import { InputRadioThemeType } from './radio.types';
 import { InputTextareaThemeType } from './textarea.types';
 
 export type InputThemeType = InternalInputThemeType & {
-  checkbox: InputCheckboxThemeType;
-  file: InputFileThemeType;
-  radio: InputRadioThemeType;
-  textarea: InputTextareaThemeType;
+  checkbox?: InputCheckboxThemeType;
+  file?: InputFileThemeType;
+  radio?: InputRadioThemeType;
+  textarea?: InputTextareaThemeType;
 };

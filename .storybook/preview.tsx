@@ -2,7 +2,7 @@
 import React from 'react';
 import type { Preview } from '@storybook/react';
 import UI from '../components';
-import themeConfig from '../theme';
+import defaultTheme from '../themes/default';
 
 const preview: Preview = {
   parameters: {
@@ -16,7 +16,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <UI.Provider theme={themeConfig}>
+      <UI.Provider theme={defaultTheme}>
         <Story />
       </UI.Provider>
     ),
