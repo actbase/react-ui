@@ -27,6 +27,7 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
     validateTiming,
     allowForceSubmit,
     validates,
+    loading: _loading,
     ...props
   },
   ref,
@@ -38,7 +39,7 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
   const inputsRef = React.useRef<Record<string, HTMLInputElement>>({});
   const contextValue = React.useMemo<FormContext>(
     () => ({
-      loading,
+      loading: loading || _loading,
       error,
       setError,
       inputs: inputsRef.current,
@@ -53,43 +54,73 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
       allowForceSubmit: !!allowForceSubmit,
       resetDate,
     }),
-    [loading, error, allowForceSubmit, resetDate],
+    [loading, _loading, error, allowForceSubmit, resetDate],
   );
-  function renderChildren(
-    children: React.ReactNode,
-    index = 0,
-    depth = 0,
-  ): React.ReactNode {
-    return children && Array.isArray(children)
-      ? children.map((children, index) =>
-          renderChildren(children, index, depth + 1),
-        )
-      : React.cloneElement(children as React.ReactElement, {
-          key: `Form-Item-${depth}-${index}`,
-          defaultValue:
-            defaultValues?.[(children as React.ReactElement)?.props?.name],
-          ...((children as React.ReactElement)?.props ?? {}),
-          validate: validates?.[(children as React.ReactElement)?.props?.name]
-            ?.rules
-            ? {
-                rules: [
-                  ...((children as React.ReactElement)?.props?.validate
-                    ?.rules ?? []),
-                  ...validates?.[(children as React.ReactElement)?.props?.name]
-                    ?.rules,
-                ],
-              }
-            : (children as React.ReactElement)?.props?.validate,
-          children: Array.isArray(
-            (children as React.ReactElement).props.children,
-          )
-            ? (children as React.ReactElement).props.children.map(
-                (children: React.ReactElement, index: number) =>
-                  renderChildren(children, index, depth + 1),
-              )
-            : (children as React.ReactElement).props.children,
+
+  const renderChildren = React.useCallback<
+    (
+      children: React.ReactNode,
+      index?: number,
+      key?: React.Key,
+    ) => React.ReactNode
+  >(
+    (children, index = 0, key = 'Form-Item'): React.ReactNode => {
+      if (Array.isArray(children)) {
+        return React.Children.map(children, (child, index) => {
+          return renderChildren(child, index);
         });
-  }
+      }
+
+      // if not react element
+      if (!(children as React.ReactElement)?.props) {
+        return children;
+      }
+
+      const props = {
+        key: `${key}-${index}`,
+        ...((children as React.ReactElement).props ?? {}),
+      };
+
+      // set default value
+      const defaultValue =
+        defaultValues?.[(children as React.ReactElement)?.props?.name];
+      if (defaultValue !== undefined) {
+        if (typeof defaultValue === 'boolean') {
+          props.defaultChecked = defaultValue;
+          delete props.defaultValue;
+        } else {
+          props.defaultValue = defaultValue;
+        }
+      }
+
+      // set validate
+      const validate =
+        validates?.[(children as React.ReactElement)?.props?.name];
+      if (validate) {
+        props.validate = {
+          ...(props.validate ?? {}),
+          rules: [...(props?.validate?.rules ?? []), ...(validate.rules ?? [])],
+        };
+      }
+
+      if (props.children) {
+        if (Array.isArray(props.children)) {
+          props.children = React.Children.map(
+            props.children,
+            (child, index) => {
+              return renderChildren(child, index, props.key);
+            },
+          );
+        } else {
+          props.children = renderChildren(props.children, 0, props.key);
+        }
+      }
+
+      return React.cloneElement(children as React.ReactElement, props);
+    },
+    [defaultValues, validates],
+  );
+
   return (
     <context.Provider value={contextValue}>
       <ClassNames>
@@ -98,7 +129,9 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
             ref={ref}
             className={cx(
               getNamespace(theme?.namespace),
-              css``,
+              css`
+                ${theme?.components?.form?.style}
+              `,
               getClassName(theme?.namespace, 'form'),
               className,
             )}
@@ -115,9 +148,18 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
                 setLoading(true);
                 const data = await (() => {
                   const data = Object.entries(inputsRef.current).reduce(
-                    (p, [key, value]) => ({ ...p, [key]: value.value }),
+                    (p, [key, value]) => {
+                      return {
+                        ...p,
+                        [key]:
+                          {
+                            checkbox: value.checked,
+                          }[value.type] ?? value.value,
+                      };
+                    },
                     {},
                   );
+                  // @ts-ignore
                   return onSubmit?.(serialize?.(data) ?? data, event);
                 })();
                 if (onSuccess) {

@@ -36,10 +36,14 @@ export type FormItemProps<T extends keyof JSX.IntrinsicElements> = Omit<
   name?: string;
   // default value
   defaultValue?: string;
+  // default checked
+  defaultChecked?: boolean;
   // validate
   validate?: FormItemValidateType;
   // reset error when on change
   resetErrorOnChange?: boolean;
+  // inline
+  inline?: boolean;
 };
 
 export type FormItemThemeType = {

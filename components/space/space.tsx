@@ -5,19 +5,24 @@ import Theme from '../theme';
 import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
 
-function Space<T extends keyof JSX.IntrinsicElements>({
-  el,
-  inline,
-  children,
-  align,
-  justify,
-  className,
-  size,
-  direction,
-  wrap,
-  reverse,
-  ...props
-}: SpaceProps<T>) {
+const Space = React.forwardRef(function Space<
+  T extends keyof JSX.IntrinsicElements,
+>(
+  {
+    el,
+    inline,
+    children,
+    align,
+    justify,
+    className,
+    size,
+    direction,
+    wrap,
+    reverse,
+    ...props
+  }: SpaceProps<T>,
+  ref: React.ForwardedRef<JSX.IntrinsicElements[T]>,
+) {
   const theme = Theme.useContext();
   const Element = el ?? 'div';
   return (
@@ -26,6 +31,7 @@ function Space<T extends keyof JSX.IntrinsicElements>({
         return (
           // @ts-ignore
           <Element
+            ref={ref}
             className={cx(
               getNamespace(theme?.namespace),
               css`
@@ -70,6 +76,6 @@ function Space<T extends keyof JSX.IntrinsicElements>({
       }}
     </ClassNames>
   );
-}
+});
 
 export default Space;

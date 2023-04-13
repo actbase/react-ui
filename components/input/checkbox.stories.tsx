@@ -1,15 +1,17 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InitialCheckbox from './checkbox';
+import InternalCheckbox from './checkbox';
 
 export default {
   title: 'Data Entry/Input',
-  args: {},
-  component: InitialCheckbox,
-} satisfies Meta<typeof InitialCheckbox>;
+  args: {
+    label: 'Checkbox',
+  },
+  component: InternalCheckbox,
+} satisfies Meta<typeof InternalCheckbox>;
 
-type Story = StoryObj<typeof InitialCheckbox>;
+type Story = StoryObj<typeof InternalCheckbox>;
 export const Checkbox: Story = {
-  render: (args) => <InitialCheckbox {...args} />,
+  render: (args) => <InternalCheckbox {...args} />,
 };

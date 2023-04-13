@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InitialPassword from './password';
+import InternalInputPassword from './password';
 
 export default {
   title: 'Data Entry/Input',
@@ -9,10 +9,10 @@ export default {
     hidden: true,
     placeholder: 'Enter your password',
   },
-  component: InitialPassword,
-} satisfies Meta<typeof InitialPassword>;
+  component: InternalInputPassword,
+} satisfies Meta<typeof InternalInputPassword>;
 
-type Story = StoryObj<typeof InitialPassword>;
+type Story = StoryObj<typeof InternalInputPassword>;
 export const Password: Story = {
-  render: (args) => <InitialPassword {...args} />,
+  render: (args) => <InternalInputPassword {...args} />,
 };

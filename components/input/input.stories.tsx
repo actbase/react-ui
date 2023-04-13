@@ -1,17 +1,17 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InitialInput from './input';
+import InternalInput from './input';
 
 export default {
   title: 'Data Entry/Input',
   args: {
     placeholder: 'Enter your input placeholder',
   },
-  component: InitialInput,
-} satisfies Meta<typeof InitialInput>;
+  component: InternalInput,
+} satisfies Meta<typeof InternalInput>;
 
-type Story = StoryObj<typeof InitialInput>;
+type Story = StoryObj<typeof InternalInput>;
 export const Input: Story = {
-  render: (args) => <InitialInput {...args} />,
+  render: (args) => <InternalInput {...args} />,
 };

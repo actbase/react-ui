@@ -1,17 +1,11 @@
-import { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
-import React from 'react';
-import InitialRadio from './radio';
+import InternalRadio from './radio';
 
 export default {
   title: 'Data Entry/Input',
-  args: {
-    name: 'name',
-  },
-  component: InitialRadio,
-} satisfies Meta<typeof InitialRadio>;
+  component: InternalRadio,
+} satisfies Meta<typeof InternalRadio>;
 
-type Story = StoryObj<typeof InitialRadio>;
-export const Radio: Story = {
-  render: (args) => <InitialRadio {...args} />,
-};
+type Story = StoryObj<typeof InternalRadio>;
+export const Radio: Story = {};

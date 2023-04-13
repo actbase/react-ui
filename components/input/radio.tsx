@@ -6,7 +6,7 @@ import getNamespace from '../_util/getNamespace';
 import getClassName from '../_util/getClassName';
 
 const InputRadio = React.forwardRef<HTMLInputElement, InputRadioProps>(
-  function Radio({ name, defaultChecked, className, ...props }, ref) {
+  function Radio({ className, ...props }, ref) {
     const theme = Theme.useContext();
     return (
       <ClassNames>
@@ -17,13 +17,12 @@ const InputRadio = React.forwardRef<HTMLInputElement, InputRadioProps>(
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                margin: ${'0'};
+                margin: 0;
+                ${theme?.components?.input?.radio?.style}
               `,
               getClassName(theme?.namespace, 'input__radio'),
               className,
             )}
-            defaultChecked={defaultChecked ? true : false}
-            name={name ?? ''}
             {...props}
           />
         )}

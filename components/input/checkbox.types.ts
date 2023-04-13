@@ -1,8 +1,21 @@
-import { InputProps } from './input.types';
+import type { SerializedStyles } from '@emotion/react';
+import type { InputProps } from './input.types';
 
-export interface InputCheckboxProps extends InputProps {
-  // radio input간에 공유할 name
-  name?: string;
-  // 기본으로 선택된 radio input표시
-  defaultChecked?: boolean;
-}
+export type InputCheckboxProps = InputProps;
+
+export type InputCheckboxLabelThemeType = {
+  // default style
+  style?: SerializedStyles;
+};
+
+export type InputCheckboxInputThemeType = {
+  // default style
+  style?: SerializedStyles;
+};
+
+export type InputCheckboxThemeType = {
+  // default style
+  style?: SerializedStyles;
+  input?: InputCheckboxInputThemeType;
+  label?: InputCheckboxLabelThemeType;
+};

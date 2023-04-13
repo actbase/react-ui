@@ -1,8 +1,9 @@
 import { InputProps } from './input.types';
+import { SerializedStyles } from '@emotion/react';
 
-export interface InputRadioProps extends InputProps {
-  // radio input간에 공유할 name
-  name?: string;
-  // 기본으로 선택된 radio input표시
-  defaultChecked?: boolean;
-}
+export type InputRadioProps = InputProps;
+
+export type InputRadioThemeType = {
+  // default radio input style
+  style?: SerializedStyles;
+};

@@ -4,7 +4,7 @@ export * from './item.types';
 
 import React from 'react';
 import { FormItemProps, FormItemRef } from './item.types';
-import { ClassNames } from '@emotion/react';
+import { ClassNames, ClassNamesContent } from '@emotion/react';
 import Theme from '../theme';
 import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
@@ -21,13 +21,40 @@ const FormItem = React.forwardRef(function FormItem<
     error,
     name,
     defaultValue,
+    defaultChecked,
     validate,
     resetErrorOnChange = true,
+    inline,
     ...props
   }: FormItemProps<T>,
   ref: FormItemRef,
 ) {
+  const Element = inline ? React.Fragment : el ?? 'label';
   const theme = Theme.useContext();
+  const elementProps = React.useCallback(
+    ({ css, cx }: ClassNamesContent): any => {
+      const obj = props;
+      if (!inline) {
+        // @ts-ignore
+        obj.className = cx(
+          getNamespace(theme?.namespace),
+          css`
+            ${theme?.components?.form?.item?.style}
+          `,
+          getClassName(theme?.namespace, 'form__item'),
+          className,
+        );
+      }
+      return obj;
+    },
+    [
+      className,
+      inline,
+      props,
+      theme?.components?.form?.item?.style,
+      theme?.namespace,
+    ],
+  );
   const form = useContext();
   const _error = React.useMemo(
     () =>
@@ -42,7 +69,6 @@ const FormItem = React.forwardRef(function FormItem<
           form.error?.[name])),
     [error, form.error, name],
   );
-  const Element = el ?? 'label';
 
   const handleValidate = React.useCallback<(value: string) => Promise<void>>(
     async (value: string): Promise<void> => {
@@ -89,6 +115,54 @@ const FormItem = React.forwardRef(function FormItem<
     [form, name, validate?.rules],
   );
 
+  const renderChildren = React.useCallback<
+    (children: React.ReactNode) => React.ReactNode
+  >(
+    (children): React.ReactNode => {
+      if (children) {
+        if ((children as React.ReactElement)?.props) {
+          return React.cloneElement(children as React.ReactElement, {
+            name,
+            defaultValue,
+            defaultChecked,
+            ...(children as React.ReactElement).props,
+            ref: (ref: HTMLInputElement) => {
+              if (name) {
+                form.inputs[name] = ref;
+              }
+              (children as React.ReactElement).props.ref?.(ref);
+            },
+            onChange: (event: Event) => {
+              (children as React.ReactElement).props.onChange?.(event);
+              if (name) {
+                if (resetErrorOnChange) {
+                  form.setError?.((prevState) => {
+                    const obj = { ...prevState };
+                    obj[name] = {
+                      status: FORM_ITEM_ERROR_STATUS.READY,
+                      message: undefined,
+                    };
+                    return obj;
+                  });
+                }
+                handleValidate((event.target as HTMLInputElement)?.value);
+              }
+            },
+          });
+        }
+      }
+      return children;
+    },
+    [
+      defaultChecked,
+      defaultValue,
+      form,
+      handleValidate,
+      name,
+      resetErrorOnChange,
+    ],
+  );
+
   React.useEffect(() => {
     if (name) {
       const input = form.inputs[name];
@@ -131,21 +205,12 @@ const FormItem = React.forwardRef(function FormItem<
 
   return (
     <ClassNames>
-      {({ css, cx }) => (
+      {({ css, cx, ...c }) => (
         // @ts-ignore
         <Element
           // @ts-ignore
           ref={ref}
-          // @ts-ignore
-          className={cx(
-            getNamespace(theme?.namespace),
-            css`
-              ${theme?.components?.form?.item?.style}
-            `,
-            getClassName(theme?.namespace, 'form__item'),
-            className,
-          )}
-          {...props}
+          {...elementProps({ css, cx, ...c })}
         >
           {label && (
             <legend
@@ -154,6 +219,7 @@ const FormItem = React.forwardRef(function FormItem<
                 css`
                   padding: 0;
                   margin: 0 0 5px;
+                  display: block;
                   ${theme?.components?.form?.item?.label?.style}
                 `,
                 getClassName(theme?.namespace, 'form__item__label'),
@@ -162,35 +228,7 @@ const FormItem = React.forwardRef(function FormItem<
               {label}
             </legend>
           )}
-          {(children as React.ReactElement)?.props
-            ? React.cloneElement(children as React.ReactElement, {
-                name,
-                defaultValue,
-                ...(children as React.ReactElement).props,
-                ref: (ref: HTMLInputElement) => {
-                  if (name) {
-                    form.inputs[name] = ref;
-                  }
-                  (children as React.ReactElement).props.ref?.(ref);
-                },
-                onChange: (event: Event) => {
-                  (children as React.ReactElement).props.onChange?.(event);
-                  if (name) {
-                    if (resetErrorOnChange) {
-                      form.setError?.((prevState) => {
-                        const obj = { ...prevState };
-                        obj[name] = {
-                          status: FORM_ITEM_ERROR_STATUS.READY,
-                          message: undefined,
-                        };
-                        return obj;
-                      });
-                    }
-                    handleValidate((event.target as HTMLInputElement)?.value);
-                  }
-                },
-              })
-            : children}
+          {renderChildren(children)}
           {_error && (
             <p
               className={cx(

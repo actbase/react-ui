@@ -6,27 +6,24 @@ import getNamespace from '../_util/getNamespace';
 import getClassName from '../_util/getClassName';
 
 const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
-  function Input({ className, accept, ...props }, ref) {
+  function Input({ className, ...props }, ref) {
     const theme = Theme.useContext();
     return (
       <ClassNames>
         {({ css, cx }) => (
-          <label>
-            <input
-              ref={ref}
-              type="file"
-              className={cx(
-                getNamespace(theme?.namespace),
-                css`
-                  display: ${'none'};
-                `,
-                getClassName(theme?.namespace, 'input__file'),
-                className,
-              )}
-              {...props}
-            />
-            파일 업로드
-          </label>
+          <input
+            ref={ref}
+            type="file"
+            className={cx(
+              getNamespace(theme?.namespace),
+              css`
+                ${theme?.components?.input?.file}
+              `,
+              getClassName(theme?.namespace, 'input__file'),
+              className,
+            )}
+            {...props}
+          />
         )}
       </ClassNames>
     );
