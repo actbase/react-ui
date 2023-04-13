@@ -9,6 +9,7 @@ import _Form, {
   FormItemThemeType as _FormItemThemeType,
   FormThemeType as _FormThemeType,
 } from './form';
+import _Provider, { ProviderProps as _ProviderProps } from './provider';
 import _Space, {
   SpaceSizeType as _SpaceSizeType,
   SpaceAlignType as _SpaceAlignType,
@@ -17,7 +18,10 @@ import _Space, {
   SpaceProps as _SpaceProps,
   SpaceDirectionType as _SpaceDirectionType,
 } from './space';
-import _Theme, { ThemeType as _ThemeType } from './theme';
+import _Theme, {
+  ThemeType as _ThemeType,
+  ThemeProviderProps as _ThemeProviderProps,
+} from './theme';
 import _Typography, {
   TypographyProps as _TypographyProps,
   TypographyThemeType as _TypographyThemeType,
@@ -39,6 +43,9 @@ namespace UI {
   export type FormThemeType = _FormThemeType;
   export const Form = _Form;
 
+  export type ProviderProps = _ProviderProps;
+  export const Provider = _Provider;
+
   export type SpaceSizeType = _SpaceSizeType;
   export type SpaceAlignType = _SpaceAlignType;
   export type SpaceJustifyType = _SpaceJustifyType;
@@ -49,6 +56,7 @@ namespace UI {
   export const Space = _Space;
 
   export type ThemeType = _ThemeType;
+  export type ThemeProviderProps = _ThemeProviderProps;
   export const Theme = _Theme;
 
   export type TypographyProps<T extends keyof JSX.IntrinsicElements> =

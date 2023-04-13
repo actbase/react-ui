@@ -1,10 +1,10 @@
-import Provider from './provider';
+import ThemeProvider from './provider';
 import context from './context';
 import useContext from './hooks/useContext';
 
 const Theme = {
   context,
-  Provider,
+  Provider: ThemeProvider,
   useContext,
 };
 

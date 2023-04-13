@@ -16,9 +16,9 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <UI.Theme.Provider theme={themeConfig}>
+      <UI.Provider theme={themeConfig}>
         <Story />
-      </UI.Theme.Provider>
+      </UI.Provider>
     ),
   ],
 };

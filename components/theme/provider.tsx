@@ -1,17 +1,13 @@
-import context from './context';
+import type { ThemeProviderProps } from './provider.types';
+
 import React from 'react';
-import type { ThemeType } from './theme.types';
+import context from './context';
 
-export interface ProviderProps {
-  children?: React.ReactNode;
-  theme?: ThemeType;
-}
-
-const Provider = React.memo<ProviderProps>(function Provider({
+const ThemeProvider = React.memo<ThemeProviderProps>(function ThemeProvider({
   children,
   theme,
 }) {
   return <context.Provider value={theme}>{children}</context.Provider>;
 });
 
-export default Provider;
+export default ThemeProvider;

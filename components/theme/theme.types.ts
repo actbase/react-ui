@@ -6,6 +6,7 @@ import type { SpaceThemeType } from '../space';
 import type { TypographyThemeType } from '../typography';
 
 export type ThemeType = {
+  // theme namespace
   namespace?: string;
   components?: {
     button?: ButtonThemeType;
