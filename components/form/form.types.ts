@@ -1,12 +1,12 @@
 import type React from 'react';
-import type { FormItemThemeType } from './item';
-import { FormItemValidateType } from './item';
-import { SerializedStyles } from '@emotion/react/dist/emotion-react.cjs';
+import type { FormItemThemeType, FormItemValidateType } from './item';
+import type { ElementProps, ElementThemeType } from '../element';
 
 export type FormValidateTimingType = 'ON_SUBMIT' | 'ON_CHANGE';
 
-export interface FormProps<T = FormData, P = any>
-  extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> {
+export interface FormProps<T = FormData, P = any, S extends string = string>
+  extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'>,
+    ElementProps<S> {
   children?: React.ReactNode;
   // default values
   defaultValues?: Record<string, any>;
@@ -27,8 +27,7 @@ export interface FormProps<T = FormData, P = any>
   loading?: boolean;
 }
 
-export type FormThemeType = {
-  // default style
-  style?: SerializedStyles;
+export type FormThemeType<T extends string = string> = ElementThemeType<T> & {
+  // item
   item?: FormItemThemeType;
 };

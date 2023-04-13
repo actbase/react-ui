@@ -6,7 +6,7 @@ import getNamespace from '../_util/getNamespace';
 import getClassName from '../_util/getClassName';
 
 const InputTextarea = React.forwardRef<HTMLTextAreaElement, InputTextareaProps>(
-  function Textarea({ className, resize, ...props }, ref) {
+  function Textarea({ className, resize, type, ...props }, ref) {
     const theme = Theme.useContext();
     return (
       <ClassNames>
@@ -23,10 +23,15 @@ const InputTextarea = React.forwardRef<HTMLTextAreaElement, InputTextareaProps>(
                     ? 'horizontal'
                     : resize === 'vertical' && 'vertical'
                   : 'none'};
-                ${theme?.components?.input?.style}
                 ${theme?.components?.input?.textarea?.style}
+                ${type && theme?.components?.input?.textarea?.type?.[type]}
               `,
               getClassName(theme?.namespace, 'input__textarea'),
+              type &&
+                getClassName(
+                  theme?.namespace,
+                  `input__textarea__type__${type}`,
+                ),
               className,
             )}
             {...props}

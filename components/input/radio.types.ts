@@ -1,23 +1,13 @@
-import { InputProps } from './input.types';
-import { SerializedStyles } from '@emotion/react';
+import type { ElementThemeType } from '../element';
+import type { InputProps } from './input.types';
 
 export type InputRadioProps = InputProps;
-
-export type InputRadioInputThemeType = {
-  // default style
-  style?: SerializedStyles;
-};
-
-export type InputRadioLabelThemeType = {
-  // default style
-  style?: SerializedStyles;
-};
-
-export type InputRadioThemeType = {
-  // default radio input style
-  style?: SerializedStyles;
-  // input
-  input?: InputRadioInputThemeType;
-  // label
-  label?: InputRadioLabelThemeType;
-};
+export type InputRadioInputThemeType = Omit<ElementThemeType, 'type'> & {};
+export type InputRadioLabelThemeType = Omit<ElementThemeType, 'type'> & {};
+export type InputRadioThemeType<T extends string = string> =
+  ElementThemeType<T> & {
+    // input
+    input?: InputRadioInputThemeType;
+    // label
+    label?: InputRadioLabelThemeType;
+  };

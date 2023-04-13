@@ -7,7 +7,7 @@ export default {
   title: 'Data Entry/Input',
   args: {
     hidden: true,
-    placeholder: 'Enter your password',
+    placeholder: 'placeholder',
   },
   component: InternalInputPassword,
 } satisfies Meta<typeof InternalInputPassword>;

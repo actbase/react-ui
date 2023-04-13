@@ -6,7 +6,7 @@ import InternalInput from './input';
 export default {
   title: 'Data Entry/Input',
   args: {
-    placeholder: 'Enter your input placeholder',
+    placeholder: 'placeholder',
   },
   component: InternalInput,
 } satisfies Meta<typeof InternalInput>;

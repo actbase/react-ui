@@ -6,7 +6,7 @@ import InternalTextarea from './textarea';
 export default {
   title: 'Data Entry/Input',
   args: {
-    placeholder: 'Enter your textarea placeholder',
+    placeholder: 'placeholder',
     resize: true,
     rows: 5,
     cols: 30,
@@ -15,6 +15,6 @@ export default {
 } satisfies Meta<typeof InternalTextarea>;
 
 type Story = StoryObj<typeof InternalTextarea>;
-export const TextArea: Story = {
+export const Textarea: Story = {
   render: (args) => <InternalTextarea {...args} />,
 };

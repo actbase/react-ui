@@ -6,7 +6,7 @@ import getNamespace from '../_util/getNamespace';
 import getClassName from '../_util/getClassName';
 
 const InputEmail = React.forwardRef<HTMLInputElement, InputEmailProps>(
-  function InputEmail({ className, placeholder, ...props }, ref) {
+  function InputEmail({ className, placeholder, type, ...props }, ref) {
     const theme = Theme.useContext();
     return (
       <ClassNames>
@@ -18,8 +18,11 @@ const InputEmail = React.forwardRef<HTMLInputElement, InputEmailProps>(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.input?.style}
+                ${type && theme?.components?.input?.type?.[type]}
               `,
               getClassName(theme?.namespace, 'input__email'),
+              type &&
+                getClassName(theme?.namespace, `input__email__type__${type}`),
               className,
             )}
             placeholder={placeholder}

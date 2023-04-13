@@ -57,7 +57,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
               ${type && theme?.components?.button?.type?.[type]}
             `,
             getClassName(theme?.namespace, 'button'),
-            type && getClassName(theme?.namespace, `button--type--${type}`),
+            type && getClassName(theme?.namespace, `button__type__${type}`),
             className,
           )}
           disabled={_disabled}

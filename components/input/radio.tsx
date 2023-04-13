@@ -6,35 +6,38 @@ import getNamespace from '../_util/getNamespace';
 import getClassName from '../_util/getClassName';
 
 const InputRadio = React.forwardRef<HTMLInputElement, InputRadioProps>(
-  function Radio({ className, children, ...props }, ref) {
+  function Radio({ className, children, type, htmlType, ...props }, ref) {
     const theme = Theme.useContext();
     return (
       <ClassNames>
-        {({ css, cx }) =>
-          children ? (
-            <label
+        {({ css, cx }) => (
+          <label
+            className={cx(
+              getNamespace(theme?.namespace),
+              css`
+                ${theme?.components?.input?.radio?.style}
+                ${type && theme?.components?.input?.radio?.type?.[type]}
+              `,
+              getClassName(theme?.namespace, 'input__radio'),
+              type &&
+                getClassName(theme?.namespace, `input__radio__type__${type}`),
+              className,
+            )}
+          >
+            <input
+              ref={ref}
+              type={htmlType ?? 'radio'}
               className={cx(
                 getNamespace(theme?.namespace),
                 css`
-                  ${theme?.components?.input?.radio?.style}
+                  ${theme?.components?.input?.radio?.input?.style}
                 `,
-                getClassName(theme?.namespace, 'input__radio'),
+                getClassName(theme?.namespace, 'input__radio__input'),
                 className,
               )}
-            >
-              <input
-                ref={ref}
-                type="radio"
-                className={cx(
-                  getNamespace(theme?.namespace),
-                  css`
-                    ${theme?.components?.input?.radio?.input?.style}
-                  `,
-                  getClassName(theme?.namespace, 'input__radio__input'),
-                  className,
-                )}
-                {...props}
-              />
+              {...props}
+            />
+            {children && (
               <span
                 className={cx(
                   getNamespace(theme?.namespace),
@@ -46,23 +49,9 @@ const InputRadio = React.forwardRef<HTMLInputElement, InputRadioProps>(
               >
                 {children}
               </span>
-            </label>
-          ) : (
-            <input
-              ref={ref}
-              type="radio"
-              className={cx(
-                getNamespace(theme?.namespace),
-                css`
-                  ${theme?.components?.input?.radio?.style}
-                `,
-                getClassName(theme?.namespace, 'input__radio__input'),
-                className,
-              )}
-              {...props}
-            />
-          )
-        }
+            )}
+          </label>
+        )}
       </ClassNames>
     );
   },

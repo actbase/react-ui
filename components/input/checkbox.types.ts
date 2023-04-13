@@ -1,21 +1,11 @@
-import type { SerializedStyles } from '@emotion/react';
 import type { InputProps } from './input.types';
+import type { ElementThemeType } from '../element';
 
 export type InputCheckboxProps = InputProps;
-
-export type InputCheckboxLabelThemeType = {
-  // default style
-  style?: SerializedStyles;
-};
-
-export type InputCheckboxInputThemeType = {
-  // default style
-  style?: SerializedStyles;
-};
-
-export type InputCheckboxThemeType = {
-  // default style
-  style?: SerializedStyles;
-  input?: InputCheckboxInputThemeType;
-  label?: InputCheckboxLabelThemeType;
-};
+export type InputCheckboxLabelThemeType = Omit<ElementThemeType, 'type'> & {};
+export type InputCheckboxInputThemeType = Omit<ElementThemeType, 'type'> & {};
+export type InputCheckboxThemeType<T extends string = string> =
+  ElementThemeType<T> & {
+    input?: InputCheckboxInputThemeType;
+    label?: InputCheckboxLabelThemeType;
+  };

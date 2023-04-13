@@ -5,7 +5,7 @@ import InternalRadio from './radio';
 export default {
   title: 'Data Entry/Input',
   args: {
-    children: 'Radio',
+    children: 'radio',
   },
   component: InternalRadio,
 } satisfies Meta<typeof InternalRadio>;

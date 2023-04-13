@@ -15,6 +15,7 @@ const FormItem = React.forwardRef(function FormItem<
 >(
   {
     el,
+    type,
     className,
     children,
     label,
@@ -40,8 +41,10 @@ const FormItem = React.forwardRef(function FormItem<
           getNamespace(theme?.namespace),
           css`
             ${theme?.components?.form?.item?.style}
+            ${type && theme?.components?.form?.item?.type?.[type]}
           `,
           getClassName(theme?.namespace, 'form__item'),
+          type && getClassName(theme?.namespace, `form__item__type__${type}`),
           className,
         );
       }
@@ -52,7 +55,9 @@ const FormItem = React.forwardRef(function FormItem<
       inline,
       props,
       theme?.components?.form?.item?.style,
+      theme?.components?.form?.item?.type,
       theme?.namespace,
+      type,
     ],
   );
   const form = useContext();

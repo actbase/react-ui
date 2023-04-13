@@ -35,7 +35,7 @@ function Typography<
               ${weight && `font-weight: ${weight};`}
             `,
             getClassName(theme?.namespace, 'typography'),
-            type && getClassName(theme?.namespace, `typography--type--${type}`),
+            type && getClassName(theme?.namespace, `typography__type__${type}`),
             className,
           )}
           {...props}

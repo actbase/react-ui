@@ -15,6 +15,7 @@ import { FORM_ITEM_ERROR_STATUS } from './constants';
 
 const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
   {
+    type,
     defaultValues,
     children,
     className,
@@ -131,8 +132,10 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.form?.style}
+                ${type && theme?.components?.form?.type?.[type]}
               `,
               getClassName(theme?.namespace, 'form'),
+              getClassName(theme?.namespace, `form__type__${type}`),
               className,
             )}
             onReset={(event) => {

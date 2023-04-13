@@ -2,20 +2,21 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
 import InitialSpace from './space';
+import Typography from '../typography';
 
 export default {
   title: 'Layout/Space',
   component: InitialSpace,
-} satisfies Meta<typeof Space>;
+} satisfies Meta<typeof InitialSpace>;
 
 type Story = StoryObj<typeof InitialSpace>;
 export const Space: Story = {
   render: (props) => (
     <InitialSpace {...props}>
-      <p>Test1</p>
-      <p>Test2</p>
-      <p>Test3</p>
-      <p>Test4</p>
+      <Typography>Test1</Typography>
+      <Typography>Test2</Typography>
+      <Typography>Test3</Typography>
+      <Typography>Test4</Typography>
     </InitialSpace>
   ),
 };

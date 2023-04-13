@@ -7,7 +7,7 @@ import getClassName from '../_util/getClassName';
 
 const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
   function InputPassword(
-    { hidden = true, className, placeholder, ...props },
+    { hidden = true, className, type, htmlType, placeholder, ...props },
     ref,
   ) {
     const theme = Theme.useContext();
@@ -16,13 +16,19 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
         {({ css, cx }) => (
           <input
             ref={ref}
-            type={hidden ? 'password' : 'text'}
+            type={htmlType ?? (hidden ? 'password' : 'text')}
             className={cx(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.input?.style}
+                ${type && theme?.components?.input?.type?.[type]}
               `,
               getClassName(theme?.namespace, 'input__password'),
+              type &&
+                getClassName(
+                  theme?.namespace,
+                  `input__password__type__${type}`,
+                ),
               className,
             )}
             placeholder={placeholder}

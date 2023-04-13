@@ -1,9 +1,10 @@
-import React from 'react';
-import { SerializedStyles } from '@emotion/react';
+import type React from 'react';
+import type { ElementProps, ElementThemeType } from '../element';
 
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
-
-export type InputThemeType = {
-  // default input style
-  style?: SerializedStyles;
-};
+export interface InputProps<T extends string = string>
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'>,
+    ElementProps<T> {
+  htmlType?: React.InputHTMLAttributes<HTMLInputElement>['type'];
+}
+export type InputThemeType<T extends string = string> =
+  ElementThemeType<T> & {};

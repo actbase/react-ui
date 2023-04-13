@@ -76,10 +76,53 @@ export default {
       style: css`
         width: 100%;
         border: 1px solid #cccccc;
-        padding: 8px 15px;
+        padding: 8px 10px;
         border-radius: 4px;
         box-sizing: border-box;
+        font-family: NotoSansKR, sans-serif;
       `,
+      checkbox: {
+        style: css`
+          display: flex;
+          align-items: center;
+        `,
+        input: {
+          style: css``,
+        },
+        label: {
+          style: css`
+            font-family: NotoSansKR, sans-serif;
+            font-size: 14px;
+            margin-left: 3px;
+          `,
+        },
+      },
+      radio: {
+        style: css`
+          display: flex;
+          align-items: center;
+        `,
+        input: {
+          style: css``,
+        },
+        label: {
+          style: css`
+            font-family: NotoSansKR, sans-serif;
+            font-size: 14px;
+            margin-left: 3px;
+          `,
+        },
+      },
+      textarea: {
+        style: css`
+          width: 100%;
+          border: 1px solid #cccccc;
+          padding: 8px 10px;
+          border-radius: 4px;
+          box-sizing: border-box;
+          font-family: NotoSansKR, sans-serif;
+        `,
+      },
     },
     space: {
       defaultSize: 'm',

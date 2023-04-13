@@ -6,7 +6,7 @@ import InternalInputEmail from './email';
 export default {
   title: 'Data Entry/Input',
   args: {
-    placeholder: 'Enter your email address',
+    placeholder: 'placeholder',
   },
   component: InternalInputEmail,
 } satisfies Meta<typeof InternalInputEmail>;
