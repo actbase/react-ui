@@ -43,8 +43,8 @@ function Typography<T extends keyof JSX.IntrinsicElements>({
                 // @ts-ignore
                 level ?? theme?.components?.typography?.defaultLevel
               ]}
-              ${size && `font-size: ${size}px`}
-              ${weight && `font-weight: ${weight}`}
+              ${size && `font-size: ${size}px;`}
+              ${weight && `font-weight: ${weight};`}
             `,
             getClassName(theme?.namespace, 'typography'),
             className,
