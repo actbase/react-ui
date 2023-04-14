@@ -17,13 +17,15 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
           <input
             ref={ref}
             type={htmlType ?? (hidden ? 'password' : 'text')}
+            style={theme?.components?.input?.style}
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${theme?.components?.input?.style}
+                ${theme?.components?.input?.css}
                 ${type && theme?.components?.input?.type?.[type]}
               `,
               getClassName(theme?.namespace, 'input__password'),
+              theme?.components?.input?.className,
               type &&
                 getClassName(
                   theme?.namespace,

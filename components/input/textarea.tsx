@@ -13,6 +13,7 @@ const InputTextarea = React.forwardRef<HTMLTextAreaElement, InputTextareaProps>(
         {({ css, cx }) => (
           <textarea
             ref={ref}
+            style={theme?.components?.input?.textarea?.style}
             className={cx(
               getNamespace(theme?.namespace),
               css`
@@ -23,10 +24,11 @@ const InputTextarea = React.forwardRef<HTMLTextAreaElement, InputTextareaProps>(
                     ? 'horizontal'
                     : resize === 'vertical' && 'vertical'
                   : 'none'};
-                ${theme?.components?.input?.textarea?.style}
+                ${theme?.components?.input?.textarea?.css}
                 ${type && theme?.components?.input?.textarea?.type?.[type]}
               `,
               getClassName(theme?.namespace, 'input__textarea'),
+              theme?.components?.input?.textarea?.className,
               type &&
                 getClassName(
                   theme?.namespace,

@@ -16,13 +16,15 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
         <input
           ref={ref}
           type={htmlType ?? 'text'}
+          style={theme?.components?.input?.style}
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              ${theme?.components?.input?.style}
+              ${theme?.components?.input?.css}
               ${type && theme?.components?.input?.type?.[type]}
             `,
             getClassName(theme?.namespace, 'input'),
+            theme?.components?.input?.className,
             type && getClassName(theme?.namespace, `input__type__${type}`),
             className,
           )}

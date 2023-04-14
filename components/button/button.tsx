@@ -50,13 +50,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
         <button
           ref={ref}
           type={htmlType ?? 'button'}
+          style={theme?.components?.button?.style}
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              ${theme?.components?.button?.style}
+              ${theme?.components?.button?.css}
               ${type && theme?.components?.button?.type?.[type]}
             `,
             getClassName(theme?.namespace, 'button'),
+            theme?.components?.button?.className,
             type && getClassName(theme?.namespace, `button__type__${type}`),
             className,
           )}

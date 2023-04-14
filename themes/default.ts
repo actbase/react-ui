@@ -9,7 +9,7 @@ export default {
   },
   components: {
     button: {
-      style: css`
+      css: css`
         background-color: transparent;
         font-size: 16px;
         cursor: pointer;
@@ -50,12 +50,12 @@ export default {
     },
     form: {
       item: {
-        style: css`
+        css: css`
           display: block;
           width: 100%;
         `,
         label: {
-          style: css`
+          css: css`
             font-family: NotoSansKR, sans-serif;
             color: #999999;
             font-size: 14px;
@@ -63,7 +63,7 @@ export default {
           `,
         },
         error: {
-          style: css`
+          css: css`
             font-family: NotoSansKR, sans-serif;
             color: #ff0000;
             font-size: 14px;
@@ -73,7 +73,7 @@ export default {
       },
     },
     input: {
-      style: css`
+      css: css`
         width: 100%;
         border: 1px solid #cccccc;
         padding: 8px 10px;
@@ -82,15 +82,15 @@ export default {
         font-family: NotoSansKR, sans-serif;
       `,
       checkbox: {
-        style: css`
+        css: css`
           display: flex;
           align-items: center;
         `,
         input: {
-          style: css``,
+          css: css``,
         },
         label: {
-          style: css`
+          css: css`
             font-family: NotoSansKR, sans-serif;
             font-size: 14px;
             margin-left: 3px;
@@ -98,15 +98,15 @@ export default {
         },
       },
       radio: {
-        style: css`
+        css: css`
           display: flex;
           align-items: center;
         `,
         input: {
-          style: css``,
+          css: css``,
         },
         label: {
-          style: css`
+          css: css`
             font-family: NotoSansKR, sans-serif;
             font-size: 14px;
             margin-left: 3px;
@@ -114,7 +114,7 @@ export default {
         },
       },
       textarea: {
-        style: css`
+        css: css`
           width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
@@ -135,7 +135,7 @@ export default {
       },
     },
     typography: {
-      style: css`
+      css: css`
         font-size: 16px;
         font-weight: 500;
         color: #333333;

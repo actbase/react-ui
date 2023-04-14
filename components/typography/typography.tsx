@@ -25,16 +25,18 @@ function Typography<
       {({ css, cx }) => (
         // @ts-ignore
         <Element
+          style={theme?.components?.typography?.style}
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              ${theme?.components?.typography?.style}
+              ${theme?.components?.typography?.css}
               ${type && theme?.components?.typography?.type?.[type]}
               color: ${color && (theme?.color?.[color] ?? color)};
               ${size && `font-size: ${size}px;`}
               ${weight && `font-weight: ${weight};`}
             `,
             getClassName(theme?.namespace, 'typography'),
+            theme?.components?.typography?.className,
             type && getClassName(theme?.namespace, `typography__type__${type}`),
             className,
           )}

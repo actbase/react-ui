@@ -36,14 +36,16 @@ const FormItem = React.forwardRef(function FormItem<
     ({ css, cx }: ClassNamesContent): any => {
       const obj = props;
       if (!inline) {
+        obj.style = theme?.components?.form?.item?.style;
         // @ts-ignore
         obj.className = cx(
           getNamespace(theme?.namespace),
           css`
-            ${theme?.components?.form?.item?.style}
+            ${theme?.components?.form?.item?.css}
             ${type && theme?.components?.form?.item?.type?.[type]}
           `,
           getClassName(theme?.namespace, 'form__item'),
+          theme?.components?.form?.item?.className,
           type && getClassName(theme?.namespace, `form__item__type__${type}`),
           className,
         );
@@ -54,6 +56,8 @@ const FormItem = React.forwardRef(function FormItem<
       className,
       inline,
       props,
+      theme?.components?.form?.item?.className,
+      theme?.components?.form?.item?.css,
       theme?.components?.form?.item?.style,
       theme?.components?.form?.item?.type,
       theme?.namespace,
@@ -219,14 +223,16 @@ const FormItem = React.forwardRef(function FormItem<
         >
           {label && (
             <legend
+              style={theme?.components?.form?.item?.label?.style}
               className={cx(
                 getNamespace(theme?.namespace),
                 css`
                   padding: 0;
                   margin: 0 0 5px;
                   display: block;
-                  ${theme?.components?.form?.item?.label?.style}
+                  ${theme?.components?.form?.item?.label?.css}
                 `,
+                theme?.components?.form?.item?.label?.className,
                 getClassName(theme?.namespace, 'form__item__label'),
               )}
             >
@@ -236,12 +242,14 @@ const FormItem = React.forwardRef(function FormItem<
           {renderChildren(children)}
           {_error && (
             <p
+              style={theme?.components?.form?.item?.error?.style}
               className={cx(
                 getNamespace(theme?.namespace),
                 css`
                   margin: 5px 0 0;
-                  ${theme?.components?.form?.item?.error?.style}
+                  ${theme?.components?.form?.item?.error?.css}
                 `,
+                theme?.components?.form?.item?.error?.className,
                 getClassName(theme?.namespace, 'form__item__error'),
               )}
             >
