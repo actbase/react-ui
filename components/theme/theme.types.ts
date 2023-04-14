@@ -6,6 +6,7 @@ import type { InputThemeType } from '../input';
 import type { SpaceThemeType } from '../space';
 import type { TypographyThemeType } from '../typography';
 import type { GlobalProps } from '@emotion/react';
+import { ListThemeType } from '../list/list.types';
 
 export type ThemeColorType = Record<string, string>;
 
@@ -20,6 +21,7 @@ export type ThemeType = {
     divider?: DividerThemeType;
     form?: FormThemeType;
     input?: InputThemeType;
+    list?: ListThemeType;
     space?: SpaceThemeType;
     table?: {};
     typography?: TypographyThemeType;

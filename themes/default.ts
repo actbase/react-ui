@@ -51,6 +51,28 @@ export default {
       },
       renderLoadingComponent: () => 'is loading',
     },
+    card: {
+      css: css`
+        display: inline-block;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        background-color: #ffffff;
+        .card__title {
+          padding: 18px 24px;
+          color: #333333;
+          font-weight: 600;
+          font-size: 16px;
+          border-bottom: 1px solid #f0f0f0;
+        }
+        .card__contents {
+          padding: 18px 24px;
+          color: #333333;
+          font-weight: 400;
+          font-size: 14px;
+          border-bottom: 1px solid #f0f0f0;
+        }
+      `,
+    },
     form: {
       item: {
         css: css`
@@ -80,7 +102,7 @@ export default {
         width: 100%;
         border: 1px solid #cccccc;
         padding: 8px 10px;
-        border-radius: 4px;
+        border-radius: 8px;
         box-sizing: border-box;
         font-family: NotoSansKR, sans-serif;
       `,
@@ -89,7 +111,7 @@ export default {
           width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
-          border-radius: 4px;
+          border-radius: 8px;
           box-sizing: border-box;
           font-family: NotoSansKR, sans-serif;
         `,
@@ -99,7 +121,7 @@ export default {
           width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
-          border-radius: 4px;
+          border-radius: 8px;
           box-sizing: border-box;
           font-family: NotoSansKR, sans-serif;
         `,
@@ -109,7 +131,7 @@ export default {
           width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
-          border-radius: 4px;
+          border-radius: 8px;
           box-sizing: border-box;
           font-family: NotoSansKR, sans-serif;
         `,
@@ -151,9 +173,25 @@ export default {
           width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
-          border-radius: 4px;
+          border-radius: 8px;
           box-sizing: border-box;
           font-family: NotoSansKR, sans-serif;
+        `,
+      },
+    },
+    list: {
+      css: css`
+        border: 1px solid #eeeeee;
+        border-radius: 8px;
+      `,
+      item: {
+        css: css`
+          font-size: 14px;
+          font-family: sans-serif;
+          padding: 12px 16px;
+          &:not(:last-child) {
+            border-bottom: 1px solid #eeeeee;
+          }
         `,
       },
     },

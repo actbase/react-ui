@@ -1,11 +1,15 @@
 [
+  "Button",
+  "Card",
   "Divider",
   "Form",
   "Input",
+  "List",
   "Provider",
   "Space",
   "Theme",
   "Typography",
   "default",
+  "mergeStyles",
   "styles"
 ]

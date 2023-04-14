@@ -75,7 +75,7 @@ export const Form: Story = {
       }}
       {...args}
     >
-      <Space direction="vertical">
+      <Space direction="vertical" size={16}>
         <FormItem name="input" label="Input">
           <Input placeholder="Input" />
         </FormItem>

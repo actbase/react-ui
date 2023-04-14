@@ -2,6 +2,20 @@ import _Divider, {
   DividerProps as _DividerProps,
   DividerThemeType as _DividerThemeType,
 } from './divider';
+import _Button, {
+  ButtonThemeType as _ButtonThemeType,
+  ButtonProps as _ButtonProps,
+} from './button';
+import _Card, {
+  CardThemeType as _CardThemeType,
+  CardProps as _CardProps,
+} from './card';
+import _List, {
+  ListItemProps as _ListItemProps,
+  ListProps as _ListProps,
+  ListItemThemeType as _ListItemThemeType,
+  ListThemeType as _ListThemeType,
+} from './list';
 import _Form, {
   FormProps as _FormProps,
   FormItemProps as _FormItemProps,
@@ -62,10 +76,35 @@ namespace UI {
   export type DividerProps = _DividerProps;
   export type DividerThemeType = _DividerThemeType;
 
+  export const Button = _Button;
+  export type ButtonThemeType = _ButtonThemeType;
+  export type ButtonProps = _ButtonProps;
+
+  export const Card = _Card;
+  export type CardThemeType = _CardThemeType;
+  export type CardProps<
+    T extends keyof JSX.IntrinsicElements,
+    P extends string = string,
+  > = _CardProps<T, P>;
+
+  export const List = _List;
+  export type ListItemProps<
+    T extends keyof JSX.IntrinsicElements,
+    P extends string = string,
+  > = _ListItemProps<T, P>;
+  export type ListProps<
+    T extends keyof JSX.IntrinsicElements,
+    P extends string = string,
+  > = _ListProps<T, P>;
+  export type ListItemThemeType = _ListItemThemeType;
+  export type ListThemeType = _ListThemeType;
+
   export const Form = _Form;
   export type FormProps = _FormProps;
-  export type FormItemProps<T extends keyof JSX.IntrinsicElements> =
-    _FormItemProps<T>;
+  export type FormItemProps<
+    T extends keyof JSX.IntrinsicElements,
+    P extends string = string,
+  > = _FormItemProps<T, P>;
   export type FormItemThemeType = _FormItemThemeType;
   export type FormThemeType = _FormThemeType;
   export type FormItemHandle = _FormItemHandle;
@@ -107,8 +146,10 @@ namespace UI {
   export type SpaceJustifyType = _SpaceJustifyType;
   export type SpaceThemeType = _SpaceThemeType;
   export type SpaceDirectionType = _SpaceDirectionType;
-  export type SpaceProps<T extends keyof JSX.IntrinsicElements> =
-    _SpaceProps<T>;
+  export type SpaceProps<
+    T extends keyof JSX.IntrinsicElements,
+    P extends string = string,
+  > = _SpaceProps<T, P>;
 
   export const styles = _styles;
 
@@ -118,8 +159,10 @@ namespace UI {
   export type ThemeColorType = _ThemeColorType;
 
   export const Typography = _Typography;
-  export type TypographyProps<T extends keyof JSX.IntrinsicElements> =
-    _TypographyProps<T>;
+  export type TypographyProps<
+    T extends keyof JSX.IntrinsicElements,
+    P extends string = string,
+  > = _TypographyProps<T, P>;
   export type TypographyThemeType = _TypographyThemeType;
 }
 
