@@ -19,7 +19,11 @@ function Divider({
     <ClassNames>
       {({ css, cx }) => (
         <hr
-          style={mergeStyles(theme?.components?.divider?.style, style)}
+          style={mergeStyles(
+            theme?.components?.divider?.style,
+            type && theme?.components?.divider?.type?.[type]?.style,
+            style,
+          )}
           className={cx(
             getNamespace(theme?.namespace),
             css`
@@ -30,13 +34,14 @@ function Divider({
               width: 100%;
               background-color: #eeeeee;
               ${theme?.components?.divider?.css};
-              ${type && theme?.components?.divider?.type?.[type]}
+              ${type && theme?.components?.divider?.type?.[type]?.css}
               ${color && `background-color: ${theme?.color?.[color] ?? color}`};
               ${_css}
             `,
             getClassName(theme?.namespace, 'divider'),
             theme?.components?.divider?.className,
             type && getClassName(theme?.namespace, `divider__type__${type}`),
+            type && theme?.components?.divider?.type?.[type]?.className,
             className,
           )}
           {...props}

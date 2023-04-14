@@ -17,17 +17,22 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
         <input
           ref={ref}
           type={htmlType ?? 'text'}
-          style={mergeStyles(theme?.components?.input?.style, style)}
+          style={mergeStyles(
+            theme?.components?.input?.style,
+            type && theme?.components?.input?.type?.[type]?.style,
+            style,
+          )}
           className={cx(
             getNamespace(theme?.namespace),
             css`
               ${theme?.components?.input?.css}
-              ${type && theme?.components?.input?.type?.[type]}
+              ${type && theme?.components?.input?.type?.[type]?.css}
               ${_css}
             `,
             getClassName(theme?.namespace, 'input'),
             theme?.components?.input?.className,
             type && getClassName(theme?.namespace, `input__type__${type}`),
+            type && theme?.components?.input?.type?.[type]?.className,
             className,
           )}
           {...props}

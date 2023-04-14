@@ -40,18 +40,23 @@ const FormItem = React.forwardRef(function FormItem<
       const obj = props;
       if (!inline) {
         // @ts-ignore
-        obj.style = mergeStyles(theme?.components?.form?.item?.style, style);
+        obj.style = mergeStyles(
+          theme?.components?.form?.item?.style,
+          type && theme?.components?.form?.item?.type?.[type]?.style,
+          style,
+        );
         // @ts-ignore
         obj.className = cx(
           getNamespace(theme?.namespace),
           css`
             ${theme?.components?.form?.item?.css}
-            ${type && theme?.components?.form?.item?.type?.[type]}
+            ${type && theme?.components?.form?.item?.type?.[type]?.css}
             ${_css}
           `,
           getClassName(theme?.namespace, 'form__item'),
           theme?.components?.form?.item?.className,
           type && getClassName(theme?.namespace, `form__item__type__${type}`),
+          type && theme?.components?.form?.item?.type?.[type]?.className,
           className,
         );
       }

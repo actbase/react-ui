@@ -53,17 +53,23 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
         <button
           ref={ref}
           type={htmlType ?? 'button'}
-          style={mergeStyles(theme?.components?.button?.style, style)}
+          style={mergeStyles(
+            theme?.components?.button?.style,
+            type && theme?.components?.button?.type?.[type]?.style,
+            style,
+          )}
           className={cx(
             getNamespace(theme?.namespace),
             css`
               ${theme?.components?.button?.css}
-              ${type && theme?.components?.button?.type?.[type]}
+              ${type && theme?.components?.button?.type?.[type]?.css}
               ${_css}
             `,
             getClassName(theme?.namespace, 'button'),
             theme?.components?.button?.className,
             type && getClassName(theme?.namespace, `button__type__${type}`),
+            loading && getClassName(theme?.namespace, 'button__loading'),
+            type && theme?.components?.button?.type?.[type]?.className,
             className,
           )}
           disabled={_disabled}

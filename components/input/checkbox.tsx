@@ -18,13 +18,15 @@ const InputCheckbox = React.forwardRef<HTMLInputElement, InputCheckboxProps>(
           <label
             style={mergeStyles(
               theme?.components?.input?.checkbox?.style,
+              type && theme?.components?.input?.checkbox?.type?.[type]?.style,
               style,
             )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.input?.checkbox?.css};
-                ${type && theme?.components?.input?.checkbox?.type?.[type]};
+                ${type &&
+                theme?.components?.input?.checkbox?.type?.[type]?.css};
                 ${_css}
               `,
               getClassName(theme?.namespace, 'input__checkbox'),
@@ -34,6 +36,8 @@ const InputCheckbox = React.forwardRef<HTMLInputElement, InputCheckboxProps>(
                   theme?.namespace,
                   `input__checkbox__type__${type}`,
                 ),
+              type &&
+                theme?.components?.input?.checkbox?.type?.[type]?.className,
               className,
             )}
           >

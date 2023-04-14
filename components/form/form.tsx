@@ -131,17 +131,22 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
         {({ css, cx }) => (
           <form
             ref={ref}
-            style={mergeStyles(theme?.components?.form?.style, style)}
+            style={mergeStyles(
+              theme?.components?.form?.style,
+              type && theme?.components?.form?.type?.[type]?.style,
+              style,
+            )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.form?.css}
-                ${type && theme?.components?.form?.type?.[type]}
+                ${type && theme?.components?.form?.type?.[type]?.css}
                 ${_css}
               `,
               getClassName(theme?.namespace, 'form'),
               theme?.components?.form?.className,
               type && getClassName(theme?.namespace, `form__type__${type}`),
+              type && theme?.components?.form?.type?.[type]?.className,
               className,
             )}
             onReset={(event) => {

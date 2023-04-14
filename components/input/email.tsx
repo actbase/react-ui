@@ -18,18 +18,23 @@ const InputEmail = React.forwardRef<HTMLInputElement, InputEmailProps>(
           <input
             ref={ref}
             type="email"
-            style={mergeStyles(theme?.components?.input?.email?.style, style)}
+            style={mergeStyles(
+              theme?.components?.input?.email?.style,
+              type && theme?.components?.input?.email?.type?.[type]?.style,
+              style,
+            )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.input?.email?.css}
-                ${type && theme?.components?.input?.email?.type?.[type]}
+                ${type && theme?.components?.input?.email?.type?.[type]?.css}
                 ${_css}
               `,
               getClassName(theme?.namespace, 'input__email'),
               theme?.components?.input?.email?.className,
               type &&
                 getClassName(theme?.namespace, `input__email__type__${type}`),
+              type && theme?.components?.input?.email?.type?.[type]?.className,
               className,
             )}
             placeholder={placeholder}

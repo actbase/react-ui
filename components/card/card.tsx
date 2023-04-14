@@ -33,18 +33,23 @@ const Card = React.forwardRef(function Card<
           ref={ref}
           type={htmlType}
           // @ts-ignore
-          style={mergeStyles(theme?.components?.card?.style, style)}
+          style={mergeStyles(
+            theme?.components?.card?.style,
+            type && theme?.components?.card?.type?.[type]?.style,
+            style,
+          )}
           // @ts-ignore
           className={cx(
             getNamespace(theme?.namespace),
             css`
               ${theme?.components?.card?.css};
-              ${type && theme?.components?.card?.type?.[type]};
+              ${type && theme?.components?.card?.type?.[type]?.css};
               ${_css}
             `,
             getClassName(theme?.namespace, 'card'),
             theme?.components?.card?.className,
             type && getClassName(theme?.namespace, `card__type__${type}`),
+            type && theme?.components?.card?.type?.[type]?.className,
             className,
           )}
         >

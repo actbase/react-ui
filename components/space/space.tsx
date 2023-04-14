@@ -38,7 +38,11 @@ const Space = React.forwardRef(function Space<
           <Element
             // @ts-ignore
             ref={ref}
-            style={mergeStyles(theme?.components?.space?.style, style)}
+            style={mergeStyles(
+              theme?.components?.space?.style,
+              type && theme?.components?.space?.type?.[type]?.style,
+              style,
+            )}
             // @ts-ignore
             className={cx(
               getNamespace(theme?.namespace),
@@ -71,12 +75,13 @@ const Space = React.forwardRef(function Space<
                       theme?.components?.space?.defaultSize
                     }px`};
                 ${theme?.components?.space?.css};
-                ${type && theme?.components?.space?.type?.[type]};
+                ${type && theme?.components?.space?.type?.[type]?.css};
                 ${_css}
               `,
               getClassName(theme?.namespace, 'space'),
               theme?.components?.space?.className,
               type && getClassName(theme?.namespace, `space__type__${type}`),
+              type && theme?.components?.space?.type?.[type]?.className,
               className,
             )}
             {...props}

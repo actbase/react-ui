@@ -18,18 +18,23 @@ const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
           <input
             ref={ref}
             type={htmlType ?? 'file'}
-            style={mergeStyles(theme?.components?.input?.file?.style, style)}
+            style={mergeStyles(
+              theme?.components?.input?.file?.style,
+              type && theme?.components?.input?.file?.type?.[type]?.style,
+              style,
+            )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.input?.file?.css}
-                ${type && theme?.components?.input?.file?.type?.[type]}
+                ${type && theme?.components?.input?.file?.type?.[type]?.css}
                 ${_css}
               `,
               getClassName(theme?.namespace, 'input__file'),
               theme?.components?.input?.file?.className,
               type &&
                 getClassName(theme?.namespace, `input__file__type__${type}`),
+              type && theme?.components?.input?.file?.type?.[type]?.className,
               className,
             )}
             {...props}

@@ -34,18 +34,23 @@ const ListItem = React.forwardRef(function ListItem<
           ref={ref}
           type={htmlType}
           // @ts-ignore
-          style={mergeStyles(theme?.components?.list?.item?.style, style)}
+          style={mergeStyles(
+            theme?.components?.list?.item?.style,
+            type && theme?.components?.list?.item?.type?.[type]?.style,
+            style,
+          )}
           // @ts-ignore
           className={cx(
             getNamespace(theme?.namespace),
             css`
               ${theme?.components?.list?.item?.css};
-              ${type && theme?.components?.list?.item?.type?.[type]};
+              ${type && theme?.components?.list?.item?.type?.[type]?.css};
               ${_css}
             `,
             getClassName(theme?.namespace, 'list__item'),
             theme?.components?.list?.item?.className,
             type && getClassName(theme?.namespace, `list__item__type__${type}`),
+            type && theme?.components?.list?.item?.type?.[type]?.className,
             className,
           )}
           {...props}

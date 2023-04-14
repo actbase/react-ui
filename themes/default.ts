@@ -28,26 +28,30 @@ export default {
         }
       `,
       type: {
-        primary: css`
-          background-color: #029cfd;
-          border-color: #029cfd;
-          color: #ffffff;
+        primary: {
+          css: css`
+            background-color: #029cfd;
+            border-color: #029cfd;
+            color: #ffffff;
 
-          &:hover {
-            background-color: #6cc0f6;
-            border-color: #6cc0f6;
-          }
-        `,
-        danger: css`
-          background-color: #ee0000;
-          border-color: #ee0000;
-          color: #ffffff;
+            &:hover {
+              background-color: #6cc0f6;
+              border-color: #6cc0f6;
+            }
+          `,
+        },
+        danger: {
+          css: css`
+            background-color: #ee0000;
+            border-color: #ee0000;
+            color: #ffffff;
 
-          &:hover {
-            background-color: #ff0000;
-            border-color: #ff0000;
-          }
-        `,
+            &:hover {
+              background-color: #ff0000;
+              border-color: #ff0000;
+            }
+          `,
+        },
       },
       renderLoadingComponent: () => 'is loading',
     },
@@ -214,11 +218,13 @@ export default {
         font-family: 'NotoSansKR', sans-serif;
       `,
       type: {
-        h1: css`
-          font-size: 32px;
-          font-weight: 600;
-          color: #333333;
-        `,
+        h1: {
+          css: css`
+            font-size: 32px;
+            font-weight: 600;
+            color: #333333;
+          `,
+        },
       },
     },
   },

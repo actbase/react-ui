@@ -28,12 +28,16 @@ function Typography<
       {({ css, cx }) => (
         // @ts-ignore
         <Element
-          style={mergeStyles(theme?.components?.typography?.style, style)}
+          style={mergeStyles(
+            theme?.components?.typography?.style,
+            type && theme?.components?.typography?.type?.[type]?.style,
+            style,
+          )}
           className={cx(
             getNamespace(theme?.namespace),
             css`
               ${theme?.components?.typography?.css}
-              ${type && theme?.components?.typography?.type?.[type]}
+              ${type && theme?.components?.typography?.type?.[type]?.css}
               color: ${color && (theme?.color?.[color] ?? color)};
               ${size && `font-size: ${size}px;`}
               ${weight && `font-weight: ${weight};`}
@@ -42,6 +46,7 @@ function Typography<
             getClassName(theme?.namespace, 'typography'),
             theme?.components?.typography?.className,
             type && getClassName(theme?.namespace, `typography__type__${type}`),
+            type && theme?.components?.typography?.type?.[type]?.className,
             className,
           )}
           {...props}

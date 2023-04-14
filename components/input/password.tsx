@@ -29,13 +29,14 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
             type={htmlType ?? (hidden ? 'password' : 'text')}
             style={mergeStyles(
               theme?.components?.input?.password?.style,
+              type && theme?.components?.input?.password?.type?.[type]?.style,
               style,
             )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.input?.password?.css}
-                ${type && theme?.components?.input?.password?.type?.[type]}
+                ${type && theme?.components?.input?.password?.type?.[type]?.css}
                 ${_css}
               `,
               getClassName(theme?.namespace, 'input__password'),
@@ -45,6 +46,8 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
                   theme?.namespace,
                   `input__password__type__${type}`,
                 ),
+              type &&
+                theme?.components?.input?.password?.type?.[type]?.className,
               className,
             )}
             placeholder={placeholder}

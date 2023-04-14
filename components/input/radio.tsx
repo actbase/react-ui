@@ -16,18 +16,23 @@ const InputRadio = React.forwardRef<HTMLInputElement, InputRadioProps>(
       <ClassNames>
         {({ css, cx }) => (
           <label
-            style={mergeStyles(theme?.components?.input?.radio?.style, style)}
+            style={mergeStyles(
+              theme?.components?.input?.radio?.style,
+              type && theme?.components?.input?.radio?.type?.[type]?.style,
+              style,
+            )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.input?.radio?.css}
-                ${type && theme?.components?.input?.radio?.type?.[type]}
+                ${type && theme?.components?.input?.radio?.type?.[type]?.css}
                 ${_css}
               `,
               getClassName(theme?.namespace, 'input__radio'),
               theme?.components?.input?.radio?.className,
               type &&
                 getClassName(theme?.namespace, `input__radio__type__${type}`),
+              type && theme?.components?.input?.radio?.type?.[type]?.className,
               className,
             )}
           >

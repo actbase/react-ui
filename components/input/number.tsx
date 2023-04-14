@@ -18,18 +18,23 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           <input
             ref={ref}
             type={htmlType ?? 'number'}
-            style={mergeStyles(theme?.components?.input?.number?.style, style)}
+            style={mergeStyles(
+              theme?.components?.input?.number?.style,
+              type && theme?.components?.input?.number?.type?.[type]?.style,
+              style,
+            )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.input?.number?.css}
-                ${type && theme?.components?.input?.number?.type?.[type]}
+                ${type && theme?.components?.input?.number?.type?.[type]?.css}
                 ${_css}
               `,
               getClassName(theme?.namespace, 'input__number'),
               theme?.components?.input?.number?.className,
               type &&
                 getClassName(theme?.namespace, `input__number__type__${type}`),
+              type && theme?.components?.input?.number?.type?.[type]?.className,
               className,
             )}
             placeholder={placeholder}

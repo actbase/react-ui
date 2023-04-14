@@ -1,9 +1,18 @@
 import { SerializedStyles } from '@emotion/utils';
 import { CSSProperties } from 'react';
 
+export interface ElementTypeProps {
+  // className
+  className?: string;
+  // style
+  style?: CSSProperties;
+  // css
+  css?: SerializedStyles;
+}
+
 export type ElementsType<T extends string = string> = Record<
   T,
-  SerializedStyles
+  ElementTypeProps
 >;
 export type ElementType<T extends string = string> = keyof ElementsType<T>;
 
