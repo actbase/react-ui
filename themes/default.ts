@@ -84,6 +84,36 @@ export default {
         box-sizing: border-box;
         font-family: NotoSansKR, sans-serif;
       `,
+      email: {
+        css: css`
+          width: 100%;
+          border: 1px solid #cccccc;
+          padding: 8px 10px;
+          border-radius: 4px;
+          box-sizing: border-box;
+          font-family: NotoSansKR, sans-serif;
+        `,
+      },
+      number: {
+        css: css`
+          width: 100%;
+          border: 1px solid #cccccc;
+          padding: 8px 10px;
+          border-radius: 4px;
+          box-sizing: border-box;
+          font-family: NotoSansKR, sans-serif;
+        `,
+      },
+      password: {
+        css: css`
+          width: 100%;
+          border: 1px solid #cccccc;
+          padding: 8px 10px;
+          border-radius: 4px;
+          box-sizing: border-box;
+          font-family: NotoSansKR, sans-serif;
+        `,
+      },
       checkbox: {
         css: css`
           display: flex;

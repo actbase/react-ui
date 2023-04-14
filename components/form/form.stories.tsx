@@ -85,7 +85,7 @@ export const Form: Story = {
         <FormItem name="input_password" label="Input.Password">
           <Input.Password placeholder="Input.Password" />
         </FormItem>
-        <FormItem name="input_checkbox" label="Input.Checkbox">
+        <FormItem el="div" name="input_checkbox" label="Input.Checkbox">
           <Input.Checkbox>Input.Checkbox</Input.Checkbox>
         </FormItem>
         <FormItem el="div" label="Input.Checkbox">

@@ -1,12 +1,12 @@
 import React from 'react';
-import { InputPasswordProps } from './password.types';
+import { InputNumberProps } from './number.types';
 import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
 import getNamespace from '../_util/getNamespace';
 import getClassName from '../_util/getClassName';
 
-const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
-  function InputPassword(
+const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
+  function InputNumber(
     { hidden = true, className, type, htmlType, placeholder, ...props },
     ref,
   ) {
@@ -16,21 +16,18 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
         {({ css, cx }) => (
           <input
             ref={ref}
-            type={htmlType ?? (hidden ? 'password' : 'text')}
-            style={theme?.components?.input?.password?.style}
+            type={htmlType ?? 'number'}
+            style={theme?.components?.input?.number?.style}
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${theme?.components?.input?.password?.css}
-                ${type && theme?.components?.input?.password?.type?.[type]}
+                ${theme?.components?.input?.number?.css}
+                ${type && theme?.components?.input?.number?.type?.[type]}
               `,
-              getClassName(theme?.namespace, 'input__password'),
-              theme?.components?.input?.password?.className,
+              getClassName(theme?.namespace, 'input__number'),
+              theme?.components?.input?.number?.className,
               type &&
-                getClassName(
-                  theme?.namespace,
-                  `input__password__type__${type}`,
-                ),
+                getClassName(theme?.namespace, `input__number__type__${type}`),
               className,
             )}
             placeholder={placeholder}
@@ -42,4 +39,4 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
   },
 );
 
-export default InputPassword;
+export default InputNumber;

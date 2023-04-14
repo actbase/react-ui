@@ -14,15 +14,15 @@ const InputEmail = React.forwardRef<HTMLInputElement, InputEmailProps>(
           <input
             ref={ref}
             type="email"
-            style={theme?.components?.input?.style}
+            style={theme?.components?.input?.email?.style}
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${theme?.components?.input?.css}
-                ${type && theme?.components?.input?.type?.[type]}
+                ${theme?.components?.input?.email?.css}
+                ${type && theme?.components?.input?.email?.type?.[type]}
               `,
               getClassName(theme?.namespace, 'input__email'),
-              theme?.components?.input?.className,
+              theme?.components?.input?.email?.className,
               type &&
                 getClassName(theme?.namespace, `input__email__type__${type}`),
               className,
