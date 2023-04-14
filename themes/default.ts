@@ -154,4 +154,4 @@ export default {
       },
     },
   },
-} satisfies UI.Theme.Type;
+} satisfies UI.ThemeType;

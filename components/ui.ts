@@ -19,24 +19,24 @@ import _Form, {
   FormItemLabelThemeType as _FormItemLabelThemeType,
 } from './form';
 import _Input, {
-  InputThemeType,
-  InputInputThemeType,
-  InputInputProps,
-  InputTextareaThemeType,
-  InputCheckboxInputThemeType,
-  InputCheckboxLabelThemeType,
-  InputCheckboxProps,
-  InputEmailProps,
-  InputFileProps,
-  InputCheckboxThemeType,
-  InputPasswordProps,
-  InputFileThemeType,
-  InputRadioLabelThemeType,
-  InputRadioThemeType,
-  InputRadioProps,
-  InputTextareaProps,
-  InputTextareaResizeType,
-  InputRadioInputThemeType,
+  InputThemeType as _InputThemeType,
+  InputInputThemeType as _InputInputThemeType,
+  InputInputProps as _InputInputProps,
+  InputTextareaThemeType as _InputTextareaThemeType,
+  InputCheckboxInputThemeType as _InputCheckboxInputThemeType,
+  InputCheckboxLabelThemeType as _InputCheckboxLabelThemeType,
+  InputCheckboxProps as _InputCheckboxProps,
+  InputEmailProps as _InputEmailProps,
+  InputFileProps as _InputFileProps,
+  InputCheckboxThemeType as _InputCheckboxThemeType,
+  InputPasswordProps as _InputPasswordProps,
+  InputFileThemeType as _InputFileThemeType,
+  InputRadioLabelThemeType as _InputRadioLabelThemeType,
+  InputRadioThemeType as _InputRadioThemeType,
+  InputRadioProps as _InputRadioProps,
+  InputTextareaProps as _InputTextareaProps,
+  InputTextareaResizeType as _InputTextareaResizeType,
+  InputRadioInputThemeType as _InputRadioInputThemeType,
 } from './input';
 import _Provider, { ProviderProps as _ProviderProps } from './provider';
 import _Space, {
@@ -60,100 +60,69 @@ import _Typography, {
 
 namespace UI {
   export const Divider = _Divider;
-  export namespace Divider {
-    export type Props = _DividerProps;
-    export type ColorType = _DividerColorType;
-    export type ThemeType = _DividerThemeType;
-  }
+  export type DividerProps = _DividerProps;
+  export type DividerColorType = _DividerColorType;
+  export type DividerThemeType = _DividerThemeType;
 
   export const Form = _Form;
-  export namespace Form {
-    export type Props = _FormProps;
-    export type ThemeType = _FormThemeType;
-    export type ValidateTimingType = _FormValidateTimingType;
-    export namespace Item {
-      export type Props<T extends keyof JSX.IntrinsicElements> =
-        _FormItemProps<T>;
-      export type ThemeType = _FormItemThemeType;
-      export type Handle = _FormItemHandle;
-      export type ValidateType = _FormItemValidateType;
-      export type ErrorType = _FormItemErrorType;
-      export type ErrorValueType = _FormItemErrorValueType;
-      export type ErrorStatusType = _FormItemErrorStatusType;
-      export type ErrorThemeType = _FormItemErrorThemeType;
-      export type Ref = _FormItemRef;
-      export type LabelThemeType = _FormItemLabelThemeType;
-    }
-  }
+  export type FormProps = _FormProps;
+  export type FormItemProps<T extends keyof JSX.IntrinsicElements> =
+    _FormItemProps<T>;
+  export type FormItemThemeType = _FormItemThemeType;
+  export type FormThemeType = _FormThemeType;
+  export type FormItemHandle = _FormItemHandle;
+  export type FormItemValidateType = _FormItemValidateType;
+  export type FormItemErrorType = _FormItemErrorType;
+  export type FormItemErrorValueType = _FormItemErrorValueType;
+  export type FormItemErrorStatusType = _FormItemErrorStatusType;
+  export type FormItemErrorThemeType = _FormItemErrorThemeType;
+  export type FormValidateTimingType = _FormValidateTimingType;
+  export type FormItemRef = _FormItemRef;
+  export type FormItemLabelThemeType = _FormItemLabelThemeType;
 
   export const Input = _Input;
-  export namespace Input {
-    export type ThemeType = InputThemeType;
-    export namespace Input {
-      export type Props = InputInputProps;
-      export type ThemeType = InputInputThemeType;
-    }
-    export namespace Textarea {
-      export type ThemeType = InputTextareaThemeType;
-    }
-    export namespace Checkbox {
-      export type Props = InputCheckboxProps;
-      export type InputThemeType = InputCheckboxInputThemeType;
-      export type LabelThemeType = InputCheckboxLabelThemeType;
-      export type ThemeType = InputCheckboxThemeType;
-    }
-    export namespace Email {
-      export type Props = InputEmailProps;
-    }
-    export namespace File {
-      export type Props = InputFileProps;
-      export type ThemeType = InputFileThemeType;
-    }
-    export namespace Password {
-      export type Props = InputPasswordProps;
-    }
-    export namespace Radio {
-      export type Props = InputRadioProps;
-      export type LabelThemeType = InputRadioLabelThemeType;
-      export type ThemeType = InputRadioThemeType;
-      export type InputThemeType = InputRadioInputThemeType;
-    }
-    export namespace Textarea {
-      export type Props = InputTextareaProps;
-      export type ResizeType = InputTextareaResizeType;
-    }
-  }
+  export type InputThemeType = _InputThemeType;
+  export type InputInputThemeType = _InputInputThemeType;
+  export type InputInputProps = _InputInputProps;
+  export type InputTextareaThemeType = _InputTextareaThemeType;
+  export type InputCheckboxInputThemeType = _InputCheckboxInputThemeType;
+  export type InputCheckboxLabelThemeType = _InputCheckboxLabelThemeType;
+  export type InputCheckboxProps = _InputCheckboxProps;
+  export type InputEmailProps = _InputEmailProps;
+  export type InputFileProps = _InputFileProps;
+  export type InputCheckboxThemeType = _InputCheckboxThemeType;
+  export type InputPasswordProps = _InputPasswordProps;
+  export type InputFileThemeType = _InputFileThemeType;
+  export type InputRadioLabelThemeType = _InputRadioLabelThemeType;
+  export type InputRadioThemeType = _InputRadioThemeType;
+  export type InputRadioProps = _InputRadioProps;
+  export type InputTextareaProps = _InputTextareaProps;
+  export type InputTextareaResizeType = _InputTextareaResizeType;
+  export type InputRadioInputThemeType = _InputRadioInputThemeType;
 
   export const Provider = _Provider;
-  export namespace Provider {
-    export type ProviderProps = _ProviderProps;
-  }
+  export type ProviderProps = _ProviderProps;
+
+  export const Space = _Space;
+  export type SpaceSizeType = _SpaceSizeType;
+  export type SpaceAlignType = _SpaceAlignType;
+  export type SpaceJustifyType = _SpaceJustifyType;
+  export type SpaceThemeType = _SpaceThemeType;
+  export type SpaceDirectionType = _SpaceDirectionType;
+  export type SpaceProps<T extends keyof JSX.IntrinsicElements> =
+    _SpaceProps<T>;
 
   export const styles = _styles;
 
-  export const Space = _Space;
-  export namespace Space {
-    export type SizeType = _SpaceSizeType;
-    export type AlignType = _SpaceAlignType;
-    export type JustifyType = _SpaceJustifyType;
-    export type ThemeType = _SpaceThemeType;
-    export type DirectionType = _SpaceDirectionType;
-    export type Props<T extends keyof JSX.IntrinsicElements> = _SpaceProps<T>;
-  }
-
   export const Theme = _Theme;
-  export namespace Theme {
-    export type Type = _ThemeType;
-    export type ProviderProps = _ThemeProviderProps;
-    export type ColorType = _ThemeColorType;
-  }
+  export type ThemeType = _ThemeType;
+  export type ThemeProviderProps = _ThemeProviderProps;
+  export type ThemeColorType = _ThemeColorType;
 
   export const Typography = _Typography;
-  export namespace Typography {
-    export type Props<T extends keyof JSX.IntrinsicElements> =
-      _TypographyProps<T>;
-    export type ThemeType = _TypographyThemeType;
-  }
+  export type TypographyProps<T extends keyof JSX.IntrinsicElements> =
+    _TypographyProps<T>;
+  export type TypographyThemeType = _TypographyThemeType;
 }
 
 export default UI;
