@@ -8,6 +8,7 @@ import { ClassNames, ClassNamesContent } from '@emotion/react';
 import Theme from '../theme';
 import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
+import mergeStyles from '../_util/mergeStyles';
 import { FORM_ITEM_ERROR_STATUS, FORM_VALIDATE_TIMING } from './constants';
 
 const FormItem = React.forwardRef(function FormItem<
@@ -26,6 +27,8 @@ const FormItem = React.forwardRef(function FormItem<
     validate,
     resetErrorOnChange = true,
     inline,
+    style,
+    css: _css,
     ...props
   }: FormItemProps<T>,
   ref: FormItemRef,
@@ -36,13 +39,15 @@ const FormItem = React.forwardRef(function FormItem<
     ({ css, cx }: ClassNamesContent): any => {
       const obj = props;
       if (!inline) {
-        obj.style = theme?.components?.form?.item?.style;
+        // @ts-ignore
+        obj.style = mergeStyles(theme?.components?.form?.item?.style, style);
         // @ts-ignore
         obj.className = cx(
           getNamespace(theme?.namespace),
           css`
             ${theme?.components?.form?.item?.css}
             ${type && theme?.components?.form?.item?.type?.[type]}
+            ${_css}
           `,
           getClassName(theme?.namespace, 'form__item'),
           theme?.components?.form?.item?.className,
@@ -53,9 +58,11 @@ const FormItem = React.forwardRef(function FormItem<
       return obj;
     },
     [
+      _css,
       className,
       inline,
       props,
+      style,
       theme?.components?.form?.item?.className,
       theme?.components?.form?.item?.css,
       theme?.components?.form?.item?.style,

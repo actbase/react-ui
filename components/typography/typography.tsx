@@ -4,6 +4,7 @@ import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
+import mergeStyles from '../_util/mergeStyles';
 
 function Typography<
   T extends keyof JSX.IntrinsicElements,
@@ -16,6 +17,8 @@ function Typography<
   size,
   color,
   type,
+  style,
+  css: _css,
   ...props
 }: TypographyProps<T, P>) {
   const theme = Theme.useContext();
@@ -25,7 +28,7 @@ function Typography<
       {({ css, cx }) => (
         // @ts-ignore
         <Element
-          style={theme?.components?.typography?.style}
+          style={mergeStyles(theme?.components?.typography?.style, style)}
           className={cx(
             getNamespace(theme?.namespace),
             css`
@@ -34,6 +37,7 @@ function Typography<
               color: ${color && (theme?.color?.[color] ?? color)};
               ${size && `font-size: ${size}px;`}
               ${weight && `font-weight: ${weight};`}
+              ${_css}
             `,
             getClassName(theme?.namespace, 'typography'),
             theme?.components?.typography?.className,

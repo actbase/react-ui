@@ -1,4 +1,4 @@
-import { SerializedStyles } from '@emotion/react';
+import type { ElementProps, ElementThemeType } from '../element';
 
 export type SpaceAlignType = 'start' | 'center' | 'end' | 'stretch';
 export type SpaceJustifyType =
@@ -11,8 +11,11 @@ export type SpaceJustifyType =
 export type SpaceSizeType = Record<string, number>;
 export type SpaceDirectionType = 'horizontal' | 'vertical';
 
-export type SpaceProps<T extends keyof JSX.IntrinsicElements> =
-  JSX.IntrinsicElements[T] & {
+export type SpaceProps<
+  T extends keyof JSX.IntrinsicElements,
+  P extends string = string,
+> = JSX.IntrinsicElements[T] &
+  ElementProps<P> & {
     // Element
     el?: T;
     // Vertical Align
@@ -29,17 +32,13 @@ export type SpaceProps<T extends keyof JSX.IntrinsicElements> =
     wrap?: boolean;
     // Reverse
     reverse?: boolean;
+    // html type
+    htmlType?: string;
   };
 
-export type SpaceThemeType = {
-  // default justify
-  justify?: SpaceJustifyType;
-  // default align
-  align?: SpaceAlignType;
+export type SpaceThemeType<T extends string = string> = ElementThemeType<T> & {
   // default size
   defaultSize?: keyof SpaceSizeType;
   // size
   size?: SpaceSizeType;
-  // style
-  style?: SerializedStyles;
 };

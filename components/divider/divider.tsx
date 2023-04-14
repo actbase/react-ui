@@ -4,13 +4,22 @@ import { DividerProps } from './divider.types';
 import Theme from '../theme';
 import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
+import mergeStyles from '../_util/mergeStyles';
 
-function Divider({ color, className, ...props }: DividerProps) {
+function Divider({
+  style,
+  className,
+  color,
+  type,
+  css: _css,
+  ...props
+}: DividerProps) {
   const theme = Theme.useContext();
   return (
     <ClassNames>
       {({ css, cx }) => (
         <hr
+          style={mergeStyles(theme?.components?.divider?.style, style)}
           className={cx(
             getNamespace(theme?.namespace),
             css`
@@ -19,23 +28,15 @@ function Divider({ color, className, ...props }: DividerProps) {
               display: block;
               margin: 0;
               width: 100%;
-              ${theme?.components?.divider?.style}
-              background-color: ${theme?.components?.divider?.color?.[
-                // @ts-ignore
-                color ?? theme?.components?.divider?.defaultColor
-              ] ??
-              color ??
-              theme?.components?.divider?.defaultColor ??
-              '#eeeeee'};
+              background-color: #eeeeee;
+              ${theme?.components?.divider?.css};
+              ${type && theme?.components?.divider?.type?.[type]}
+              ${color && `background-color: ${theme?.color?.[color] ?? color}`};
+              ${_css}
             `,
             getClassName(theme?.namespace, 'divider'),
-            (color ?? theme?.components?.divider?.defaultColor) &&
-              getClassName(
-                theme?.namespace,
-                `divider--color--${
-                  color ?? theme?.components?.divider?.defaultColor
-                }`,
-              ),
+            theme?.components?.divider?.className,
+            type && getClassName(theme?.namespace, `divider__type__${type}`),
             className,
           )}
           {...props}

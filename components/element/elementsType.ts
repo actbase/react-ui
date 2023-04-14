@@ -1,15 +1,17 @@
 import { SerializedStyles } from '@emotion/utils';
 import { CSSProperties } from 'react';
 
-export type ElementTypes<T extends string = string> = Record<
+export type ElementsType<T extends string = string> = Record<
   T,
   SerializedStyles
 >;
-export type ElementType<T extends string = string> = keyof ElementTypes<T>;
+export type ElementType<T extends string = string> = keyof ElementsType<T>;
 
 export interface ElementProps<T extends string = string> {
   // element type
   type?: ElementType<T>;
+  // css
+  css?: SerializedStyles;
 }
 
 export type ElementThemeType<T extends string = string> = {
@@ -20,5 +22,5 @@ export type ElementThemeType<T extends string = string> = {
   // css
   css?: SerializedStyles;
   // type
-  type?: ElementTypes<T>;
+  type?: ElementsType<T>;
 };

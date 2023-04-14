@@ -4,6 +4,7 @@ import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
+import mergeStyles from '../_util/mergeStyles';
 
 const Space = React.forwardRef(function Space<
   T extends keyof JSX.IntrinsicElements,
@@ -19,6 +20,10 @@ const Space = React.forwardRef(function Space<
     direction,
     wrap,
     reverse,
+    type,
+    style,
+    htmlType,
+    css: _css,
     ...props
   }: SpaceProps<T>,
   ref: React.ForwardedRef<JSX.IntrinsicElements[T]>,
@@ -31,7 +36,10 @@ const Space = React.forwardRef(function Space<
         return (
           // @ts-ignore
           <Element
+            // @ts-ignore
             ref={ref}
+            style={mergeStyles(theme?.components?.space?.style, style)}
+            // @ts-ignore
             className={cx(
               getNamespace(theme?.namespace),
               css`
@@ -43,7 +51,7 @@ const Space = React.forwardRef(function Space<
                   'space-between': 'space-between',
                   'space-around': 'space-around',
                   'space-evenly': 'space-evenly',
-                }[justify ?? theme?.components?.space?.justify ?? 'start']};
+                }[justify ?? 'start']};
                 flex-direction: ${{
                   horizontal: reverse ? 'row-reverse' : 'row',
                   vertical: reverse ? 'column-reverse' : 'column',
@@ -54,18 +62,21 @@ const Space = React.forwardRef(function Space<
                   center: 'center',
                   end: 'flex-end',
                   stretch: 'stretch',
-                }[align ?? theme?.components?.space?.align ?? 'stretch']};
+                }[align ?? 'stretch']};
                 gap: ${typeof size === 'number'
-                    ? `${size}px`
-                    : `${
-                        theme?.components?.space?.size?.[
-                          // @ts-ignore
-                          size ?? theme?.components?.space?.defaultSize
-                        ]
-                      }px`}
-                  ${theme?.components?.space?.style};
+                  ? `${size}px`
+                  : `${
+                      // @ts-ignore
+                      theme?.components?.space?.size?.[size] ??
+                      theme?.components?.space?.defaultSize
+                    }px`};
+                ${theme?.components?.space?.css};
+                ${type && theme?.components?.space?.type?.[type]};
+                ${_css}
               `,
               getClassName(theme?.namespace, 'space'),
+              theme?.components?.space?.className,
+              type && getClassName(theme?.namespace, `space__type__${type}`),
               className,
             )}
             {...props}

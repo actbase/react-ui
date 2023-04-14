@@ -4,16 +4,23 @@ import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
 import getNamespace from '../_util/getNamespace';
 import getClassName from '../_util/getClassName';
+import mergeStyles from '../_util/mergeStyles';
 
 const InputTextarea = React.forwardRef<HTMLTextAreaElement, InputTextareaProps>(
-  function Textarea({ className, resize, type, ...props }, ref) {
+  function Textarea(
+    { className, resize, type, style, css: _css, ...props },
+    ref,
+  ) {
     const theme = Theme.useContext();
     return (
       <ClassNames>
         {({ css, cx }) => (
           <textarea
             ref={ref}
-            style={theme?.components?.input?.textarea?.style}
+            style={mergeStyles(
+              theme?.components?.input?.textarea?.style,
+              style,
+            )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
@@ -26,6 +33,7 @@ const InputTextarea = React.forwardRef<HTMLTextAreaElement, InputTextareaProps>(
                   : 'none'};
                 ${theme?.components?.input?.textarea?.css}
                 ${type && theme?.components?.input?.textarea?.type?.[type]}
+                ${_css}
               `,
               getClassName(theme?.namespace, 'input__textarea'),
               theme?.components?.input?.textarea?.className,

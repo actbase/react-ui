@@ -1,18 +1,12 @@
-import React from 'react';
-import { SerializedStyles } from '@emotion/react';
+import type React from 'react';
+import type { ElementProps, ElementThemeType } from '../element';
 
-export type DividerColorType = Record<string, string>;
-
-export interface DividerProps extends React.HTMLAttributes<HTMLHRElement> {
+export interface DividerProps<T extends string = string>
+  extends React.HTMLAttributes<HTMLHRElement>,
+    ElementProps<T> {
   // color
-  color?: keyof DividerColorType;
+  color?: string;
 }
 
-export type DividerThemeType = {
-  // default color
-  defaultColor?: keyof DividerColorType;
-  // colors
-  color?: DividerColorType;
-  // default style
-  style?: SerializedStyles;
-};
+export type DividerThemeType<T extends string = string> =
+  ElementThemeType<T> & {};

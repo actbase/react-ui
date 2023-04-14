@@ -1,4 +1,5 @@
 export { default } from './ui';
+export { default as mergeStyles } from './_util/mergeStyles';
 export * from './divider';
 export { default as Divider } from './divider';
 export * from './form';

@@ -4,10 +4,11 @@ import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
 import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
+import mergeStyles from '../_util/mergeStyles';
 
 const InputCheckbox = React.forwardRef<HTMLInputElement, InputCheckboxProps>(
   function InputCheckbox(
-    { className, children, type, htmlType, ...props },
+    { className, children, type, htmlType, style, css: _css, ...props },
     ref,
   ) {
     const theme = Theme.useContext();
@@ -15,12 +16,16 @@ const InputCheckbox = React.forwardRef<HTMLInputElement, InputCheckboxProps>(
       <ClassNames>
         {({ css, cx }) => (
           <label
-            style={theme?.components?.input?.checkbox?.style}
+            style={mergeStyles(
+              theme?.components?.input?.checkbox?.style,
+              style,
+            )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.input?.checkbox?.css};
                 ${type && theme?.components?.input?.checkbox?.type?.[type]};
+                ${_css}
               `,
               getClassName(theme?.namespace, 'input__checkbox'),
               theme?.components?.input?.checkbox?.className,

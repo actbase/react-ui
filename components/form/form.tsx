@@ -12,6 +12,7 @@ import context from './context';
 import Theme from '../theme';
 import getNamespace from '../_util/getNamespace';
 import { FORM_ITEM_ERROR_STATUS } from './constants';
+import mergeStyles from '../_util/mergeStyles';
 
 const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
   {
@@ -29,6 +30,8 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
     allowForceSubmit,
     validates,
     loading: _loading,
+    style,
+    css: _css,
     ...props
   },
   ref,
@@ -128,12 +131,13 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
         {({ css, cx }) => (
           <form
             ref={ref}
-            style={theme?.components?.form?.style}
+            style={mergeStyles(theme?.components?.form?.style, style)}
             className={cx(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.form?.css}
                 ${type && theme?.components?.form?.type?.[type]}
+                ${_css}
               `,
               getClassName(theme?.namespace, 'form'),
               theme?.components?.form?.className,

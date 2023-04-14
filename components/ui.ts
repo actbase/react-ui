@@ -1,6 +1,5 @@
 import _Divider, {
   DividerProps as _DividerProps,
-  DividerColorType as _DividerColorType,
   DividerThemeType as _DividerThemeType,
 } from './divider';
 import _Form, {
@@ -61,7 +60,6 @@ import _Typography, {
 namespace UI {
   export const Divider = _Divider;
   export type DividerProps = _DividerProps;
-  export type DividerColorType = _DividerColorType;
   export type DividerThemeType = _DividerThemeType;
 
   export const Form = _Form;

@@ -4,20 +4,25 @@ import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
 import getNamespace from '../_util/getNamespace';
 import getClassName from '../_util/getClassName';
+import mergeStyles from '../_util/mergeStyles';
 
 const InputRadio = React.forwardRef<HTMLInputElement, InputRadioProps>(
-  function Radio({ className, children, type, htmlType, ...props }, ref) {
+  function Radio(
+    { className, style, children, type, css: _css, htmlType, ...props },
+    ref,
+  ) {
     const theme = Theme.useContext();
     return (
       <ClassNames>
         {({ css, cx }) => (
           <label
-            style={theme?.components?.input?.radio?.style}
+            style={mergeStyles(theme?.components?.input?.radio?.style, style)}
             className={cx(
               getNamespace(theme?.namespace),
               css`
                 ${theme?.components?.input?.radio?.css}
                 ${type && theme?.components?.input?.radio?.type?.[type]}
+                ${_css}
               `,
               getClassName(theme?.namespace, 'input__radio'),
               theme?.components?.input?.radio?.className,
