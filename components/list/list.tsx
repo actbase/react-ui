@@ -55,7 +55,26 @@ const List = React.forwardRef(function List<
           )}
           {...props}
         >
-          {children}
+          {React.Children.map(children, (child) => {
+            if (!(child as React.ReactElement).props) {
+              return child;
+            }
+            return React.cloneElement(child as React.ReactElement, {
+              ...(child as React.ReactElement).props,
+              style: mergeStyles(
+                type && theme?.components?.list?.type?.[type]?.item?.style,
+                (child as React.ReactElement).props.style,
+              ),
+              css: css`
+                ${type && theme?.components?.list?.type?.[type]?.item?.css}
+                ${(child as React.ReactElement).props.css}
+              `,
+              className: cx(
+                type && theme?.components?.list?.type?.[type]?.item?.className,
+                (child as React.ReactElement).props.className,
+              ),
+            });
+          })}
         </Element>
       )}
     </ClassNames>

@@ -198,6 +198,20 @@ export default {
           }
         `,
       },
+      type: {
+        red: {
+          css: css`
+            border-color: #f00;
+          `,
+          item: {
+            css: css`
+              &:not(:last-child) {
+                border-bottom-color: #f00;
+              }
+            `,
+          },
+        },
+      },
     },
     space: {
       defaultSize: 'm',

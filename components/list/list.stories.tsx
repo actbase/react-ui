@@ -7,6 +7,9 @@ import ListItem from './item';
 export default {
   title: 'DataDisplay/List',
   component: InternalList,
+  args: {
+    type: 'red',
+  },
 } satisfies Meta<typeof InternalList>;
 
 type Story = StoryObj<typeof InternalList>;

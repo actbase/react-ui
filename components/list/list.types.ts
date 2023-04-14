@@ -1,5 +1,6 @@
 import type { ElementProps, ElementThemeType } from '../element';
 import type { ListItemThemeType } from './item.types';
+import { ElementTypeProps } from '../element';
 
 export type ListProps<
   T extends keyof JSX.IntrinsicElements,
@@ -11,6 +12,13 @@ export type ListProps<
     // html type
     htmlType?: string;
   };
-export type ListThemeType<T extends string = string> = ElementThemeType<T> & {
+export type ListTypePropsThemeType = ElementTypeProps & {
+  item?: ElementTypeProps;
+};
+export type ListThemeType<T extends string = string> = Omit<
+  ElementThemeType<T>,
+  'type'
+> & {
   item?: ListItemThemeType;
+  type?: Record<T, ListTypePropsThemeType>;
 };
