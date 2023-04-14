@@ -1,1 +1,11 @@
-["Divider", "Form", "Provider", "Space", "Theme", "Typography", "default"]
+[
+  "Divider",
+  "Form",
+  "Input",
+  "Provider",
+  "Space",
+  "Theme",
+  "Typography",
+  "default",
+  "styles"
+]
