@@ -202,9 +202,11 @@ export default {
         red: {
           css: css`
             border-color: #f00;
+            background-color: rgba(255, 0, 0, 0.15);
           `,
           item: {
             css: css`
+              color: #f00;
               &:not(:last-child) {
                 border-bottom-color: #f00;
               }
