@@ -1,11 +1,14 @@
 import { css } from '@emotion/react';
-import type { ThemeType } from '../components';
+import UI from '../components';
 
 export default {
   color: {
     primary: '#029cfd',
     danger: '#ee0000',
     text: '#333333',
+  },
+  global: {
+    styles: UI.styles.reset,
   },
   components: {
     button: {
@@ -151,4 +154,4 @@ export default {
       },
     },
   },
-} satisfies ThemeType;
+} satisfies UI.Theme.Type;
