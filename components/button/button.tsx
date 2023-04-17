@@ -68,7 +68,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
             getClassName(theme?.namespace, 'button'),
             theme?.components?.button?.className,
             type && getClassName(theme?.namespace, `button__type__${type}`),
-            loading && getClassName(theme?.namespace, 'button__loading'),
+            _loading && getClassName(theme?.namespace, 'button__loading'),
             type && theme?.components?.button?.type?.[type]?.className,
             className,
           )}
