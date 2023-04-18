@@ -42,9 +42,17 @@ const Card = React.forwardRef(function Card<
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              ${theme?.components?.card?.css};
-              ${type && theme?.components?.card?.type?.[type]?.css};
-              ${_css}
+              ${typeof theme?.components?.card?.css === 'function'
+                ? theme.components.card.css({ color: theme?.color })
+                : theme?.components?.card?.css};
+              ${type &&
+              (typeof theme?.components?.card?.type?.[type]?.css === 'function'
+                ? // @ts-ignore
+                  theme.components.card.type[type].css({ color: theme?.color })
+                : theme?.components?.card?.type?.[type]?.css)};
+              ${typeof _css === 'function'
+                ? _css({ color: theme?.color })
+                : _css}
             `,
             getClassName(theme?.namespace, 'card'),
             theme?.components?.card?.className,

@@ -32,9 +32,22 @@ const InputTextarea = React.forwardRef<HTMLTextAreaElement, InputTextareaProps>(
                     ? 'horizontal'
                     : resize === 'vertical' && 'vertical'
                   : 'none'};
-                ${theme?.components?.input?.textarea?.css}
-                ${type && theme?.components?.input?.textarea?.type?.[type]?.css}
-                ${_css}
+                ${typeof theme?.components?.input?.textarea?.css === 'function'
+                  ? theme.components.input.textarea.css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.input?.textarea?.css}
+                ${type &&
+                (typeof theme?.components?.input?.textarea?.type?.[type]
+                  ?.css === 'function'
+                  ? // @ts-ignore
+                    theme.components.input.textarea.type[type].css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.input?.textarea?.type?.[type]?.css)}
+                ${typeof _css === 'function'
+                  ? _css({ color: theme?.color })
+                  : _css}
               `,
               getClassName(theme?.namespace, 'input__textarea'),
               theme?.components?.input?.textarea?.className,

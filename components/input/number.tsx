@@ -26,9 +26,22 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${theme?.components?.input?.number?.css}
-                ${type && theme?.components?.input?.number?.type?.[type]?.css}
-                ${_css}
+                ${typeof theme?.components?.input?.number?.css === 'function'
+                  ? theme.components.input.number.css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.input?.number?.css}
+                ${type &&
+                (typeof theme?.components?.input?.number?.type?.[type]?.css ===
+                'function'
+                  ? // @ts-ignore
+                    theme.components.input.number.type[type].css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.input?.number?.type?.[type]?.css)}
+                ${typeof _css === 'function'
+                  ? _css({ color: theme?.color })
+                  : _css}
               `,
               getClassName(theme?.namespace, 'input__number'),
               theme?.components?.input?.number?.className,

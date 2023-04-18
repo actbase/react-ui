@@ -26,9 +26,20 @@ const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${theme?.components?.input?.file?.css}
-                ${type && theme?.components?.input?.file?.type?.[type]?.css}
-                ${_css}
+                ${typeof theme?.components?.input?.file?.css === 'function'
+                  ? theme?.components?.input?.file?.css({ color: theme?.color })
+                  : theme?.components?.input?.file?.css}
+                ${type &&
+                (typeof theme?.components?.input?.file?.type?.[type]?.css ===
+                'function'
+                  ? // @ts-ignore
+                    theme.components.input.file.type[type].css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.input?.file?.type?.[type]?.css)}
+                ${typeof _css === 'function'
+                  ? _css({ color: theme?.color })
+                  : _css}
               `,
               getClassName(theme?.namespace, 'input__file'),
               theme?.components?.input?.file?.className,

@@ -61,9 +61,20 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              ${theme?.components?.button?.css}
-              ${type && theme?.components?.button?.type?.[type]?.css}
-              ${_css}
+              ${typeof theme?.components?.button?.css === 'function'
+                ? theme.components.button.css({ color: theme?.color })
+                : theme?.components?.button?.css}
+              ${type &&
+              (typeof theme?.components?.button?.type?.[type]?.css ===
+              'function'
+                ? // @ts-ignore
+                  theme.components.button.type[type].css({
+                    color: theme?.color,
+                  })
+                : theme?.components?.button?.type?.[type]?.css)}
+              ${typeof _css === 'function'
+                ? _css({ color: theme?.color })
+                : _css}
             `,
             getClassName(theme?.namespace, 'button'),
             theme?.components?.button?.className,

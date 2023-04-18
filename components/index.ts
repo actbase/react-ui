@@ -19,5 +19,7 @@ export { default as Space } from './space';
 export { default as styles } from './styles';
 export * from './theme';
 export { default as Theme } from './theme';
+export * from './toast';
+export { default as Toast } from './toast';
 export * from './typography';
 export { default as Typography } from './typography';

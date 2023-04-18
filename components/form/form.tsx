@@ -139,9 +139,20 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${theme?.components?.form?.css}
-                ${type && theme?.components?.form?.type?.[type]?.css}
-                ${_css}
+                ${typeof theme?.components?.form?.css === 'function'
+                  ? theme.components.form.css({ color: theme?.color })
+                  : theme?.components?.form?.css}
+                ${type &&
+                (typeof theme?.components?.form?.type?.[type]?.css ===
+                'function'
+                  ? // @ts-ignore
+                    theme.components.form.type[type].css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.form?.type?.[type]?.css)}
+                ${typeof _css === 'function'
+                  ? _css({ color: theme?.color })
+                  : _css}
               `,
               getClassName(theme?.namespace, 'form'),
               theme?.components?.form?.className,

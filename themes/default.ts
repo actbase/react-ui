@@ -225,6 +225,40 @@ export default {
         xl: 18,
       },
     },
+    toast: {
+      css: (props) => css`
+        position: fixed;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 8px 30px;
+        border: 1px solid #cccccc;
+        top: ${(props.index ?? 0) * 45 + 15}px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 3px;
+        font-family: NotoSansKR, sans-serif;
+        animation-duration: 3s;
+        animation-timing-function: ease-in-out;
+        animation-name: animate;
+        animation-fill-mode: forwards;
+        transition: top 0.5s ease;
+        @keyframes animate {
+          0% {
+            transform: translateY(-100%);
+          }
+          5% {
+            transform: translateY(0%);
+          }
+          95% {
+            transform: translateY(0%);
+          }
+          100% {
+            transform: translateY(-100%);
+          }
+        }
+      `,
+      timeout: 3000,
+    },
     typography: {
       css: css`
         font-size: 16px;

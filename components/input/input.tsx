@@ -25,9 +25,19 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              ${theme?.components?.input?.css}
-              ${type && theme?.components?.input?.type?.[type]?.css}
-              ${_css}
+              ${typeof theme?.components?.input?.css === 'function'
+                ? theme.components.input.css({ color: theme?.color })
+                : theme?.components?.input?.css}
+              ${type &&
+              (typeof theme?.components?.input?.type?.[type]?.css === 'function'
+                ? // @ts-ignore
+                  theme.components.input.type[type].css({
+                    color: theme?.color,
+                  })
+                : theme?.components?.input?.type?.[type]?.css)}
+              ${typeof _css === 'function'
+                ? _css({ color: theme?.color })
+                : _css}
             `,
             getClassName(theme?.namespace, 'input'),
             theme?.components?.input?.className,

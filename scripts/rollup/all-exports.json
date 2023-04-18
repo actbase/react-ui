@@ -8,6 +8,7 @@
   "Provider",
   "Space",
   "Theme",
+  "Toast",
   "Typography",
   "default",
   "mergeStyles",

@@ -74,9 +74,20 @@ const Space = React.forwardRef(function Space<
                       theme?.components?.space?.size?.[size] ??
                       theme?.components?.space?.defaultSize
                     }px`};
-                ${theme?.components?.space?.css};
-                ${type && theme?.components?.space?.type?.[type]?.css};
-                ${_css}
+                ${typeof theme?.components?.space?.css === 'function'
+                  ? theme.components.space.css({ color: theme?.color })
+                  : theme?.components?.space?.css};
+                ${type &&
+                (typeof theme?.components?.space?.type?.[type]?.css ===
+                'function'
+                  ? // @ts-ignore
+                    theme.components.space.type[type].css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.space?.type?.[type]?.css)};
+                ${typeof _css === 'function'
+                  ? _css({ color: theme?.color })
+                  : _css};
               `,
               getClassName(theme?.namespace, 'space'),
               theme?.components?.space?.className,

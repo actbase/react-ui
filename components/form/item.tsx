@@ -49,9 +49,18 @@ const FormItem = React.forwardRef(function FormItem<
         obj.className = cx(
           getNamespace(theme?.namespace),
           css`
-            ${theme?.components?.form?.item?.css}
-            ${type && theme?.components?.form?.item?.type?.[type]?.css}
-            ${_css}
+            ${typeof theme?.components?.form?.item?.css === 'function'
+              ? theme.components.form.item.css({ color: theme?.color })
+              : theme?.components?.form?.item?.css}
+            ${type &&
+            (typeof theme?.components?.form?.item?.type?.[type]?.css ===
+            'function'
+              ? // @ts-ignore
+                theme.components.form.item.type[type].css({
+                  color: theme?.color,
+                })
+              : theme?.components?.form?.item?.type?.[type]?.css)}
+            ${typeof _css === 'function' ? _css({ color: theme?.color }) : _css}
           `,
           getClassName(theme?.namespace, 'form__item'),
           theme?.components?.form?.item?.className,
@@ -68,10 +77,8 @@ const FormItem = React.forwardRef(function FormItem<
       inline,
       props,
       style,
-      theme?.components?.form?.item?.className,
-      theme?.components?.form?.item?.css,
-      theme?.components?.form?.item?.style,
-      theme?.components?.form?.item?.type,
+      theme?.color,
+      theme?.components?.form?.item,
       theme?.namespace,
       type,
     ],
@@ -242,7 +249,12 @@ const FormItem = React.forwardRef(function FormItem<
                   padding: 0;
                   margin: 0 0 5px;
                   display: block;
-                  ${theme?.components?.form?.item?.label?.css}
+                  ${typeof theme?.components?.form?.item?.label?.css ===
+                  'function'
+                    ? theme.components.form.item.label.css({
+                        color: theme?.color,
+                      })
+                    : theme?.components?.form?.item?.label?.css}
                 `,
                 theme?.components?.form?.item?.label?.className,
                 getClassName(theme?.namespace, 'form__item__label'),
@@ -259,7 +271,12 @@ const FormItem = React.forwardRef(function FormItem<
                 getNamespace(theme?.namespace),
                 css`
                   margin: 5px 0 0;
-                  ${theme?.components?.form?.item?.error?.css}
+                  ${typeof theme?.components?.form?.item?.error?.css ===
+                  'function'
+                    ? theme.components.form.item.error.css({
+                        color: theme?.color,
+                      })
+                    : theme?.components?.form?.item?.error?.css}
                 `,
                 theme?.components?.form?.item?.error?.className,
                 getClassName(theme?.namespace, 'form__item__error'),

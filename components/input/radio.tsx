@@ -24,9 +24,22 @@ const InputRadio = React.forwardRef<HTMLInputElement, InputRadioProps>(
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${theme?.components?.input?.radio?.css}
-                ${type && theme?.components?.input?.radio?.type?.[type]?.css}
-                ${_css}
+                ${typeof theme?.components?.input?.radio?.css === 'function'
+                  ? theme.components.input.radio.css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.input?.radio?.css}
+                ${type &&
+                (typeof theme?.components?.input?.radio?.type?.[type]?.css ===
+                'function'
+                  ? // @ts-ignore
+                    theme.components.input.radio.type[type].css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.input?.radio?.type?.[type]?.css)}
+                ${typeof _css === 'function'
+                  ? _css({ color: theme?.color })
+                  : _css}
               `,
               getClassName(theme?.namespace, 'input__radio'),
               theme?.components?.input?.radio?.className,
@@ -43,7 +56,12 @@ const InputRadio = React.forwardRef<HTMLInputElement, InputRadioProps>(
               className={cx(
                 getNamespace(theme?.namespace),
                 css`
-                  ${theme?.components?.input?.radio?.input?.css}
+                  ${typeof theme?.components?.input?.radio?.input?.css ===
+                  'function'
+                    ? theme?.components?.input?.radio?.input?.css({
+                        color: theme?.color,
+                      })
+                    : theme?.components?.input?.radio?.input?.css}
                 `,
                 theme?.components?.input?.radio?.input?.className,
                 getClassName(theme?.namespace, 'input__radio__input'),
@@ -57,7 +75,12 @@ const InputRadio = React.forwardRef<HTMLInputElement, InputRadioProps>(
                 className={cx(
                   getNamespace(theme?.namespace),
                   css`
-                    ${theme?.components?.input?.radio?.label?.css}
+                    ${typeof theme?.components?.input?.radio?.label?.css ===
+                    'function'
+                      ? theme.components.input.radio.label.css({
+                          color: theme?.color,
+                        })
+                      : theme?.components?.input?.radio?.label?.css}
                   `,
                   theme?.components?.input?.radio?.label?.className,
                   getClassName(theme?.namespace, 'input__radio__label'),

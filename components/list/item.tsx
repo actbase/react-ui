@@ -43,9 +43,20 @@ const ListItem = React.forwardRef(function ListItem<
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              ${theme?.components?.list?.item?.css};
-              ${type && theme?.components?.list?.item?.type?.[type]?.css};
-              ${_css}
+              ${typeof theme?.components?.list?.item?.css === 'function'
+                ? theme.components.list.item.css({ color: theme?.color })
+                : theme?.components?.list?.item?.css};
+              ${type &&
+              (typeof theme?.components?.list?.item?.type?.[type]?.css ===
+              'function'
+                ? // @ts-ignore
+                  theme.components.list.item.type[type].css({
+                    color: theme?.color,
+                  })
+                : theme?.components?.list?.item?.type?.[type]?.css)};
+              ${typeof _css === 'function'
+                ? _css({ color: theme?.color })
+                : _css}
             `,
             getClassName(theme?.namespace, 'list__item'),
             theme?.components?.list?.item?.className,

@@ -26,9 +26,22 @@ const InputEmail = React.forwardRef<HTMLInputElement, InputEmailProps>(
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${theme?.components?.input?.email?.css}
-                ${type && theme?.components?.input?.email?.type?.[type]?.css}
-                ${_css}
+                ${typeof theme?.components?.input?.email?.css === 'function'
+                  ? theme?.components?.input?.email?.css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.input?.email?.css}
+                ${type &&
+                (typeof theme?.components?.input?.email?.type?.[type]?.css ===
+                'function'
+                  ? // @ts-ignore
+                    theme.components.input.email.type[type].css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.input?.email?.type?.[type]?.css)}
+                ${typeof _css === 'function'
+                  ? _css({ color: theme?.color })
+                  : _css}
               `,
               getClassName(theme?.namespace, 'input__email'),
               theme?.components?.input?.email?.className,

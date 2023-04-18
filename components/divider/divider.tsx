@@ -33,10 +33,21 @@ function Divider({
               margin: 0;
               width: 100%;
               background-color: #eeeeee;
-              ${theme?.components?.divider?.css};
-              ${type && theme?.components?.divider?.type?.[type]?.css}
+              ${typeof theme?.components?.divider?.css === 'function'
+                ? theme.components.divider.css({ color: theme?.color })
+                : theme?.components?.divider?.css};
+              ${type &&
+              (typeof theme?.components?.divider?.type?.[type]?.css ===
+              'function'
+                ? // @ts-ignore
+                  theme?.components?.divider?.type?.[type]?.css({
+                    color: theme?.color,
+                  })
+                : theme?.components?.divider?.type?.[type]?.css)}
               ${color && `background-color: ${theme?.color?.[color] ?? color}`};
-              ${_css}
+              ${typeof _css === 'function'
+                ? _css({ color: theme?.color })
+                : _css}
             `,
             getClassName(theme?.namespace, 'divider'),
             theme?.components?.divider?.className,

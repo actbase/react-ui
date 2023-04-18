@@ -6,7 +6,8 @@ import type { InputThemeType } from '../input';
 import type { SpaceThemeType } from '../space';
 import type { TypographyThemeType } from '../typography';
 import type { GlobalProps } from '@emotion/react';
-import { ListThemeType } from '../list/list.types';
+import type { ListThemeType } from '../list/list.types';
+import type { ToastThemeType } from '../toast/toast.type';
 
 export type ThemeColorType = Record<string, string>;
 
@@ -24,6 +25,7 @@ export type ThemeType = {
     list?: ListThemeType;
     space?: SpaceThemeType;
     table?: {};
+    toast?: ToastThemeType;
     typography?: TypographyThemeType;
   };
   // theme colors

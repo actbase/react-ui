@@ -35,9 +35,20 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${theme?.components?.input?.password?.css}
-                ${type && theme?.components?.input?.password?.type?.[type]?.css}
-                ${_css}
+                ${typeof theme?.components?.input?.password?.css === 'function'
+                  ? theme.components.input.password.css({ color: theme?.color })
+                  : theme?.components?.input?.password?.css}
+                ${type &&
+                (typeof theme?.components?.input?.password?.type?.[type]
+                  ?.css === 'function'
+                  ? // @ts-ignore
+                    theme.components.input.password.type[type].css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.input?.password?.type?.[type]?.css)}
+                ${typeof _css === 'function'
+                  ? _css({ color: theme?.color })
+                  : _css}
               `,
               getClassName(theme?.namespace, 'input__password'),
               theme?.components?.input?.password?.className,

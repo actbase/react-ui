@@ -24,10 +24,22 @@ const InputCheckbox = React.forwardRef<HTMLInputElement, InputCheckboxProps>(
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${theme?.components?.input?.checkbox?.css};
+                ${typeof theme?.components?.input?.checkbox?.css === 'function'
+                  ? theme.components.input.checkbox.css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.input?.checkbox?.css};
                 ${type &&
-                theme?.components?.input?.checkbox?.type?.[type]?.css};
-                ${_css}
+                (typeof theme?.components?.input?.checkbox?.type?.[type]
+                  ?.css === 'function'
+                  ? // @ts-ignore
+                    theme?.components?.input?.checkbox?.type?.[type]?.css({
+                      color: theme?.color,
+                    })
+                  : theme?.components?.input?.checkbox?.type?.[type]?.css)};
+                ${typeof _css === 'function'
+                  ? _css({ color: theme?.color })
+                  : _css}
               `,
               getClassName(theme?.namespace, 'input__checkbox'),
               theme?.components?.input?.checkbox?.className,
@@ -48,7 +60,12 @@ const InputCheckbox = React.forwardRef<HTMLInputElement, InputCheckboxProps>(
               className={cx(
                 getNamespace(theme?.namespace),
                 css`
-                  ${theme?.components?.input?.checkbox?.css};
+                  ${typeof theme?.components?.input?.checkbox?.css ===
+                  'function'
+                    ? theme.components.input.checkbox.css({
+                        color: theme?.color,
+                      })
+                    : theme?.components?.input?.checkbox?.css};
                 `,
                 theme?.components?.input?.checkbox?.className,
                 getClassName(theme?.namespace, 'input__checkbox__input'),
@@ -61,7 +78,12 @@ const InputCheckbox = React.forwardRef<HTMLInputElement, InputCheckboxProps>(
                 className={cx(
                   getNamespace(theme?.namespace),
                   css`
-                    ${theme?.components?.input?.checkbox?.label?.css}
+                    ${typeof theme?.components?.input?.checkbox?.label?.css ===
+                    'function'
+                      ? theme.components.input.checkbox.label.css({
+                          color: theme?.color,
+                        })
+                      : theme?.components?.input?.checkbox?.label?.css}
                   `,
                   theme?.components?.input?.checkbox?.label?.className,
                   getClassName(theme?.namespace, 'input__checkbox__label'),

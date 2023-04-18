@@ -36,12 +36,22 @@ function Typography<
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              ${theme?.components?.typography?.css}
-              ${type && theme?.components?.typography?.type?.[type]?.css}
+              ${typeof theme?.components?.typography?.css === 'function'
+                ? theme.components.typography.css({ color: theme?.color })
+                : theme?.components?.typography?.css}
+              ${type &&
+              (typeof theme?.components?.typography?.type?.[type]?.css
+                ? // @ts-ignore
+                  theme.components.typography.type[type].css({
+                    color: theme?.color,
+                  })
+                : theme?.components?.typography?.type?.[type]?.css)}
               color: ${color && (theme?.color?.[color] ?? color)};
               ${size && `font-size: ${size}px;`}
               ${weight && `font-weight: ${weight};`}
-              ${_css}
+              ${typeof _css === 'function'
+                ? _css({ color: theme?.color })
+                : _css};
             `,
             getClassName(theme?.namespace, 'typography'),
             theme?.components?.typography?.className,
