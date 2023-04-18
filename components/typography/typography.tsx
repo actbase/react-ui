@@ -1,6 +1,6 @@
 import React from 'react';
 import type { TypographyProps } from './typography.types';
-import useCreateElement from '../element/hooks/useCreateElement';
+import { useCreateElement } from '../element';
 import Theme from '../theme';
 
 function Typography<

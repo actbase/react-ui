@@ -1,7 +1,7 @@
 import type { ToastProps, ToastThemeProps } from './toast.type';
 
 import React from 'react';
-import useCreateElement from '../element/hooks/useCreateElement';
+import { useCreateElement } from '../element';
 
 const Toast = React.forwardRef<HTMLDivElement, ToastProps>(function Toast(
   { children, index, ...props },
