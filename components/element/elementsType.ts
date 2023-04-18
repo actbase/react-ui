@@ -2,39 +2,48 @@ import type { SerializedStyles } from '@emotion/utils';
 import type { CSSProperties } from 'react';
 import type { ThemeColorType } from '../theme';
 
-export interface ElementTypeProps {
+export interface ElementThemeCssProps {
+  color?: ThemeColorType;
+}
+
+export type ElementThemeCssType<T extends Record<any, any>> =
+  | SerializedStyles
+  | ((props: ElementThemeCssProps & T) => SerializedStyles);
+
+export interface ElementTypeProps<
+  T extends Record<any, any> = Record<any, any>,
+> {
   // className
   className?: string;
   // style
   style?: CSSProperties;
   // css
-  css?: SerializedStyles;
+  css?: ElementThemeCssType<T>;
 }
 
-export type ElementsType<T extends string = string> = Record<
-  T,
-  ElementTypeProps
->;
-export type ElementType<T extends string = string> = keyof ElementsType<T>;
+export type ElementsType<
+  T extends string = string,
+  P extends Record<any, any> = Record<any, any>,
+> = Record<T, ElementTypeProps<P>>;
 
-export interface ElementThemeCssProps {
-  color?: ThemeColorType;
-}
+export type ElementType<
+  T extends string = string,
+  P extends Record<any, any> = Record<any, any>,
+> = keyof ElementsType<T, P>;
 
-export type ElementThemeCssType<T = Record<any, any>> =
-  | SerializedStyles
-  | ((props: ElementThemeCssProps & T) => SerializedStyles);
-
-export interface ElementProps<T extends string = string, P = Record<any, any>> {
+export interface ElementProps<
+  T extends string = string,
+  P extends Record<any, any> = Record<any, any>,
+> {
   // element type
-  type?: ElementType<T>;
+  type?: ElementType<T, P>;
   // css
   css?: ElementThemeCssType<P>;
 }
 
 export type ElementThemeType<
   T extends string = string,
-  P = Record<any, any>,
+  P extends Record<any, any> = Record<any, any>,
 > = {
   // className
   className?: string;

@@ -11,23 +11,25 @@ import type { ToastThemeType } from '../toast/toast.type';
 
 export type ThemeColorType = Record<string, string>;
 
+export type ThemeComponentsType = {
+  button?: ButtonThemeType;
+  card?: CardThemeType;
+  divider?: DividerThemeType;
+  form?: FormThemeType;
+  input?: InputThemeType;
+  list?: ListThemeType;
+  space?: SpaceThemeType;
+  table?: {};
+  toast?: ToastThemeType;
+  typography?: TypographyThemeType;
+};
+
 export type ThemeType = {
   // theme namespace
   namespace?: string;
   // global props
   global?: GlobalProps;
-  components?: {
-    button?: ButtonThemeType;
-    card?: CardThemeType;
-    divider?: DividerThemeType;
-    form?: FormThemeType;
-    input?: InputThemeType;
-    list?: ListThemeType;
-    space?: SpaceThemeType;
-    table?: {};
-    toast?: ToastThemeType;
-    typography?: TypographyThemeType;
-  };
+  components?: ThemeComponentsType;
   // theme colors
   color?: ThemeColorType;
 };
