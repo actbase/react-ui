@@ -21,7 +21,6 @@ export default {
         color: #333333;
         padding: 5px 10px;
         border-radius: 8px;
-
         &:disabled {
           background-color: #cccccc !important;
           cursor: not-allowed;
@@ -185,6 +184,7 @@ export default {
     },
     list: {
       css: css`
+        display: inline-block;
         border: 1px solid #eeeeee;
         border-radius: 8px;
       `,
