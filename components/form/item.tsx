@@ -1,5 +1,3 @@
-import useContext from './hooks/useContext';
-
 export * from './item.types';
 
 import React from 'react';
@@ -10,6 +8,7 @@ import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
 import mergeStyles from '../_util/mergeStyles';
 import { FORM_ITEM_ERROR_STATUS, FORM_VALIDATE_TIMING } from './constants';
+import useContext from './hooks/useContext';
 
 const FormItem = React.forwardRef(function FormItem<
   T extends keyof JSX.IntrinsicElements,
@@ -35,54 +34,8 @@ const FormItem = React.forwardRef(function FormItem<
 ) {
   const Element = inline ? React.Fragment : el ?? 'label';
   const theme = Theme.useContext();
-  const elementProps = React.useCallback(
-    ({ css, cx }: ClassNamesContent): any => {
-      const obj = props;
-      if (!inline) {
-        // @ts-ignore
-        obj.style = mergeStyles(
-          theme?.components?.form?.item?.style,
-          type && theme?.components?.form?.item?.type?.[type]?.style,
-          style,
-        );
-        // @ts-ignore
-        obj.className = cx(
-          getNamespace(theme?.namespace),
-          css`
-            ${typeof theme?.components?.form?.item?.css === 'function'
-              ? theme.components.form.item.css({ color: theme?.color })
-              : theme?.components?.form?.item?.css}
-            ${type &&
-            (typeof theme?.components?.form?.item?.type?.[type]?.css ===
-            'function'
-              ? // @ts-ignore
-                theme.components.form.item.type[type].css({
-                  color: theme?.color,
-                })
-              : theme?.components?.form?.item?.type?.[type]?.css)}
-            ${typeof _css === 'function' ? _css({ color: theme?.color }) : _css}
-          `,
-          getClassName(theme?.namespace, 'form__item'),
-          theme?.components?.form?.item?.className,
-          type && getClassName(theme?.namespace, `form__item__type__${type}`),
-          type && theme?.components?.form?.item?.type?.[type]?.className,
-          className,
-        );
-      }
-      return obj;
-    },
-    [
-      _css,
-      className,
-      inline,
-      props,
-      style,
-      theme?.color,
-      theme?.components?.form?.item,
-      theme?.namespace,
-      type,
-    ],
-  );
+  const themeComponent = theme?.components?.form?.item;
+  const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
   const form = useContext();
   const _error = React.useMemo(
     () =>
@@ -97,6 +50,41 @@ const FormItem = React.forwardRef(function FormItem<
           form.error?.[name])),
     [error, form.error, name],
   );
+
+  function elementProps({ css, cx }: ClassNamesContent): any {
+    const obj = props;
+    if (!inline) {
+      // @ts-ignore
+      obj.style = mergeStyles(
+        themeComponent?.style,
+        type && themeComponentType?.style,
+        style,
+      );
+      // @ts-ignore
+      obj.className = cx(
+        getNamespace(theme?.namespace),
+        css`
+          ${typeof themeComponent?.css === 'function'
+            ? themeComponent.css({ color: theme?.color })
+            : themeComponent?.css}
+          ${type &&
+          (typeof themeComponentType?.css === 'function'
+            ? // @ts-ignore
+              themeComponentType.css({
+                color: theme?.color,
+              })
+            : themeComponentType?.css)}
+            ${typeof _css === 'function' ? _css({ color: theme?.color }) : _css}
+        `,
+        getClassName(theme?.namespace, 'form__item'),
+        themeComponent?.className,
+        type && getClassName(theme?.namespace, `form__item__type__${type}`),
+        type && themeComponentType?.className,
+        className,
+      );
+    }
+    return obj;
+  }
 
   const handleValidate = React.useCallback<(value: string) => Promise<void>>(
     async (value: string): Promise<void> => {
@@ -242,21 +230,20 @@ const FormItem = React.forwardRef(function FormItem<
         >
           {label && (
             <legend
-              style={theme?.components?.form?.item?.label?.style}
+              style={themeComponent?.label?.style}
               className={cx(
                 getNamespace(theme?.namespace),
                 css`
                   padding: 0;
                   margin: 0 0 5px;
                   display: block;
-                  ${typeof theme?.components?.form?.item?.label?.css ===
-                  'function'
-                    ? theme.components.form.item.label.css({
+                  ${typeof themeComponent?.label?.css === 'function'
+                    ? themeComponent.label.css({
                         color: theme?.color,
                       })
-                    : theme?.components?.form?.item?.label?.css}
+                    : themeComponent?.label?.css}
                 `,
-                theme?.components?.form?.item?.label?.className,
+                themeComponent?.label?.className,
                 getClassName(theme?.namespace, 'form__item__label'),
               )}
             >
@@ -266,19 +253,18 @@ const FormItem = React.forwardRef(function FormItem<
           {renderChildren(children)}
           {_error && (
             <p
-              style={theme?.components?.form?.item?.error?.style}
+              style={themeComponent?.error?.style}
               className={cx(
                 getNamespace(theme?.namespace),
                 css`
                   margin: 5px 0 0;
-                  ${typeof theme?.components?.form?.item?.error?.css ===
-                  'function'
-                    ? theme.components.form.item.error.css({
+                  ${typeof themeComponent?.error?.css === 'function'
+                    ? themeComponent.error.css({
                         color: theme?.color,
                       })
-                    : theme?.components?.form?.item?.error?.css}
+                    : themeComponent?.error?.css}
                 `,
-                theme?.components?.form?.item?.error?.className,
+                themeComponent?.error?.className,
                 getClassName(theme?.namespace, 'form__item__error'),
               )}
             >

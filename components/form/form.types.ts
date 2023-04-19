@@ -1,12 +1,19 @@
 import type React from 'react';
+import type {
+  ComponentProps,
+  ComponentTheme,
+  ComponentType,
+} from '../component';
 import type { FormItemThemeType, FormItemValidateType } from './item';
-import type { ElementProps, ElementThemeType } from '../element';
 
 export type FormValidateTimingType = 'ON_SUBMIT' | 'ON_CHANGE';
 
-export interface FormProps<T = FormData, P = any, S extends string = string>
+export type FormCssPropsType = {};
+export type FormType = ComponentType<FormCssPropsType>;
+
+export interface FormProps<T = FormData, P = any>
   extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'onSubmit'>,
-    ElementProps<S> {
+    ComponentProps<FormType, FormCssPropsType> {
   children?: React.ReactNode;
   // default values
   defaultValues?: Record<string, any>;
@@ -27,7 +34,7 @@ export interface FormProps<T = FormData, P = any, S extends string = string>
   loading?: boolean;
 }
 
-export type FormThemeType<T extends string = string> = ElementThemeType<T> & {
+export type FormThemeType = ComponentTheme<FormType, FormCssPropsType> & {
   // item
   item?: FormItemThemeType;
 };

@@ -1,12 +1,20 @@
 import type React from 'react';
-import type { ElementProps, ElementThemeType } from '../element';
+import type {
+  ComponentProps,
+  ComponentTheme,
+  ComponentType,
+} from '../component';
 
-export interface DividerProps<T extends string = string>
+export type DividerCssPropsType = {};
+export type DividerType = ComponentType<DividerCssPropsType>;
+
+export interface DividerProps
   extends React.HTMLAttributes<HTMLHRElement>,
-    ElementProps<T> {
+    ComponentProps<DividerType, DividerCssPropsType> {
   // color
   color?: string;
 }
-
-export type DividerThemeType<T extends string = string> =
-  ElementThemeType<T> & {};
+export type DividerThemeType = ComponentTheme<
+  DividerType,
+  DividerCssPropsType
+> & {};

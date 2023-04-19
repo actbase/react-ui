@@ -15,13 +15,15 @@ function Divider({
   ...props
 }: DividerProps) {
   const theme = Theme.useContext();
+  const themeComponent = theme?.components?.divider;
+  const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
   return (
     <ClassNames>
       {({ css, cx }) => (
         <hr
           style={mergeStyles(
-            theme?.components?.divider?.style,
-            type && theme?.components?.divider?.type?.[type]?.style,
+            themeComponent?.style,
+            themeComponentType?.style,
             style,
           )}
           className={cx(
@@ -33,26 +35,23 @@ function Divider({
               margin: 0;
               width: 100%;
               background-color: #eeeeee;
-              ${typeof theme?.components?.divider?.css === 'function'
-                ? theme.components.divider.css({ color: theme?.color })
-                : theme?.components?.divider?.css};
-              ${type &&
-              (typeof theme?.components?.divider?.type?.[type]?.css ===
-              'function'
-                ? // @ts-ignore
-                  theme?.components?.divider?.type?.[type]?.css({
+              ${typeof themeComponent?.css === 'function'
+                ? themeComponent.css({ color: theme?.color })
+                : themeComponent?.css};
+              ${typeof themeComponentType?.css === 'function'
+                ? themeComponentType?.css({
                     color: theme?.color,
                   })
-                : theme?.components?.divider?.type?.[type]?.css)}
+                : themeComponentType?.css}
               ${color && `background-color: ${theme?.color?.[color] ?? color}`};
               ${typeof _css === 'function'
                 ? _css({ color: theme?.color })
                 : _css}
             `,
             getClassName(theme?.namespace, 'divider'),
-            theme?.components?.divider?.className,
+            themeComponent?.className,
             type && getClassName(theme?.namespace, `divider__type__${type}`),
-            type && theme?.components?.divider?.type?.[type]?.className,
+            themeComponentType?.className,
             className,
           )}
           {...props}

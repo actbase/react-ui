@@ -1,12 +1,21 @@
 import type React from 'react';
-import type { ElementProps, ElementThemeType } from '../element';
+import type {
+  ComponentProps,
+  ComponentTheme,
+  ComponentType,
+} from '../component';
+
+export type InputTextareaCssPropsType = {};
+export type InputTextareaType = ComponentType<InputTextareaCssPropsType>;
 
 export type InputTextareaResizeType = boolean | 'horizontal' | 'vertical';
-export interface InputTextareaProps<T extends string = string>
+export interface InputTextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-    ElementProps<T> {
+    ComponentProps<InputTextareaType, InputTextareaCssPropsType> {
   // resize
   resize?: InputTextareaResizeType;
 }
-export type InputTextareaThemeType<T extends string = string> =
-  ElementThemeType<T> & {};
+export type InputTextareaThemeType = ComponentTheme<
+  InputTextareaType,
+  InputTextareaCssPropsType
+>;

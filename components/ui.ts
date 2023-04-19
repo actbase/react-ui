@@ -1,197 +1,231 @@
 import _Divider, {
   DividerProps as _DividerProps,
+  DividerCssPropsType as _DividerCssPropsType,
   DividerThemeType as _DividerThemeType,
+  DividerType as _DividerType,
 } from './divider';
 import _Button, {
-  ButtonThemeType as _ButtonThemeType,
   ButtonProps as _ButtonProps,
+  ButtonType as _ButtonType,
+  ButtonThemeType as _ButtonThemeType,
+  ButtonCssPropsType as _ButtonCssPropsType,
 } from './button';
 import _Card, {
   CardThemeType as _CardThemeType,
+  CardType as _CardType,
+  CardCssPropsType as _CardCssPropsType,
   CardProps as _CardProps,
 } from './card';
 import _List, {
   ListItemProps as _ListItemProps,
-  ListProps as _ListProps,
+  ListItemType as _ListItemType,
+  ListItemCssPropsType as _ListItemCssPropsType,
+  ListCssPropsType as _ListCssPropsType,
+  ListType as _ListType,
   ListItemThemeType as _ListItemThemeType,
+  ListProps as _ListProps,
   ListThemeType as _ListThemeType,
-  ListTypePropsThemeType as _ListTypePropsThemeType,
 } from './list';
 import _Form, {
   FormProps as _FormProps,
+  FormType as _FormType,
+  FormItemType as _FormItemType,
+  FormItemErrorStatusType as _FormItemErrorStatusType,
+  FormCssPropsType as _FormCssPropsType,
+  FormItemCssPropsType as _FormItemCssPropsType,
+  FormItemRef as _FormItemRef,
+  FormItemErrorValueType as _FormItemErrorValueType,
+  FormItemHandle as _FormItemHandle,
+  FormItemErrorThemeType as _FormItemErrorThemeType,
+  FormItemLabelThemeType as _FormItemLabelThemeType,
+  FormItemValidateType as _FormItemValidateType,
+  FormValidateTimingType as _FormValidateTimingType,
+  FormThemeType as _FormThemeType,
   FormItemProps as _FormItemProps,
   FormItemThemeType as _FormItemThemeType,
-  FormThemeType as _FormThemeType,
-  FormItemHandle as _FormItemHandle,
-  FormItemValidateType as _FormItemValidateType,
   FormItemErrorType as _FormItemErrorType,
-  FormItemErrorValueType as _FormItemErrorValueType,
-  FormItemErrorStatusType as _FormItemErrorStatusType,
-  FormItemErrorThemeType as _FormItemErrorThemeType,
-  FormValidateTimingType as _FormValidateTimingType,
-  FormItemRef as _FormItemRef,
-  FormItemLabelThemeType as _FormItemLabelThemeType,
 } from './form';
 import _Input, {
   InputThemeType as _InputThemeType,
+  InputEmailThemeType as _InputEmailThemeType,
+  InputRadioType as _InputRadioType,
+  InputRadioCssPropsType as _InputRadioCssPropsType,
+  InputEmailType as _InputEmailType,
+  InputEmailCssPropsType as _InputEmailCssPropsType,
+  InputFileType as _InputFileType,
+  InputEmailProps as _InputEmailProps,
   InputInputThemeType as _InputInputThemeType,
+  InputPasswordThemeType as _InputPasswordThemeType,
+  InputRadioProps as _InputRadioProps,
+  InputFileThemeType as _InputFileThemeType,
+  InputPasswordProps as _InputPasswordProps,
+  InputTextareaProps as _InputTextareaProps,
+  InputFileProps as _InputFileProps,
+  InputCheckboxProps as _InputCheckboxProps,
+  InputCheckboxThemeType as _InputCheckboxThemeType,
+  InputCheckboxLabelThemeType as _InputCheckboxLabelThemeType,
+  InputRadioLabelThemeType as _InputRadioLabelThemeType,
   InputInputProps as _InputInputProps,
   InputTextareaThemeType as _InputTextareaThemeType,
-  InputCheckboxInputThemeType as _InputCheckboxInputThemeType,
-  InputCheckboxLabelThemeType as _InputCheckboxLabelThemeType,
-  InputCheckboxProps as _InputCheckboxProps,
-  InputEmailProps as _InputEmailProps,
-  InputFileProps as _InputFileProps,
-  InputCheckboxThemeType as _InputCheckboxThemeType,
-  InputPasswordProps as _InputPasswordProps,
-  InputFileThemeType as _InputFileThemeType,
-  InputRadioLabelThemeType as _InputRadioLabelThemeType,
-  InputRadioThemeType as _InputRadioThemeType,
-  InputRadioProps as _InputRadioProps,
-  InputTextareaProps as _InputTextareaProps,
   InputTextareaResizeType as _InputTextareaResizeType,
   InputRadioInputThemeType as _InputRadioInputThemeType,
-  InputEmailThemeType as _InputEmailThemeType,
-  InputPasswordThemeType as _InputPasswordThemeType,
+  InputCheckboxCssPropsType as _InputCheckboxCssPropsType,
+  InputPasswordCssPropsType as _InputPasswordCssPropsType,
+  InputFileCssPropsType as _InputFileCssPropsType,
+  InputTextareaCssPropsType as _InputTextareaCssPropsType,
+  InputRadioThemeType as _InputRadioThemeType,
+  InputCheckboxType as _InputCheckboxType,
+  InputCheckboxInputThemeType as _InputCheckboxInputThemeType,
+  InputTextareaType as _InputTextareaType,
+  InputPasswordType as _InputPasswordType,
 } from './input';
 import _Provider, { ProviderProps as _ProviderProps } from './provider';
 import _Space, {
   SpaceSizeType as _SpaceSizeType,
+  SpaceType as _SpaceType,
+  SpaceCssPropsType as _SpaceCssPropsType,
+  SpaceDirectionType as _SpaceDirectionType,
+  SpaceProps as _SpaceProps,
+  SpaceThemeType as _SpaceThemeType,
   SpaceAlignType as _SpaceAlignType,
   SpaceJustifyType as _SpaceJustifyType,
-  SpaceThemeType as _SpaceThemeType,
-  SpaceProps as _SpaceProps,
-  SpaceDirectionType as _SpaceDirectionType,
 } from './space';
 import _styles from './styles';
 import _Theme, {
   ThemeType as _ThemeType,
-  ThemeProviderProps as _ThemeProviderProps,
   ThemeColorType as _ThemeColorType,
+  ThemeProviderProps as _ThemeProviderProps,
 } from './theme';
 import _Toast, {
   ToastState as _ToastState,
-  ToastType as _ToastType,
-  ToastProps as _ToastProps,
-  ToastOptionsType as _ToastOptionsType,
-  ToastProviderProps as _ToastProviderProps,
   ToastProviderHandle as _ToastProviderHandle,
-  ToastThemeType as _ToastThemeType,
+  ToastProviderProps as _ToastProviderProps,
   ToastContext as _ToastContext,
-  ToastThemeProps as _ToastThemeProps,
+  ToastType as _ToastType,
+  ToastOptionsType as _ToastOptionsType,
 } from './toast';
 import _Typography, {
   TypographyProps as _TypographyProps,
+  TypographyCssPropsType as _TypographyCssPropsType,
   TypographyThemeType as _TypographyThemeType,
+  TypographyType as _TypographyType,
 } from './typography';
 
 namespace UI {
   export const Divider = _Divider;
   export type DividerProps = _DividerProps;
+  export type DividerCssPropsType = _DividerCssPropsType;
   export type DividerThemeType = _DividerThemeType;
+  export type DividerType = _DividerType;
 
   export const Button = _Button;
-  export type ButtonThemeType = _ButtonThemeType;
   export type ButtonProps = _ButtonProps;
+  export type ButtonType = _ButtonType;
+  export type ButtonThemeType = _ButtonThemeType;
+  export type ButtonCssPropsType = _ButtonCssPropsType;
 
   export const Card = _Card;
   export type CardThemeType = _CardThemeType;
-  export type CardProps<
-    T extends keyof JSX.IntrinsicElements,
-    P extends string = string,
-  > = _CardProps<T, P>;
+  export type CardType = _CardType;
+  export type CardCssPropsType = _CardCssPropsType;
+  export type CardProps = _CardProps;
 
   export const List = _List;
-  export type ListItemProps<
-    T extends keyof JSX.IntrinsicElements,
-    P extends string = string,
-  > = _ListItemProps<T, P>;
-  export type ListProps<
-    T extends keyof JSX.IntrinsicElements,
-    P extends string = string,
-  > = _ListProps<T, P>;
+  export type ListItemProps = _ListItemProps;
+  export type ListItemType = _ListItemType;
+  export type ListItemCssPropsType = _ListItemCssPropsType;
+  export type ListCssPropsType = _ListCssPropsType;
+  export type ListType = _ListType;
   export type ListItemThemeType = _ListItemThemeType;
+  export type ListProps = _ListProps;
   export type ListThemeType = _ListThemeType;
-  export type ListTypePropsThemeType = _ListTypePropsThemeType;
 
   export const Form = _Form;
   export type FormProps = _FormProps;
-  export type FormItemProps<
-    T extends keyof JSX.IntrinsicElements,
-    P extends string = string,
-  > = _FormItemProps<T, P>;
-  export type FormItemThemeType = _FormItemThemeType;
-  export type FormThemeType = _FormThemeType;
-  export type FormItemHandle = _FormItemHandle;
-  export type FormItemValidateType = _FormItemValidateType;
-  export type FormItemErrorType = _FormItemErrorType;
-  export type FormItemErrorValueType = _FormItemErrorValueType;
+  export type FormType = _FormType;
+  export type FormItemType = _FormItemType;
   export type FormItemErrorStatusType = _FormItemErrorStatusType;
-  export type FormItemErrorThemeType = _FormItemErrorThemeType;
-  export type FormValidateTimingType = _FormValidateTimingType;
+  export type FormCssPropsType = _FormCssPropsType;
+  export type FormItemCssPropsType = _FormItemCssPropsType;
   export type FormItemRef = _FormItemRef;
+  export type FormItemErrorValueType = _FormItemErrorValueType;
+  export type FormItemHandle = _FormItemHandle;
+  export type FormItemErrorThemeType = _FormItemErrorThemeType;
   export type FormItemLabelThemeType = _FormItemLabelThemeType;
+  export type FormItemValidateType = _FormItemValidateType;
+  export type FormValidateTimingType = _FormValidateTimingType;
+  export type FormThemeType = _FormThemeType;
+  export type FormItemProps = _FormItemProps;
+  export type FormItemThemeType = _FormItemThemeType;
+  export type FormItemErrorType = _FormItemErrorType;
 
   export const Input = _Input;
   export type InputThemeType = _InputThemeType;
+  export type InputEmailThemeType = _InputEmailThemeType;
+  export type InputRadioType = _InputRadioType;
+  export type InputRadioCssPropsType = _InputRadioCssPropsType;
+  export type InputEmailType = _InputEmailType;
+  export type InputEmailCssPropsType = _InputEmailCssPropsType;
+  export type InputFileType = _InputFileType;
+  export type InputEmailProps = _InputEmailProps;
   export type InputInputThemeType = _InputInputThemeType;
+  export type InputPasswordThemeType = _InputPasswordThemeType;
+  export type InputRadioProps = _InputRadioProps;
+  export type InputFileThemeType = _InputFileThemeType;
+  export type InputPasswordProps = _InputPasswordProps;
+  export type InputTextareaProps = _InputTextareaProps;
+  export type InputFileProps = _InputFileProps;
+  export type InputCheckboxProps = _InputCheckboxProps;
+  export type InputCheckboxThemeType = _InputCheckboxThemeType;
+  export type InputCheckboxLabelThemeType = _InputCheckboxLabelThemeType;
+  export type InputRadioLabelThemeType = _InputRadioLabelThemeType;
   export type InputInputProps = _InputInputProps;
   export type InputTextareaThemeType = _InputTextareaThemeType;
-  export type InputCheckboxInputThemeType = _InputCheckboxInputThemeType;
-  export type InputCheckboxLabelThemeType = _InputCheckboxLabelThemeType;
-  export type InputCheckboxProps = _InputCheckboxProps;
-  export type InputEmailProps = _InputEmailProps;
-  export type InputFileProps = _InputFileProps;
-  export type InputCheckboxThemeType = _InputCheckboxThemeType;
-  export type InputPasswordProps = _InputPasswordProps;
-  export type InputFileThemeType = _InputFileThemeType;
-  export type InputRadioLabelThemeType = _InputRadioLabelThemeType;
-  export type InputRadioThemeType = _InputRadioThemeType;
-  export type InputRadioProps = _InputRadioProps;
-  export type InputTextareaProps = _InputTextareaProps;
   export type InputTextareaResizeType = _InputTextareaResizeType;
   export type InputRadioInputThemeType = _InputRadioInputThemeType;
-  export type InputEmailThemeType = _InputEmailThemeType;
-  export type InputPasswordThemeType = _InputPasswordThemeType;
+  export type InputCheckboxCssPropsType = _InputCheckboxCssPropsType;
+  export type InputPasswordCssPropsType = _InputPasswordCssPropsType;
+  export type InputFileCssPropsType = _InputFileCssPropsType;
+  export type InputTextareaCssPropsType = _InputTextareaCssPropsType;
+  export type InputRadioThemeType = _InputRadioThemeType;
+  export type InputCheckboxType = _InputCheckboxType;
+  export type InputCheckboxInputThemeType = _InputCheckboxInputThemeType;
+  export type InputTextareaType = _InputTextareaType;
+  export type InputPasswordType = _InputPasswordType;
 
   export const Provider = _Provider;
   export type ProviderProps = _ProviderProps;
 
   export const Space = _Space;
   export type SpaceSizeType = _SpaceSizeType;
+  export type SpaceType = _SpaceType;
+  export type SpaceCssPropsType = _SpaceCssPropsType;
+  export type SpaceDirectionType = _SpaceDirectionType;
+  export type SpaceProps = _SpaceProps;
+  export type SpaceThemeType = _SpaceThemeType;
   export type SpaceAlignType = _SpaceAlignType;
   export type SpaceJustifyType = _SpaceJustifyType;
-  export type SpaceThemeType = _SpaceThemeType;
-  export type SpaceDirectionType = _SpaceDirectionType;
-  export type SpaceProps<
-    T extends keyof JSX.IntrinsicElements,
-    P extends string = string,
-  > = _SpaceProps<T, P>;
 
   export const styles = _styles;
 
   export const Theme = _Theme;
   export type ThemeType = _ThemeType;
-  export type ThemeProviderProps = _ThemeProviderProps;
   export type ThemeColorType = _ThemeColorType;
+  export type ThemeProviderProps = _ThemeProviderProps;
 
   export const Toast = _Toast;
   export type ToastState = _ToastState;
-  export type ToastType = _ToastType;
-  export type ToastProps = _ToastProps;
-  export type ToastOptionsType = _ToastOptionsType;
-  export type ToastProviderProps = _ToastProviderProps;
   export type ToastProviderHandle = _ToastProviderHandle;
-  export type ToastThemeType = _ToastThemeType;
+  export type ToastProviderProps = _ToastProviderProps;
   export type ToastContext = _ToastContext;
-  export type ToastThemeProps = _ToastThemeProps;
+  export type ToastType = _ToastType;
+  export type ToastOptionsType = _ToastOptionsType;
 
   export const Typography = _Typography;
-  export type TypographyProps<
-    T extends keyof JSX.IntrinsicElements,
-    P extends string = string,
-  > = _TypographyProps<T, P>;
+  export type TypographyProps = _TypographyProps;
+  export type TypographyCssPropsType = _TypographyCssPropsType;
   export type TypographyThemeType = _TypographyThemeType;
+  export type TypographyType = _TypographyType;
 }
 
 export default UI;

@@ -12,80 +12,76 @@ const InputCheckbox = React.forwardRef<HTMLInputElement, InputCheckboxProps>(
     ref,
   ) {
     const theme = Theme.useContext();
+    const themeComponent = theme?.components?.input?.checkbox;
+    const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
     return (
       <ClassNames>
         {({ css, cx }) => (
           <label
             style={mergeStyles(
-              theme?.components?.input?.checkbox?.style,
-              type && theme?.components?.input?.checkbox?.type?.[type]?.style,
+              themeComponent?.style,
+              themeComponentType?.style,
               style,
             )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${typeof theme?.components?.input?.checkbox?.css === 'function'
-                  ? theme.components.input.checkbox.css({
+                ${typeof themeComponent?.css === 'function'
+                  ? themeComponent.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.input?.checkbox?.css};
-                ${type &&
-                (typeof theme?.components?.input?.checkbox?.type?.[type]
-                  ?.css === 'function'
-                  ? // @ts-ignore
-                    theme?.components?.input?.checkbox?.type?.[type]?.css({
+                  : themeComponent?.css};
+                ${typeof themeComponentType?.css === 'function'
+                  ? themeComponentType?.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.input?.checkbox?.type?.[type]?.css)};
+                  : themeComponentType?.css};
                 ${typeof _css === 'function'
                   ? _css({ color: theme?.color })
                   : _css}
               `,
               getClassName(theme?.namespace, 'input__checkbox'),
-              theme?.components?.input?.checkbox?.className,
+              themeComponent?.className,
               type &&
                 getClassName(
                   theme?.namespace,
                   `input__checkbox__type__${type}`,
                 ),
-              type &&
-                theme?.components?.input?.checkbox?.type?.[type]?.className,
+              themeComponentType?.className,
               className,
             )}
           >
             <input
               ref={ref}
               type={htmlType ?? 'checkbox'}
-              style={theme?.components?.input?.checkbox?.style}
+              style={themeComponent?.style}
               className={cx(
                 getNamespace(theme?.namespace),
                 css`
-                  ${typeof theme?.components?.input?.checkbox?.css ===
-                  'function'
-                    ? theme.components.input.checkbox.css({
+                  ${typeof themeComponent?.css === 'function'
+                    ? themeComponent.css({
                         color: theme?.color,
                       })
-                    : theme?.components?.input?.checkbox?.css};
+                    : themeComponent?.css};
                 `,
-                theme?.components?.input?.checkbox?.className,
+                themeComponent?.className,
                 getClassName(theme?.namespace, 'input__checkbox__input'),
               )}
               {...props}
             />
             {children && (
               <span
-                style={theme?.components?.input?.checkbox?.label?.style}
+                style={themeComponent?.label?.style}
                 className={cx(
                   getNamespace(theme?.namespace),
                   css`
-                    ${typeof theme?.components?.input?.checkbox?.label?.css ===
-                    'function'
-                      ? theme.components.input.checkbox.label.css({
+                    ${typeof themeComponent?.label?.css === 'function'
+                      ? themeComponent.label.css({
                           color: theme?.color,
                         })
-                      : theme?.components?.input?.checkbox?.label?.css}
+                      : themeComponent?.label?.css}
                   `,
-                  theme?.components?.input?.checkbox?.label?.className,
+                  themeComponent?.label?.className,
                   getClassName(theme?.namespace, 'input__checkbox__label'),
                 )}
               >

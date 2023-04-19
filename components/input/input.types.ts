@@ -1,10 +1,16 @@
 import type React from 'react';
-import type { ElementProps, ElementThemeType } from '../element';
+import type {
+  ComponentProps,
+  ComponentTheme,
+  ComponentType,
+} from '../component';
 
-export interface InputProps<T extends string = string>
+export type InputCssPropsType = {};
+export type InputType = ComponentType<InputCssPropsType>;
+
+export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'>,
-    ElementProps<T> {
+    ComponentProps<InputType, InputCssPropsType> {
   htmlType?: React.InputHTMLAttributes<HTMLInputElement>['type'];
 }
-export type InputThemeType<T extends string = string> =
-  ElementThemeType<T> & {};
+export type InputThemeType = ComponentTheme<InputType, InputCssPropsType> & {};

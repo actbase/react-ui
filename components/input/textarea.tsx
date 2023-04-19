@@ -1,5 +1,6 @@
+import type { InputTextareaProps } from './textarea.types';
+
 import React from 'react';
-import { InputTextareaProps } from './textarea.types';
 import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
 import getNamespace from '../_util/getNamespace';
@@ -12,14 +13,16 @@ const InputTextarea = React.forwardRef<HTMLTextAreaElement, InputTextareaProps>(
     ref,
   ) {
     const theme = Theme.useContext();
+    const themeComponent = theme?.components?.input?.textarea;
+    const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
     return (
       <ClassNames>
         {({ css, cx }) => (
           <textarea
             ref={ref}
             style={mergeStyles(
-              theme?.components?.input?.textarea?.style,
-              type && theme?.components?.input?.textarea?.type?.[type]?.style,
+              themeComponent?.style,
+              themeComponentType?.style,
               style,
             )}
             className={cx(
@@ -32,32 +35,29 @@ const InputTextarea = React.forwardRef<HTMLTextAreaElement, InputTextareaProps>(
                     ? 'horizontal'
                     : resize === 'vertical' && 'vertical'
                   : 'none'};
-                ${typeof theme?.components?.input?.textarea?.css === 'function'
-                  ? theme.components.input.textarea.css({
+                ${typeof themeComponent?.css === 'function'
+                  ? themeComponent.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.input?.textarea?.css}
+                  : themeComponent?.css}
                 ${type &&
-                (typeof theme?.components?.input?.textarea?.type?.[type]
-                  ?.css === 'function'
-                  ? // @ts-ignore
-                    theme.components.input.textarea.type[type].css({
+                (typeof themeComponentType?.css === 'function'
+                  ? themeComponentType?.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.input?.textarea?.type?.[type]?.css)}
+                  : themeComponentType?.css)}
                 ${typeof _css === 'function'
                   ? _css({ color: theme?.color })
                   : _css}
               `,
               getClassName(theme?.namespace, 'input__textarea'),
-              theme?.components?.input?.textarea?.className,
+              themeComponent?.className,
               type &&
                 getClassName(
                   theme?.namespace,
                   `input__textarea__type__${type}`,
                 ),
-              type &&
-                theme?.components?.input?.textarea?.type?.[type]?.className,
+              themeComponentType?.className,
               className,
             )}
             {...props}

@@ -12,58 +12,57 @@ const InputRadio = React.forwardRef<HTMLInputElement, InputRadioProps>(
     ref,
   ) {
     const theme = Theme.useContext();
+    const themeComponent = theme?.components?.input?.radio;
+    const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
     return (
       <ClassNames>
         {({ css, cx }) => (
           <label
             style={mergeStyles(
-              theme?.components?.input?.radio?.style,
-              type && theme?.components?.input?.radio?.type?.[type]?.style,
+              themeComponent?.style,
+              type && themeComponentType?.style,
               style,
             )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${typeof theme?.components?.input?.radio?.css === 'function'
-                  ? theme.components.input.radio.css({
+                ${typeof themeComponent?.css === 'function'
+                  ? themeComponent.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.input?.radio?.css}
+                  : themeComponent?.css}
                 ${type &&
-                (typeof theme?.components?.input?.radio?.type?.[type]?.css ===
-                'function'
-                  ? // @ts-ignore
-                    theme.components.input.radio.type[type].css({
+                (typeof themeComponentType?.css === 'function'
+                  ? themeComponentType.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.input?.radio?.type?.[type]?.css)}
+                  : themeComponentType?.css)}
                 ${typeof _css === 'function'
                   ? _css({ color: theme?.color })
                   : _css}
               `,
               getClassName(theme?.namespace, 'input__radio'),
-              theme?.components?.input?.radio?.className,
+              themeComponent?.className,
               type &&
                 getClassName(theme?.namespace, `input__radio__type__${type}`),
-              type && theme?.components?.input?.radio?.type?.[type]?.className,
+              themeComponentType?.className,
               className,
             )}
           >
             <input
               ref={ref}
               type={htmlType ?? 'radio'}
-              style={theme?.components?.input?.radio?.input?.style}
+              style={themeComponent?.input?.style}
               className={cx(
                 getNamespace(theme?.namespace),
                 css`
-                  ${typeof theme?.components?.input?.radio?.input?.css ===
-                  'function'
-                    ? theme?.components?.input?.radio?.input?.css({
+                  ${typeof themeComponent?.input?.css === 'function'
+                    ? themeComponent?.input?.css({
                         color: theme?.color,
                       })
-                    : theme?.components?.input?.radio?.input?.css}
+                    : themeComponent?.input?.css}
                 `,
-                theme?.components?.input?.radio?.input?.className,
+                themeComponent?.input?.className,
                 getClassName(theme?.namespace, 'input__radio__input'),
                 className,
               )}
@@ -71,18 +70,17 @@ const InputRadio = React.forwardRef<HTMLInputElement, InputRadioProps>(
             />
             {children && (
               <span
-                style={theme?.components?.input?.radio?.label?.style}
+                style={themeComponent?.label?.style}
                 className={cx(
                   getNamespace(theme?.namespace),
                   css`
-                    ${typeof theme?.components?.input?.radio?.label?.css ===
-                    'function'
-                      ? theme.components.input.radio.label.css({
+                    ${typeof themeComponent?.label?.css === 'function'
+                      ? themeComponent.label.css({
                           color: theme?.color,
                         })
-                      : theme?.components?.input?.radio?.label?.css}
+                      : themeComponent?.label?.css}
                   `,
-                  theme?.components?.input?.radio?.label?.className,
+                  themeComponent?.label?.className,
                   getClassName(theme?.namespace, 'input__radio__label'),
                 )}
               >

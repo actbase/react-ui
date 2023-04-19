@@ -1,9 +1,16 @@
 import type React from 'react';
-import type { ElementProps, ElementThemeType } from '../element';
+import type {
+  ComponentProps,
+  ComponentTheme,
+  ComponentType,
+} from '../component';
 
-export interface ButtonProps<T extends string = string>
+export type ButtonCssPropsType = {};
+export type ButtonType = ComponentType<ButtonCssPropsType>;
+
+export interface ButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'>,
-    ElementProps<T> {
+    ComponentProps<ButtonType, ButtonCssPropsType> {
   // HTML Type
   htmlType?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
   // Radius
@@ -13,8 +20,7 @@ export interface ButtonProps<T extends string = string>
   // render a loading component when on loading
   renderLoadingComponent?: () => React.ReactNode;
 }
-
-export type ButtonThemeType<T extends string = string> = ElementThemeType<T> & {
+export type ButtonThemeType = ComponentTheme<ButtonType, ButtonCssPropsType> & {
   // default render loading component
   renderLoadingComponent?: ButtonProps['renderLoadingComponent'];
 };

@@ -8,56 +8,44 @@ import mergeStyles from '../_util/mergeStyles';
 
 const Card = React.forwardRef(function Card<
   T extends keyof JSX.IntrinsicElements,
-  P extends string = string,
 >(
-  {
-    el,
-    children,
-    className,
-    style,
-    type,
-    htmlType,
-    css: _css,
-  }: CardProps<T, P>,
+  { el, children, className, style, type, htmlType, css: _css }: CardProps<T>,
   ref: React.ForwardedRef<JSX.IntrinsicElements[T]>,
 ) {
   const Element = el ?? 'div';
   const theme = Theme.useContext();
+  const themeComponent = theme?.components?.card;
+  const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
 
   return (
     <ClassNames>
       {({ css, cx }) => (
         // @ts-ignore
         <Element
-          // @ts-ignore
           ref={ref}
           type={htmlType}
-          // @ts-ignore
           style={mergeStyles(
-            theme?.components?.card?.style,
-            type && theme?.components?.card?.type?.[type]?.style,
+            themeComponent?.style,
+            themeComponentType?.style,
             style,
           )}
-          // @ts-ignore
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              ${typeof theme?.components?.card?.css === 'function'
-                ? theme.components.card.css({ color: theme?.color })
-                : theme?.components?.card?.css};
-              ${type &&
-              (typeof theme?.components?.card?.type?.[type]?.css === 'function'
-                ? // @ts-ignore
-                  theme.components.card.type[type].css({ color: theme?.color })
-                : theme?.components?.card?.type?.[type]?.css)};
+              ${typeof themeComponent?.css === 'function'
+                ? themeComponent.css({ color: theme?.color })
+                : themeComponent?.css};
+              ${typeof themeComponentType?.css === 'function'
+                ? themeComponentType.css({ color: theme?.color })
+                : themeComponentType?.css};
               ${typeof _css === 'function'
                 ? _css({ color: theme?.color })
                 : _css}
             `,
             getClassName(theme?.namespace, 'card'),
-            theme?.components?.card?.className,
+            themeComponent?.className,
             type && getClassName(theme?.namespace, `card__type__${type}`),
-            type && theme?.components?.card?.type?.[type]?.className,
+            themeComponentType?.className,
             className,
           )}
         >

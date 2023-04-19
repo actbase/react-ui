@@ -12,6 +12,8 @@ const InputEmail = React.forwardRef<HTMLInputElement, InputEmailProps>(
     ref,
   ) {
     const theme = Theme.useContext();
+    const themeComponent = theme?.components?.input?.email;
+    const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
     return (
       <ClassNames>
         {({ css, cx }) => (
@@ -19,35 +21,33 @@ const InputEmail = React.forwardRef<HTMLInputElement, InputEmailProps>(
             ref={ref}
             type="email"
             style={mergeStyles(
-              theme?.components?.input?.email?.style,
-              type && theme?.components?.input?.email?.type?.[type]?.style,
+              themeComponent?.style,
+              themeComponentType?.style,
               style,
             )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${typeof theme?.components?.input?.email?.css === 'function'
-                  ? theme?.components?.input?.email?.css({
+                ${typeof themeComponent?.css === 'function'
+                  ? themeComponent?.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.input?.email?.css}
+                  : themeComponent?.css}
                 ${type &&
-                (typeof theme?.components?.input?.email?.type?.[type]?.css ===
-                'function'
-                  ? // @ts-ignore
-                    theme.components.input.email.type[type].css({
+                (typeof themeComponentType?.css === 'function'
+                  ? themeComponentType.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.input?.email?.type?.[type]?.css)}
+                  : themeComponentType?.css)}
                 ${typeof _css === 'function'
                   ? _css({ color: theme?.color })
                   : _css}
               `,
               getClassName(theme?.namespace, 'input__email'),
-              theme?.components?.input?.email?.className,
+              themeComponent?.className,
               type &&
                 getClassName(theme?.namespace, `input__email__type__${type}`),
-              type && theme?.components?.input?.email?.type?.[type]?.className,
+              themeComponentType?.className,
               className,
             )}
             placeholder={placeholder}

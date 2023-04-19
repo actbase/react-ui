@@ -1,5 +1,6 @@
+import type { InputPasswordProps } from './password.types';
+
 import React from 'react';
-import { InputPasswordProps } from './password.types';
 import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
 import getNamespace from '../_util/getNamespace';
@@ -21,6 +22,8 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
     ref,
   ) {
     const theme = Theme.useContext();
+    const themeComponent = theme?.components?.input?.password;
+    const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
     return (
       <ClassNames>
         {({ css, cx }) => (
@@ -28,37 +31,34 @@ const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
             ref={ref}
             type={htmlType ?? (hidden ? 'password' : 'text')}
             style={mergeStyles(
-              theme?.components?.input?.password?.style,
-              type && theme?.components?.input?.password?.type?.[type]?.style,
+              themeComponent?.style,
+              themeComponentType?.style,
               style,
             )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${typeof theme?.components?.input?.password?.css === 'function'
-                  ? theme.components.input.password.css({ color: theme?.color })
-                  : theme?.components?.input?.password?.css}
+                ${typeof themeComponent?.css === 'function'
+                  ? themeComponent.css({ color: theme?.color })
+                  : themeComponent?.css}
                 ${type &&
-                (typeof theme?.components?.input?.password?.type?.[type]
-                  ?.css === 'function'
-                  ? // @ts-ignore
-                    theme.components.input.password.type[type].css({
+                (typeof themeComponentType?.css === 'function'
+                  ? themeComponentType.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.input?.password?.type?.[type]?.css)}
+                  : themeComponentType?.css)}
                 ${typeof _css === 'function'
                   ? _css({ color: theme?.color })
                   : _css}
               `,
               getClassName(theme?.namespace, 'input__password'),
-              theme?.components?.input?.password?.className,
+              themeComponent?.className,
               type &&
                 getClassName(
                   theme?.namespace,
                   `input__password__type__${type}`,
                 ),
-              type &&
-                theme?.components?.input?.password?.type?.[type]?.className,
+              themeComponentType?.className,
               className,
             )}
             placeholder={placeholder}

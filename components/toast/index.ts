@@ -1,5 +1,4 @@
 export * from './provider.types';
-export * from './toast.type';
 export * from './context.type';
 
 import type { ToastType } from './provider.types';

@@ -1,20 +1,22 @@
 import type React from 'react';
-import { ElementProps, ElementThemeType } from '../element';
+import type {
+  ComponentType,
+  ComponentProps,
+  ComponentTheme,
+} from '../component';
 
-export interface ToastThemeProps {
+export type ToastCssPropsType = {
   index?: number;
-}
+};
+export type ToastType = ComponentType<ToastCssPropsType>;
 
-export interface ToastProps<T extends string = string>
+export interface ToastProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    ElementProps<T, ToastThemeProps> {
-  children?: React.ReactNode;
+    ComponentProps<ToastType, ToastCssPropsType> {
   index?: number;
+  timeout?: number;
 }
 
-export type ToastThemeType<T extends string = string> = ElementThemeType<
-  T,
-  ToastThemeProps
-> & {
+export type ToastThemeType = ComponentTheme<ToastType, ToastCssPropsType> & {
   timeout?: number;
 };

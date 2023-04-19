@@ -1,6 +1,7 @@
+import type { ListProps } from './list.types';
+
 import React from 'react';
 import { ClassNames } from '@emotion/react';
-import { ListProps } from './list.types';
 import mergeStyles from '../_util/mergeStyles';
 import getNamespace from '../_util/getNamespace';
 import getClassName from '../_util/getClassName';
@@ -8,7 +9,6 @@ import Theme from '../theme';
 
 const List = React.forwardRef(function List<
   T extends keyof JSX.IntrinsicElements,
-  P extends string = string,
 >(
   {
     el,
@@ -19,11 +19,13 @@ const List = React.forwardRef(function List<
     htmlType,
     type,
     ...props
-  }: ListProps<T, P>,
+  }: ListProps<T>,
   ref: React.ForwardedRef<T>,
 ) {
   const Element = el ?? 'ul';
   const theme = Theme.useContext();
+  const themeComponent = theme?.components?.list;
+  const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
 
   return (
     <ClassNames>
@@ -33,34 +35,31 @@ const List = React.forwardRef(function List<
           // @ts-ignore
           ref={ref}
           type={htmlType}
-          // @ts-ignore
           style={mergeStyles(
-            theme?.components?.list?.style,
-            type && theme?.components?.list?.type?.[type]?.style,
+            themeComponent?.style,
+            themeComponentType?.style,
             style,
           )}
-          // @ts-ignore
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              ${typeof theme?.components?.list?.css === 'function'
-                ? theme?.components?.list?.css({ color: theme?.color })
-                : theme?.components?.list?.css};
+              ${typeof themeComponent?.css === 'function'
+                ? themeComponent.css({ color: theme?.color })
+                : themeComponent?.css};
               ${type &&
-              (typeof theme?.components?.list?.type?.[type]?.css === 'function'
-                ? // @ts-ignore
-                  theme.components.list.type[type].css({
+              (typeof themeComponentType?.css === 'function'
+                ? themeComponentType.css({
                     color: theme?.color,
                   })
-                : theme?.components?.list?.type?.[type]?.css)};
+                : themeComponentType?.css)};
               ${typeof _css === 'function'
                 ? _css({ color: theme?.color })
                 : _css}
             `,
             getClassName(theme?.namespace, 'list'),
-            theme?.components?.list?.className,
+            themeComponent?.className,
             type && getClassName(theme?.namespace, `list__type__${type}`),
-            type && theme?.components?.list?.type?.[type]?.className,
+            themeComponentType?.className,
             className,
           )}
           {...props}
@@ -72,15 +71,16 @@ const List = React.forwardRef(function List<
             return React.cloneElement(child as React.ReactElement, {
               ...(child as React.ReactElement).props,
               style: mergeStyles(
-                type && theme?.components?.list?.type?.[type]?.item?.style,
+                themeComponentType?.item?.style,
                 (child as React.ReactElement).props.style,
               ),
+              // @ts-ignore
               css: css`
-                ${type && theme?.components?.list?.type?.[type]?.item?.css}
+                ${themeComponentType?.item?.css}
                 ${(child as React.ReactElement).props.css}
               `,
               className: cx(
-                type && theme?.components?.list?.type?.[type]?.item?.className,
+                themeComponentType?.item?.className,
                 (child as React.ReactElement).props.className,
               ),
             });

@@ -1,15 +1,13 @@
+import type { TypographyProps } from './typography.types';
+
 import React from 'react';
-import { TypographyProps } from './typography.types';
 import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
 import mergeStyles from '../_util/mergeStyles';
 
-function Typography<
-  T extends keyof JSX.IntrinsicElements,
-  P extends string = string,
->({
+function Typography<T extends keyof JSX.IntrinsicElements>({
   children,
   el,
   className,
@@ -20,32 +18,33 @@ function Typography<
   style,
   css: _css,
   ...props
-}: TypographyProps<T, P>) {
+}: TypographyProps<T>) {
   const theme = Theme.useContext();
   const Element = el ?? 'p';
+  const themeComponent = theme?.components?.typography;
+  const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
   return (
     <ClassNames>
       {({ css, cx }) => (
         // @ts-ignore
         <Element
           style={mergeStyles(
-            theme?.components?.typography?.style,
-            type && theme?.components?.typography?.type?.[type]?.style,
+            themeComponent?.style,
+            type && themeComponent?.type?.[type]?.style,
             style,
           )}
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              ${typeof theme?.components?.typography?.css === 'function'
-                ? theme.components.typography.css({ color: theme?.color })
-                : theme?.components?.typography?.css}
+              ${typeof themeComponent?.css === 'function'
+                ? themeComponent.css({ color: theme?.color })
+                : themeComponent?.css}
               ${type &&
-              (typeof theme?.components?.typography?.type?.[type]?.css
-                ? // @ts-ignore
-                  theme.components.typography.type[type].css({
+              (typeof themeComponentType?.css === 'function'
+                ? themeComponentType.css({
                     color: theme?.color,
                   })
-                : theme?.components?.typography?.type?.[type]?.css)}
+                : themeComponentType?.css)}
               color: ${color && (theme?.color?.[color] ?? color)};
               ${size && `font-size: ${size}px;`}
               ${weight && `font-weight: ${weight};`}
@@ -54,9 +53,9 @@ function Typography<
                 : _css};
             `,
             getClassName(theme?.namespace, 'typography'),
-            theme?.components?.typography?.className,
+            themeComponent?.className,
             type && getClassName(theme?.namespace, `typography__type__${type}`),
-            type && theme?.components?.typography?.type?.[type]?.className,
+            themeComponentType?.className,
             className,
           )}
           {...props}

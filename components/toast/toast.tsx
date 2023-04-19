@@ -11,6 +11,10 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>(function Toast(
   ref,
 ) {
   const theme = Theme.useContext();
+  const themeComponent = theme?.components?.toast;
+  const themeComponentType = type
+    ? theme?.components?.toast?.type?.[type]
+    : undefined;
 
   return (
     <ClassNames>
@@ -20,28 +24,27 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>(function Toast(
           className={cx(
             getNamespace(theme?.namespace),
             css`
-              ${typeof theme?.components?.toast?.css === 'function'
-                ? theme?.components?.toast?.css({
+              ${typeof themeComponent?.css === 'function'
+                ? themeComponent.css({
                     color: theme?.color,
                     index,
                   })
-                : theme?.components?.toast?.css};
+                : themeComponent?.css};
               ${type &&
-              (typeof theme?.components?.toast?.type?.[type]?.css === 'function'
-                ? // @ts-ignore
-                  theme.components.toast.type[type].css({
+              (typeof themeComponentType?.css === 'function'
+                ? themeComponentType.css({
                     color: theme?.color,
                     index,
                   })
-                : theme?.components?.toast?.type?.[type]?.css)};
+                : themeComponentType?.css)};
               ${typeof _css === 'function'
                 ? _css({ color: theme?.color, index })
                 : _css};
             `,
             getClassName(theme?.namespace, 'toast'),
-            theme?.components?.toast?.className,
+            themeComponent?.className,
             type && getClassName(theme?.namespace, `toast__type__${type}`),
-            type && theme?.components?.toast?.type?.[type]?.className,
+            themeComponentType?.className,
             className,
           )}
           {...props}

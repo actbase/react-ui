@@ -1,5 +1,6 @@
+import type { InputNumberProps } from './number.types';
+
 import React from 'react';
-import { InputNumberProps } from './number.types';
 import Theme from '../theme';
 import { ClassNames } from '@emotion/react';
 import getNamespace from '../_util/getNamespace';
@@ -12,6 +13,8 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
     ref,
   ) {
     const theme = Theme.useContext();
+    const themeComponent = theme?.components?.input?.number;
+    const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
     return (
       <ClassNames>
         {({ css, cx }) => (
@@ -19,35 +22,33 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
             ref={ref}
             type={htmlType ?? 'number'}
             style={mergeStyles(
-              theme?.components?.input?.number?.style,
-              type && theme?.components?.input?.number?.type?.[type]?.style,
+              themeComponent?.style,
+              type && themeComponentType?.style,
               style,
             )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${typeof theme?.components?.input?.number?.css === 'function'
-                  ? theme.components.input.number.css({
+                ${typeof themeComponent?.css === 'function'
+                  ? themeComponent.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.input?.number?.css}
+                  : themeComponent?.css}
                 ${type &&
-                (typeof theme?.components?.input?.number?.type?.[type]?.css ===
-                'function'
-                  ? // @ts-ignore
-                    theme.components.input.number.type[type].css({
+                (typeof themeComponentType?.css === 'function'
+                  ? themeComponentType.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.input?.number?.type?.[type]?.css)}
+                  : themeComponentType?.css)}
                 ${typeof _css === 'function'
                   ? _css({ color: theme?.color })
                   : _css}
               `,
               getClassName(theme?.namespace, 'input__number'),
-              theme?.components?.input?.number?.className,
+              themeComponent?.className,
               type &&
                 getClassName(theme?.namespace, `input__number__type__${type}`),
-              type && theme?.components?.input?.number?.type?.[type]?.className,
+              type && themeComponentType?.className,
               className,
             )}
             placeholder={placeholder}

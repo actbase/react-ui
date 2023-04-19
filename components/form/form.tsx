@@ -37,6 +37,8 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
   ref,
 ) {
   const theme = Theme.useContext();
+  const themeComponent = theme?.components?.form;
+  const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<FormItemErrorType>();
   const [resetDate, setResetDate] = React.useState<Date>();
@@ -132,32 +134,29 @@ const Form = React.forwardRef<HTMLFormElement, FormProps>(function Form(
           <form
             ref={ref}
             style={mergeStyles(
-              theme?.components?.form?.style,
-              type && theme?.components?.form?.type?.[type]?.style,
+              themeComponent?.style,
+              themeComponentType?.style,
               style,
             )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${typeof theme?.components?.form?.css === 'function'
-                  ? theme.components.form.css({ color: theme?.color })
-                  : theme?.components?.form?.css}
+                ${typeof themeComponent?.css === 'function'
+                  ? themeComponent.css({ color: theme?.color })
+                  : themeComponent?.css}
                 ${type &&
-                (typeof theme?.components?.form?.type?.[type]?.css ===
-                'function'
-                  ? // @ts-ignore
-                    theme.components.form.type[type].css({
+                (typeof themeComponentType?.css === 'function'
+                  ? themeComponentType.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.form?.type?.[type]?.css)}
+                  : themeComponentType?.css)}
                 ${typeof _css === 'function'
                   ? _css({ color: theme?.color })
                   : _css}
               `,
               getClassName(theme?.namespace, 'form'),
-              theme?.components?.form?.className,
+              themeComponent?.className,
               type && getClassName(theme?.namespace, `form__type__${type}`),
-              type && theme?.components?.form?.type?.[type]?.className,
               className,
             )}
             onReset={(event) => {

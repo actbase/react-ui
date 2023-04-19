@@ -1,5 +1,6 @@
+import type { SpaceProps } from './space.types';
+
 import React from 'react';
-import { SpaceProps } from './space.types';
 import { ClassNames } from '@emotion/react';
 import Theme from '../theme';
 import getClassName from '../_util/getClassName';
@@ -29,6 +30,8 @@ const Space = React.forwardRef(function Space<
   ref: React.ForwardedRef<JSX.IntrinsicElements[T]>,
 ) {
   const theme = Theme.useContext();
+  const themeComponent = theme?.components?.space;
+  const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
   const Element = el ?? 'div';
   return (
     <ClassNames>
@@ -39,11 +42,10 @@ const Space = React.forwardRef(function Space<
             // @ts-ignore
             ref={ref}
             style={mergeStyles(
-              theme?.components?.space?.style,
-              type && theme?.components?.space?.type?.[type]?.style,
+              themeComponent?.style,
+              type && themeComponentType?.style,
               style,
             )}
-            // @ts-ignore
             className={cx(
               getNamespace(theme?.namespace),
               css`
@@ -70,29 +72,26 @@ const Space = React.forwardRef(function Space<
                 gap: ${typeof size === 'number'
                   ? `${size}px`
                   : `${
-                      // @ts-ignore
-                      theme?.components?.space?.size?.[size] ??
-                      theme?.components?.space?.defaultSize
+                      (size && themeComponent?.size?.[size]) ??
+                      themeComponent?.defaultSize
                     }px`};
-                ${typeof theme?.components?.space?.css === 'function'
-                  ? theme.components.space.css({ color: theme?.color })
-                  : theme?.components?.space?.css};
+                ${typeof themeComponent?.css === 'function'
+                  ? themeComponent.css({ color: theme?.color })
+                  : themeComponent?.css};
                 ${type &&
-                (typeof theme?.components?.space?.type?.[type]?.css ===
-                'function'
-                  ? // @ts-ignore
-                    theme.components.space.type[type].css({
+                (typeof themeComponentType?.css === 'function'
+                  ? themeComponentType.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.space?.type?.[type]?.css)};
+                  : themeComponentType?.css)};
                 ${typeof _css === 'function'
                   ? _css({ color: theme?.color })
                   : _css};
               `,
               getClassName(theme?.namespace, 'space'),
-              theme?.components?.space?.className,
+              themeComponent?.className,
               type && getClassName(theme?.namespace, `space__type__${type}`),
-              type && theme?.components?.space?.type?.[type]?.className,
+              themeComponentType?.className,
               className,
             )}
             {...props}

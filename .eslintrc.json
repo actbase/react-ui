@@ -40,7 +40,8 @@
         "endOfLine": "auto"
       }
     ],
-    "@typescript-eslint/no-namespace": "off"
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/no-empty-interface": "off"
   },
   "settings": {
     "react": {

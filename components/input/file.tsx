@@ -12,6 +12,8 @@ const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
     ref,
   ) {
     const theme = Theme.useContext();
+    const themeComponent = theme?.components?.input?.file;
+    const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
     return (
       <ClassNames>
         {({ css, cx }) => (
@@ -19,33 +21,30 @@ const InputFile = React.forwardRef<HTMLInputElement, InputFileProps>(
             ref={ref}
             type={htmlType ?? 'file'}
             style={mergeStyles(
-              theme?.components?.input?.file?.style,
-              type && theme?.components?.input?.file?.type?.[type]?.style,
+              themeComponent?.style,
+              themeComponentType?.style,
               style,
             )}
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                ${typeof theme?.components?.input?.file?.css === 'function'
-                  ? theme?.components?.input?.file?.css({ color: theme?.color })
-                  : theme?.components?.input?.file?.css}
-                ${type &&
-                (typeof theme?.components?.input?.file?.type?.[type]?.css ===
-                'function'
-                  ? // @ts-ignore
-                    theme.components.input.file.type[type].css({
+                ${typeof themeComponent?.css === 'function'
+                  ? themeComponent?.css({ color: theme?.color })
+                  : themeComponent?.css}
+                ${typeof themeComponentType?.css === 'function'
+                  ? themeComponentType.css({
                       color: theme?.color,
                     })
-                  : theme?.components?.input?.file?.type?.[type]?.css)}
+                  : themeComponentType?.css}
                 ${typeof _css === 'function'
                   ? _css({ color: theme?.color })
                   : _css}
               `,
               getClassName(theme?.namespace, 'input__file'),
-              theme?.components?.input?.file?.className,
+              themeComponent?.className,
               type &&
                 getClassName(theme?.namespace, `input__file__type__${type}`),
-              type && theme?.components?.input?.file?.type?.[type]?.className,
+              themeComponentType?.className,
               className,
             )}
             {...props}
