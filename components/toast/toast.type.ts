@@ -12,10 +12,9 @@ export interface ToastProps<T extends string = string>
   index?: number;
 }
 
-export type ToastThemeTypeProps<T extends Record<any, any> = Record<any, any>> =
-  Record<string, ElementThemeType<keyof ElementThemeType, T>>;
-
-export type ToastThemeType<T extends keyof ToastThemeTypeProps = string> =
-  ElementThemeType<T, ToastThemeProps> & {
-    timeout?: number;
-  };
+export type ToastThemeType<T extends string = string> = ElementThemeType<
+  T,
+  ToastThemeProps
+> & {
+  timeout?: number;
+};

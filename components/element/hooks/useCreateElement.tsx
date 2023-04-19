@@ -1,6 +1,5 @@
 import type { ThemeComponentsType } from '../../theme';
 import type { ElementProps, ElementThemeType } from '../elementsType';
-import type { ClassNamesContent } from '@emotion/react';
 
 import React from 'react';
 import Theme from '../../theme';
@@ -13,9 +12,7 @@ function useCreateElement<
   T extends Record<any, any>,
 >(
   name: keyof ThemeComponentsType,
-  element:
-    | React.ReactElement<P>
-    | ((classNamesContent: ClassNamesContent) => React.ReactElement<P>),
+  element: React.ReactElement<P>,
   props?: T,
 ): React.ReactElement {
   const theme = Theme.useContext();
@@ -25,55 +22,47 @@ function useCreateElement<
   );
   return (
     <ClassNames>
-      {(classNamesContent) => {
-        const _element =
-          typeof element === 'function' ? element(classNamesContent) : element;
-        return React.cloneElement(_element, {
-          ..._element.props,
-          style: mergeStyles(themeComponent?.style, _element.props.style),
-          className: classNamesContent.cx(
-            classNamesContent.css`
-              ${
-                typeof themeComponent?.css === 'function'
-                  ? themeComponent.css({
-                      color: theme?.color,
-                      ...(props ?? {}),
-                    })
-                  : themeComponent?.css
-              }
-              ${
-                _element.props.type &&
-                (typeof themeComponent?.type?.[_element.props.type]?.css ===
-                'function'
-                  ? // @ts-ignore
-                    themeComponent?.type?.[_element.props.type]?.css?.({
-                      color: theme?.color,
-                      ...(props ?? {}),
-                    })
-                  : themeComponent?.type?.[_element.props.type]?.css)
-              }
-              ${
-                typeof _element.props.css === 'function'
-                  ? _element.props.css({
-                      color: theme?.color,
-                      ...(props ?? {}),
-                    })
-                  : _element.props.css
-              }
+      {({ css, cx }) =>
+        React.cloneElement(element, {
+          ...element.props,
+          style: mergeStyles(themeComponent?.style, element.props.style),
+          className: cx(
+            css`
+              ${typeof themeComponent?.css === 'function'
+                ? themeComponent.css({
+                    color: theme?.color,
+                    ...(props ?? {}),
+                  })
+                : themeComponent?.css}
+              ${element.props.type &&
+              (typeof themeComponent?.type?.[element.props.type]?.css ===
+              'function'
+                ? // @ts-ignore
+                  themeComponent?.type?.[element.props.type]?.css?.({
+                    color: theme?.color,
+                    ...(props ?? {}),
+                  })
+                : themeComponent?.type?.[element.props.type]?.css)}
+              ${typeof element.props.css === 'function'
+                ? element.props.css({
+                    color: theme?.color,
+                    ...(props ?? {}),
+                  })
+                : element.props.css}
             `,
             getClassName(theme?.namespace, name),
             themeComponent?.className,
-            _element.props.type &&
+            element.props.type &&
               getClassName(
                 theme?.namespace,
-                `${name}__type__${_element.props.type}`,
+                `${name}__type__${element.props.type}`,
               ),
-            _element.props.type &&
-              themeComponent?.type?.[_element.props.type]?.className,
-            _element.props.className,
+            element.props.type &&
+              themeComponent?.type?.[element.props.type]?.className,
+            element.props.className,
           ),
-        });
-      }}
+        })
+      }
     </ClassNames>
   );
 }
