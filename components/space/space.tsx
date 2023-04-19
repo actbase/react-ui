@@ -1,7 +1,7 @@
 import React from 'react';
 import { SpaceProps } from './space.types';
 import Theme from '../theme';
-import { useCreateElement } from '../element';
+import useCreateElement from '../element/hooks/useCreateElement';
 
 const Space = React.forwardRef(function Space<
   T extends keyof JSX.IntrinsicElements,
