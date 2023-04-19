@@ -112,7 +112,7 @@ namespace UI {
   > = _ListProps<T, P>;
   export type ListItemThemeType = _ListItemThemeType;
   export type ListThemeType = _ListThemeType;
-  export type ListTypePropsThemeType = __ListTypePropsThemeType;
+  export type ListTypePropsThemeType = _ListTypePropsThemeType;
 
   export const Form = _Form;
   export type FormProps = _FormProps;
