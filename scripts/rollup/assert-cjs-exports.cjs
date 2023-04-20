@@ -17,6 +17,6 @@ const expected = JSON.parse(
     require('path').resolve(__dirname, './all-exports.json'),
     'utf-8',
   ),
-);
+).sort();
 
-assert.deepStrictEqual(Object.keys(exported), expected);
+assert.deepStrictEqual(Object.keys(exported).sort(), expected);

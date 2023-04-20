@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import UI from '../components';
+import React from 'react';
+import UI, { css } from '../components';
 
 export default {
   color: {
@@ -11,6 +11,58 @@ export default {
     styles: UI.styles.reset,
   },
   components: {
+    alert: {
+      css: css`
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0);
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        z-index: 500;
+        animation-duration: 0.15s;
+        animation-timing-function: ease-in-out;
+        animation-name: react-ui--alert__animate;
+        animation-fill-mode: forwards;
+        @keyframes react-ui--alert__animate {
+          0% {
+            background-color: rgba(0, 0, 0, 0);
+          }
+          100% {
+            background-color: rgba(0, 0, 0, 0.25);
+          }
+        }
+      `,
+      template: ({ children, onDestroy }) => (
+        <UI.ClassNames>
+          {({ css, cx }) => (
+            <UI.Space
+              direction="vertical"
+              className={cx(css`
+                min-width: 300px;
+                background-color: #ffffff;
+                border-radius: 5px;
+                padding: 15px;
+              `)}
+              size={16}
+            >
+              <UI.Typography>{children}</UI.Typography>
+              <UI.Space justify="end">
+                <UI.Button type="primary" onClick={onDestroy}>
+                  OK
+                </UI.Button>
+              </UI.Space>
+            </UI.Space>
+          )}
+        </UI.ClassNames>
+      ),
+    },
     button: {
       css: css`
         background-color: transparent;
@@ -239,10 +291,10 @@ export default {
         font-family: NotoSansKR, sans-serif;
         animation-duration: 3s;
         animation-timing-function: ease-in-out;
-        animation-name: animate;
+        animation-name: react-ui--toast__animate;
         animation-fill-mode: forwards;
         transition: top 0.5s ease;
-        @keyframes animate {
+        @keyframes react-ui--toast__animate {
           0% {
             transform: translateY(-100%);
           }

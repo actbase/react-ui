@@ -1,4 +1,4 @@
-import type { SpaceProps } from './space.types';
+import type { BlockProps } from './block.types';
 
 import React from 'react';
 import { ClassNames } from '@emotion/react';
@@ -7,30 +7,23 @@ import getClassName from '../_util/getClassName';
 import getNamespace from '../_util/getNamespace';
 import mergeStyles from '../_util/mergeStyles';
 
-const Space = React.forwardRef<any, SpaceProps>(function Space<
+const Block = React.forwardRef<any, BlockProps>(function Block<
   T extends keyof JSX.IntrinsicElements,
 >(
   {
     el,
-    inline,
     children,
-    align,
-    justify,
     className,
-    size,
-    direction,
-    wrap,
-    reverse,
     type,
     style,
     htmlType,
     css: _css,
     ...props
-  }: SpaceProps<T>,
+  }: BlockProps<T>,
   ref: React.ForwardedRef<JSX.IntrinsicElements[T]>,
 ) {
   const theme = Theme.useContext();
-  const themeComponent = theme?.components?.space;
+  const themeComponent = theme?.components?.block;
   const themeComponentType = type ? themeComponent?.type?.[type] : undefined;
   const Element = el ?? 'div';
   return (
@@ -49,32 +42,6 @@ const Space = React.forwardRef<any, SpaceProps>(function Space<
             className={cx(
               getNamespace(theme?.namespace),
               css`
-                display: ${inline ? 'inline-flex' : 'flex'};
-                justify-content: ${{
-                  start: 'flex-start',
-                  center: 'center',
-                  end: 'flex-end',
-                  'space-between': 'space-between',
-                  'space-around': 'space-around',
-                  'space-evenly': 'space-evenly',
-                }[justify ?? 'start']};
-                flex-direction: ${{
-                  horizontal: reverse ? 'row-reverse' : 'row',
-                  vertical: reverse ? 'column-reverse' : 'column',
-                }[direction ?? 'horizontal']};
-                flex-wrap: ${wrap ? 'wrap' : 'no-wrap'};
-                align-items: ${{
-                  start: 'flex-start',
-                  center: 'center',
-                  end: 'flex-end',
-                  stretch: 'stretch',
-                }[align ?? 'stretch']};
-                gap: ${typeof size === 'number'
-                  ? `${size}px`
-                  : `${
-                      (size && themeComponent?.size?.[size]) ??
-                      themeComponent?.defaultSize
-                    }px`};
                 ${typeof themeComponent?.css === 'function'
                   ? themeComponent.css({ color: theme?.color })
                   : themeComponent?.css};
@@ -88,9 +55,9 @@ const Space = React.forwardRef<any, SpaceProps>(function Space<
                   ? _css({ color: theme?.color })
                   : _css};
               `,
-              getClassName(theme?.namespace, 'space'),
+              getClassName(theme?.namespace, 'block'),
               themeComponent?.className,
-              type && getClassName(theme?.namespace, `space__type__${type}`),
+              type && getClassName(theme?.namespace, `block__type__${type}`),
               themeComponentType?.className,
               className,
             )}
@@ -104,4 +71,4 @@ const Space = React.forwardRef<any, SpaceProps>(function Space<
   );
 });
 
-export default Space;
+export default Block;

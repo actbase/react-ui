@@ -2,6 +2,7 @@ import type { ProviderProps } from './provider.types';
 
 import React from 'react';
 import Theme from '../theme';
+import Alert from '../alert';
 import Toast from '../toast';
 
 const Provider = React.memo<ProviderProps>(function Provider({
@@ -10,7 +11,9 @@ const Provider = React.memo<ProviderProps>(function Provider({
 }) {
   return (
     <Theme.Provider theme={theme}>
-      <Toast.Provider>{children}</Toast.Provider>
+      <Alert.Provider>
+        <Toast.Provider>{children}</Toast.Provider>
+      </Alert.Provider>
     </Theme.Provider>
   );
 });

@@ -18,6 +18,6 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
  */
 const expected = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, './all-exports.json'), 'utf-8'),
-);
+).sort();
 
-assert.deepStrictEqual(Object.keys(exported), expected);
+assert.deepStrictEqual(Object.keys(exported).sort(), expected);

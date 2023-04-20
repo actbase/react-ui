@@ -1,9 +1,30 @@
+import _mergeStyles from './_util/mergeStyles';
+import _Alert, {
+  AlertProviderProps as _AlertProviderProps,
+  AlertCssPropsType as _AlertCssPropsType,
+  HandleAlertType as _HandleAlertType,
+  HandleAlertDestroyType as _HandleAlertDestroyType,
+  AlertTemplateType as _AlertTemplateType,
+  AlertThemeType as _AlertThemeType,
+  AlertContext as _AlertContext,
+  AlertType as _AlertType,
+  AlertProps as _AlertProps,
+  AlertTemplateProps as _AlertTemplateProps,
+  AlertOptions as _AlertOptions,
+  AlertProviderState as _AlertProviderState,
+} from './alert';
 import _Divider, {
   DividerProps as _DividerProps,
   DividerCssPropsType as _DividerCssPropsType,
   DividerThemeType as _DividerThemeType,
   DividerType as _DividerType,
 } from './divider';
+import _Block, {
+  BlockProps as _BlockProps,
+  BlockCssPropsType as _BlockCssPropsType,
+  BlockThemeType as _BlockThemeType,
+  BlockType as _BlockType,
+} from './block';
 import _Button, {
   ButtonProps as _ButtonProps,
   ButtonType as _ButtonType,
@@ -16,6 +37,7 @@ import _Card, {
   CardCssPropsType as _CardCssPropsType,
   CardProps as _CardProps,
 } from './card';
+import { ClassNames as _ClassNames, css as _css } from '@emotion/react';
 import _List, {
   ListItemProps as _ListItemProps,
   ListItemType as _ListItemType,
@@ -112,11 +134,33 @@ import _Typography, {
 } from './typography';
 
 namespace UI {
+  export const mergeStyles = _mergeStyles;
+
+  export const Alert = _Alert;
+  export type AlertProviderProps = _AlertProviderProps;
+  export type AlertCssPropsType = _AlertCssPropsType;
+  export type HandleAlertType = _HandleAlertType;
+  export type HandleAlertDestroyType = _HandleAlertDestroyType;
+  export type AlertTemplateType = _AlertTemplateType;
+  export type AlertThemeType = _AlertThemeType;
+  export type AlertContext = _AlertContext;
+  export type AlertType = _AlertType;
+  export type AlertProps = _AlertProps;
+  export type AlertTemplateProps = _AlertTemplateProps;
+  export type AlertOptions = _AlertOptions;
+  export type AlertProviderState = _AlertProviderState;
+
   export const Divider = _Divider;
   export type DividerProps = _DividerProps;
   export type DividerCssPropsType = _DividerCssPropsType;
   export type DividerThemeType = _DividerThemeType;
   export type DividerType = _DividerType;
+
+  export const Block = _Block;
+  export type BlockProps = _BlockProps;
+  export type BlockCssPropsType = _BlockCssPropsType;
+  export type BlockThemeType = _BlockThemeType;
+  export type BlockType = _BlockType;
 
   export const Button = _Button;
   export type ButtonProps = _ButtonProps;
@@ -129,6 +173,9 @@ namespace UI {
   export type CardType = _CardType;
   export type CardCssPropsType = _CardCssPropsType;
   export type CardProps = _CardProps;
+
+  export const ClassNames = _ClassNames;
+  export const css = _css;
 
   export const List = _List;
   export type ListItemProps = _ListItemProps;

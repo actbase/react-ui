@@ -8,6 +8,8 @@ import type { TypographyThemeType } from '../typography';
 import type { GlobalProps } from '@emotion/react';
 import type { ListThemeType } from '../list/list.types';
 import type { ToastThemeType } from '../toast/toast.type';
+import { AlertThemeType } from '../alert';
+import { BlockThemeType } from '../block';
 
 export type ThemeColorType = Record<string, string>;
 
@@ -17,6 +19,8 @@ export type ThemeType = {
   // global props
   global?: GlobalProps;
   components?: {
+    alert?: AlertThemeType;
+    block?: BlockThemeType;
     button?: ButtonThemeType;
     card?: CardThemeType;
     divider?: DividerThemeType;
