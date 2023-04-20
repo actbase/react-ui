@@ -39,29 +39,49 @@ export default {
           }
         }
       `,
-      template: ({ children, onDestroy }) => (
-        <UI.ClassNames>
-          {({ css, cx }) => (
-            <UI.Space
-              direction="vertical"
-              className={cx(css`
-                min-width: 300px;
-                background-color: #ffffff;
-                border-radius: 5px;
-                padding: 15px;
-              `)}
-              size={16}
-            >
-              <UI.Typography>{children}</UI.Typography>
-              <UI.Space justify="end">
-                <UI.Button type="primary" onClick={onDestroy}>
-                  OK
-                </UI.Button>
+      template: ({ children, onDestroy }) => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const ref = React.useRef<HTMLDivElement | null>(null);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        React.useEffect(() => {
+          function listener(event: Event) {
+            if (!ref.current?.contains(event.target as HTMLElement)) {
+              onDestroy();
+            }
+          }
+          setTimeout(() => {
+            window.addEventListener('click', listener);
+          });
+          return () => {
+            window.removeEventListener('click', listener);
+          };
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, []);
+        return (
+          <UI.ClassNames>
+            {({ css, cx }) => (
+              <UI.Space
+                ref={ref}
+                direction="vertical"
+                className={cx(css`
+                  min-width: 300px;
+                  background-color: #ffffff;
+                  border-radius: 5px;
+                  padding: 15px;
+                `)}
+                size={16}
+              >
+                <UI.Typography>{children}</UI.Typography>
+                <UI.Space justify="end">
+                  <UI.Button type="primary" onClick={onDestroy}>
+                    OK
+                  </UI.Button>
+                </UI.Space>
               </UI.Space>
-            </UI.Space>
-          )}
-        </UI.ClassNames>
-      ),
+            )}
+          </UI.ClassNames>
+        );
+      },
     },
     button: {
       css: css`
