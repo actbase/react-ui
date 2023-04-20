@@ -201,7 +201,6 @@ export default {
     },
     input: {
       css: css`
-        width: 100%;
         border: 1px solid #cccccc;
         padding: 8px 10px;
         border-radius: 8px;
