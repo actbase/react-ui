@@ -208,9 +208,29 @@ export default {
         box-sizing: border-box;
         font-family: NotoSansKR, sans-serif;
       `,
+      color: {
+        css: css`
+          width: 120px;
+          height: 32px;
+          border: 1px solid #cccccc;
+          padding: 2px 5px;
+          border-radius: 8px;
+          box-sizing: border-box;
+          font-family: NotoSansKR, sans-serif;
+          background-color: transparent;
+        `,
+      },
+      date: {
+        css: css`
+          border: 1px solid #cccccc;
+          padding: 8px 10px;
+          border-radius: 8px;
+          box-sizing: border-box;
+          font-family: NotoSansKR, sans-serif;
+        `,
+      },
       email: {
         css: css`
-          width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
           border-radius: 8px;
@@ -220,7 +240,6 @@ export default {
       },
       number: {
         css: css`
-          width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
           border-radius: 8px;
@@ -230,7 +249,6 @@ export default {
       },
       password: {
         css: css`
-          width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
           border-radius: 8px;
@@ -272,7 +290,6 @@ export default {
       },
       textarea: {
         css: css`
-          width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
           border-radius: 8px;
