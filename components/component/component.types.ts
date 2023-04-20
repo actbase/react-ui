@@ -10,7 +10,8 @@ export interface ComponentThemeCssProps {
 
 export type ComponentCssType<T extends ComponentCssPropsType> =
   | SerializedStyles
-  | ((props: ComponentThemeCssProps & T) => SerializedStyles);
+  | string
+  | ((props: ComponentThemeCssProps & T) => SerializedStyles | string);
 
 export interface ComponentTypeProps<
   T extends ComponentCssPropsType = ComponentCssPropsType,

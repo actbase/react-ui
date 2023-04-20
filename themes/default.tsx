@@ -12,7 +12,7 @@ export default {
   },
   components: {
     alert: {
-      template: ({ children, onDestroy }) => {
+      template: ({ title, children, onDestroy }) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const ref = React.useRef<HTMLDivElement | null>(null);
         // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -47,7 +47,7 @@ export default {
           <UI.ClassNames>
             {({ css, cx }) => (
               <UI.Block
-                className={css`
+                css={css`
                   position: fixed;
                   width: 100%;
                   height: 100%;
@@ -90,7 +90,14 @@ export default {
                   )}
                   size={16}
                 >
-                  <UI.Typography>{children}</UI.Typography>
+                  <UI.Space direction="vertical" size={8}>
+                    {title && (
+                      <UI.Typography el="h2" color="#999999">
+                        {title}
+                      </UI.Typography>
+                    )}
+                    <UI.Typography>{children}</UI.Typography>
+                  </UI.Space>
                   <UI.Space justify="end">
                     <UI.Button type="primary" onClick={handleDestroy}>
                       OK
