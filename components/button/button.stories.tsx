@@ -6,8 +6,24 @@ import InitialButton from './button';
 export default {
   title: 'General/Button',
   args: {
+    className: '',
     children: 'children',
     type: 'primary',
+    htmlType: 'button',
+  },
+  argTypes: {
+    className: {
+      name: 'className',
+      description: 'string',
+    },
+    htmlType: {
+      name: 'htmlType',
+      description: 'html button type',
+      control: {
+        type: 'select',
+      },
+      options: ['submit', 'reset', 'button'],
+    },
   },
   component: InitialButton,
 } satisfies Meta<typeof InitialButton>;

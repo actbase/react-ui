@@ -7,31 +7,40 @@ export default {
   title: 'General/Typography',
   args: {
     children: 'Typography',
+    className: '',
     weight: 400,
     type: 'h1',
     size: 16,
   },
   argTypes: {
     children: {
-      name: 'text',
-      description: 'string',
+      name: 'children',
+      description: 'text contents',
+    },
+    className: {
+      name: 'className',
+      description: 'css className',
     },
     weight: {
-      name: 'font-weight',
-      description: 'font weight',
+      name: 'weight',
+      description: 'font-weight',
       control: {
         type: 'select',
       },
       options: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
     size: {
-      name: 'font-size',
-      description: 'font size',
+      name: 'size',
+      description: 'font-size',
+    },
+    el: {
+      name: 'el',
+      description: 'ReactElement',
     },
   },
   parameters: {
     controls: {
-      exclude: ['css', 'el', 'type'],
+      exclude: ['css', 'type'],
     },
   },
   component: InitialTypography,
