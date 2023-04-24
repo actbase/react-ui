@@ -35,7 +35,7 @@ export default {
     },
     el: {
       name: 'el',
-      description: 'ReactElement',
+      description: 'ReactElement. default tag is p',
     },
   },
   parameters: {
@@ -49,4 +49,17 @@ export default {
 type Story = StoryObj<typeof InitialTypography>;
 export const Typography: Story = {
   render: (args) => <InitialTypography {...args} />,
+};
+
+export const Heading: Story = {
+  args: {
+    el: 'h1',
+    size: 32,
+    weight: 700,
+  },
+  render: ({ el, size, weight }) => (
+    <InitialTypography el={el} size={size} weight={weight}>
+      Heading
+    </InitialTypography>
+  ),
 };
