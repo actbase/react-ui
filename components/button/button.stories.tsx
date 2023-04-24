@@ -6,11 +6,8 @@ import InitialButton from './button';
 export default {
   title: 'General/Button',
   args: {
-    className: '',
-    children: 'children',
     type: 'primary',
-    htmlType: 'button',
-    radius: 0,
+    children: 'button',
   },
   argTypes: {
     className: {
@@ -54,6 +51,19 @@ type Story = StoryObj<typeof InitialButton>;
 
 export const Button: Story = {
   render: (args) => <InitialButton {...args} />,
+};
+
+export const HtmlType: Story = {
+  args: {
+    htmlType: 'submit',
+  },
+  render: (args) => (
+    <div style={{ display: 'flex', gap: '10px' }}>
+      <InitialButton {...args} />
+      <InitialButton {...args} htmlType="button" />
+      <InitialButton {...args} htmlType="reset" />
+    </div>
+  ),
 };
 
 export const Loading: Story = {
