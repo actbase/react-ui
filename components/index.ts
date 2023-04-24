@@ -22,6 +22,8 @@ export { default as Provider } from './provider';
 export * from './space';
 export { default as Space } from './space';
 export { default as styles } from './styles';
+export * from './suspense';
+export { default as Suspense } from './suspense';
 export * from './theme';
 export { default as Theme } from './theme';
 export * from './toast';

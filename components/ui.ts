@@ -121,6 +121,11 @@ import _Space, {
   SpaceJustifyType as _SpaceJustifyType,
 } from './space';
 import _styles from './styles';
+import _Suspense, {
+  SuspenseThemeType as _SuspenseThemeType,
+  SuspenseProps as _SuspenseProps,
+  SuspenseChildrenProps as _SuspenseChildrenProps,
+} from './suspense';
 import _Theme, {
   ThemeType as _ThemeType,
   ThemeColorType as _ThemeColorType,
@@ -270,6 +275,11 @@ namespace UI {
   export type SpaceJustifyType = _SpaceJustifyType;
 
   export const styles = _styles;
+
+  export const Suspense = _Suspense;
+  export type SuspenseThemeType = _SuspenseThemeType;
+  export type SuspenseProps = _SuspenseProps;
+  export type SuspenseChildrenProps = _SuspenseChildrenProps;
 
   export const Theme = _Theme;
   export type ThemeType = _ThemeType;
