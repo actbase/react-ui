@@ -21,9 +21,15 @@ export function createRollupConfig(options, callback) {
       format: options.format,
       name: 'UI',
       sourcemap: true,
-      globals: { react: 'React' },
+      globals: {
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        '@emotion/react': 'react',
+        uuid: 'uuid',
+      },
       exports: 'named',
     },
+    external: ['@emotion/react', 'uuid'],
     plugins: [
       external(),
       postcss({
@@ -34,7 +40,12 @@ export function createRollupConfig(options, callback) {
       typescript({
         tsconfig: options.tsconfig,
         clean: true,
-        exclude: ['**/__tests__', '**/*.test.ts', '**/*.stories.{ts,tsx}'],
+        exclude: [
+          '**/__tests__',
+          '**/*.test.ts',
+          '**/*.stories.{ts,tsx}',
+          'themes/*',
+        ],
       }),
       image(),
       options.format === 'umd' &&

@@ -58,11 +58,11 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
           {...props}
         >
           {template
-            ? template({ children, onDestroy })
+            ? template({ children, onDestroy, ...props })
             : themeComponentType?.template
-            ? themeComponentType.template({ children, onDestroy })
+            ? themeComponentType.template({ children, onDestroy, ...props })
             : themeComponent?.template
-            ? themeComponent.template({ children, onDestroy })
+            ? themeComponent.template({ children, onDestroy, ...props })
             : children}
         </div>
       )}

@@ -37,7 +37,7 @@
     "type": "tsc --noEmit",
     "prepare": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky install",
     "prepublishOnly": "yarn && yarn lint:fix && yarn type && yarn build",
-    "storybook": "storybook dev -p 6006",
+    "start": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "devDependencies": {

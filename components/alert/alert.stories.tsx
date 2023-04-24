@@ -16,7 +16,9 @@ export const Alert: Story = {
       <Button
         type="primary"
         onClick={() => {
-          InternalAlert.alert('Alert !');
+          InternalAlert.alert('Alert !', {
+            title: 'alert',
+          });
         }}
       >
         Alert

@@ -100,6 +100,14 @@ import _Input, {
   InputCheckboxInputThemeType as _InputCheckboxInputThemeType,
   InputTextareaType as _InputTextareaType,
   InputPasswordType as _InputPasswordType,
+  InputColorProps as _InputColorProps,
+  InputDateThemeType as _InputDateThemeType,
+  InputColorCssPropsType as _InputColorCssPropsType,
+  InputColorThemeType as _InputColorThemeType,
+  InputDateCssPropsType as _InputDateCssPropsType,
+  InputColorType as _InputColorType,
+  InputDateProps as _InputDateProps,
+  InputDateType as _InputDateType,
 } from './input';
 import _Provider, { ProviderProps as _ProviderProps } from './provider';
 import _Space, {
@@ -239,6 +247,14 @@ namespace UI {
   export type InputCheckboxInputThemeType = _InputCheckboxInputThemeType;
   export type InputTextareaType = _InputTextareaType;
   export type InputPasswordType = _InputPasswordType;
+  export type InputColorProps = _InputColorProps;
+  export type InputDateThemeType = _InputDateThemeType;
+  export type InputColorCssPropsType = _InputColorCssPropsType;
+  export type InputColorThemeType = _InputColorThemeType;
+  export type InputDateCssPropsType = _InputDateCssPropsType;
+  export type InputColorType = _InputColorType;
+  export type InputDateProps = _InputDateProps;
+  export type InputDateType = _InputDateType;
 
   export const Provider = _Provider;
   export type ProviderProps = _ProviderProps;

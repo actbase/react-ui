@@ -4,6 +4,8 @@ export {
   InputThemeType as InputInputThemeType,
 } from './input.types';
 export * from './checkbox.types';
+export * from './color.types';
+export * from './date.types';
 export * from './email.types';
 export * from './file.types';
 export * from './password.types';

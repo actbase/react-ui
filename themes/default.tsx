@@ -12,41 +12,24 @@ export default {
   },
   components: {
     alert: {
-      css: css`
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0);
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        margin: auto;
-        z-index: 500;
-        animation-duration: 0.15s;
-        animation-timing-function: ease-in-out;
-        animation-name: react-ui--alert__animate;
-        animation-fill-mode: forwards;
-        @keyframes react-ui--alert__animate {
-          0% {
-            background-color: rgba(0, 0, 0, 0);
-          }
-          100% {
-            background-color: rgba(0, 0, 0, 0.25);
-          }
-        }
-      `,
-      template: ({ children, onDestroy }) => {
+      template: ({ title, children, onDestroy }) => {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         const ref = React.useRef<HTMLDivElement | null>(null);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const [closing, setClosing] = React.useState<boolean>(false);
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const timerRef = React.useRef<NodeJS.Timer>();
+        function handleDestroy() {
+          setClosing(true);
+          timerRef.current = setTimeout(() => {
+            onDestroy();
+          }, 150);
+        }
         // eslint-disable-next-line react-hooks/rules-of-hooks
         React.useEffect(() => {
           function listener(event: Event) {
             if (!ref.current?.contains(event.target as HTMLElement)) {
-              onDestroy();
+              handleDestroy();
             }
           }
           setTimeout(() => {
@@ -54,30 +37,74 @@ export default {
           });
           return () => {
             window.removeEventListener('click', listener);
+            if (timerRef.current) {
+              clearTimeout(timerRef.current);
+            }
           };
           // eslint-disable-next-line react-hooks/exhaustive-deps
         }, []);
         return (
           <UI.ClassNames>
             {({ css, cx }) => (
-              <UI.Space
-                ref={ref}
-                direction="vertical"
-                className={cx(css`
-                  min-width: 300px;
-                  background-color: #ffffff;
-                  border-radius: 5px;
-                  padding: 15px;
-                `)}
-                size={16}
+              <UI.Block
+                css={css`
+                  position: fixed;
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  background-color: rgba(0, 0, 0, 0);
+                  top: 0;
+                  right: 0;
+                  bottom: 0;
+                  left: 0;
+                  margin: auto;
+                  z-index: 500;
+                  animation-duration: 0.15s;
+                  animation-timing-function: ease-in-out;
+                  animation-name: react-ui--alert__animate;
+                  animation-fill-mode: forwards;
+                  opacity: ${closing ? 0 : 1};
+                  transition: opacity 0.15s ease;
+                  @keyframes react-ui--alert__animate {
+                    0% {
+                      background-color: rgba(0, 0, 0, 0);
+                    }
+                    100% {
+                      background-color: rgba(0, 0, 0, 0.25);
+                    }
+                  }
+                `}
               >
-                <UI.Typography>{children}</UI.Typography>
-                <UI.Space justify="end">
-                  <UI.Button type="primary" onClick={onDestroy}>
-                    OK
-                  </UI.Button>
+                <UI.Space
+                  ref={ref}
+                  direction="vertical"
+                  className={cx(
+                    css`
+                      min-width: 300px;
+                      background-color: #ffffff;
+                      border-radius: 5px;
+                      padding: 15px;
+                    `,
+                  )}
+                  size={16}
+                >
+                  <UI.Space direction="vertical" size={8}>
+                    {title && (
+                      <UI.Typography el="h2" color="#999999">
+                        {title}
+                      </UI.Typography>
+                    )}
+                    <UI.Typography>{children}</UI.Typography>
+                  </UI.Space>
+                  <UI.Space justify="end">
+                    <UI.Button type="primary" onClick={handleDestroy}>
+                      OK
+                    </UI.Button>
+                  </UI.Space>
                 </UI.Space>
-              </UI.Space>
+              </UI.Block>
             )}
           </UI.ClassNames>
         );
@@ -174,16 +201,35 @@ export default {
     },
     input: {
       css: css`
-        width: 100%;
         border: 1px solid #cccccc;
         padding: 8px 10px;
         border-radius: 8px;
         box-sizing: border-box;
         font-family: NotoSansKR, sans-serif;
       `,
+      color: {
+        css: css`
+          width: 120px;
+          height: 32px;
+          border: 1px solid #cccccc;
+          padding: 2px 5px;
+          border-radius: 8px;
+          box-sizing: border-box;
+          font-family: NotoSansKR, sans-serif;
+          background-color: transparent;
+        `,
+      },
+      date: {
+        css: css`
+          border: 1px solid #cccccc;
+          padding: 8px 10px;
+          border-radius: 8px;
+          box-sizing: border-box;
+          font-family: NotoSansKR, sans-serif;
+        `,
+      },
       email: {
         css: css`
-          width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
           border-radius: 8px;
@@ -193,7 +239,6 @@ export default {
       },
       number: {
         css: css`
-          width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
           border-radius: 8px;
@@ -203,7 +248,6 @@ export default {
       },
       password: {
         css: css`
-          width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
           border-radius: 8px;
@@ -245,7 +289,6 @@ export default {
       },
       textarea: {
         css: css`
-          width: 100%;
           border: 1px solid #cccccc;
           padding: 8px 10px;
           border-radius: 8px;
