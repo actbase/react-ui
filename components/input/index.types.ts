@@ -7,7 +7,7 @@ import { InputRadioThemeType } from './radio.types';
 import { InputNumberThemeType } from './number.types';
 import { InputPasswordThemeType } from './password.types';
 import { InputEmailThemeType } from './email.types';
-import { InputSelectThemeType } from './select.types';
+import { InputSelectThemeType } from './select';
 import { InputTextareaThemeType } from './textarea.types';
 
 export type InputThemeType = InternalInputThemeType & {
