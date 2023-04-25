@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InitialButton from './button';
+import UI from '../ui';
 
 export default {
   title: 'General/Button',
@@ -60,13 +60,13 @@ export default {
         'loading 상태일 때 버튼 내부에 넘겨받은 `ReactNode`요소를 렌더링합니다.',
     },
   },
-  component: InitialButton,
-} satisfies Meta<typeof InitialButton>;
+  component: UI.Button,
+} satisfies Meta<typeof UI.Button>;
 
-type Story = StoryObj<typeof InitialButton>;
+type Story = StoryObj<typeof UI.Button>;
 
 export const Button: Story = {
-  render: (args) => <InitialButton {...args} />,
+  render: (args) => <UI.Button {...args} />,
 };
 
 /**

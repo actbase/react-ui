@@ -1,14 +1,14 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InternalFile from './file';
+import UI from '../ui';
 
 export default {
   title: 'Data Entry/Input',
-  component: InternalFile,
-} satisfies Meta<typeof InternalFile>;
+  component: UI.Input.File,
+} satisfies Meta<typeof UI.Input.File>;
 
-type Story = StoryObj<typeof InternalFile>;
+type Story = StoryObj<typeof UI.Input.File>;
 export const File: Story = {
-  render: (args) => <InternalFile {...args} />,
+  render: (args) => <UI.Input.File {...args} />,
 };

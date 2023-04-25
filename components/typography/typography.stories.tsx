@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InitialTypography from './typography';
+import UI from '../ui';
 
 export default {
   title: 'General/Typography',
@@ -43,12 +43,12 @@ export default {
       exclude: ['css', 'type'],
     },
   },
-  component: InitialTypography,
-} satisfies Meta<typeof InitialTypography>;
+  component: UI.Typography,
+} satisfies Meta<typeof UI.Typography>;
 
-type Story = StoryObj<typeof InitialTypography>;
+type Story = StoryObj<typeof UI.Typography>;
 export const Typography: Story = {
-  render: (args) => <InitialTypography {...args} />,
+  render: (args) => <UI.Typography {...args} />,
 };
 
 export const Heading: Story = {
@@ -58,8 +58,8 @@ export const Heading: Story = {
     weight: 700,
   },
   render: ({ el, size, weight }) => (
-    <InitialTypography el={el} size={size} weight={weight}>
+    <UI.Typography el={el} size={size} weight={weight}>
       Heading
-    </InitialTypography>
+    </UI.Typography>
   ),
 };

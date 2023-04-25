@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
-import InitialBlock from './block';
+import UI from '../ui';
 
 export default {
   title: 'General/Block',
-  component: InitialBlock,
-} satisfies Meta<typeof InitialBlock>;
+  component: UI.Block,
+} satisfies Meta<typeof UI.Block>;
 
-type Story = StoryObj<typeof InitialBlock>;
+type Story = StoryObj<typeof UI.Block>;
 export const Block: Story = {};

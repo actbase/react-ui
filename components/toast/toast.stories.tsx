@@ -1,26 +1,25 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import Button from '../button';
-import InternalToast from './index';
+import UI from '../ui';
 
 export default {
   title: 'Feedback/Toast',
-  component: InternalToast,
-} satisfies Meta<typeof InternalToast>;
+  component: UI.Toast,
+} satisfies Meta<typeof UI.Toast>;
 
-type Story = StoryObj<typeof InternalToast>;
+type Story = StoryObj<typeof UI.Toast>;
 export const Toast: Story = {
   render: () => {
     return (
-      <Button
+      <UI.Button
         type="primary"
         onClick={() => {
-          InternalToast.toast('Toast !');
+          UI.Toast.toast('Toast !');
         }}
       >
         Toast
-      </Button>
+      </UI.Button>
     );
   },
 };
