@@ -1,25 +1,22 @@
-import { Canvas, Meta, Controls, Story } from '@storybook/blocks';
+import { Canvas, Meta, Controls, Story, Description } from '@storybook/blocks';
 import * as ButtonStories from './button.stories';
 import Button from './button.tsx';
 
 <Meta of={ButtonStories} />
 ## Usage
 
-htmlType은 button의 type attribute와 동일합니다. `submit` `button` `reset`
-
+<Description of={ButtonStories.HtmlType} />
 <Canvas>
   <Story of={ButtonStories.HtmlType} />
 </Canvas>
 
-loading, 혹은 disabled 상태에 따라 버튼을 비활성화할 수 있습니다.
-
+<Description of={ButtonStories.Loading} />
 <Canvas>
   <Story of={ButtonStories.Loading} />
   <Story of={ButtonStories.Disabled} />
 </Canvas>
 
-renderLoadingComponent를 props로 전달하면 해당 ReactNode를 버튼 안에 렌더링합니다.
-
+<Description of={ButtonStories.RenderComponent} />
 <Canvas>
   <Story of={ButtonStories.RenderComponent} />
 </Canvas>

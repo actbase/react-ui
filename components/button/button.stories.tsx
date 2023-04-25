@@ -53,6 +53,9 @@ export const Button: Story = {
   render: (args) => <InitialButton {...args} />,
 };
 
+/**
+ * htmlType은 button의 type attribute와 동일합니다. `submit` `button` `reset`
+ */
 export const HtmlType: Story = {
   args: {
     htmlType: 'submit',
@@ -66,6 +69,9 @@ export const HtmlType: Story = {
   ),
 };
 
+/**
+ * loading, 혹은 disabled 상태에 따라 버튼을 비활성화할 수 있습니다.
+ */
 export const Loading: Story = {
   args: {
     type: 'primary',
@@ -82,6 +88,9 @@ export const Disabled: Story = {
   render: (args) => <InitialButton {...args}>disabled</InitialButton>,
 };
 
+/**
+ * renderLoadingComponent를 props로 전달하면 해당 ReactNode를 버튼 안에 렌더링합니다.
+ */
 export const RenderComponent: Story = {
   args: {
     type: 'primary',
