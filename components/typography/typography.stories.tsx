@@ -15,15 +15,17 @@ export default {
   argTypes: {
     children: {
       name: 'children',
-      description: 'text contents',
+      description:
+        '타이포그래피 내부 텍스트입니다. `children`형태로 넘겨받습니다.',
     },
     className: {
       name: 'className',
-      description: 'css className',
+      description:
+        'css 클래스 명입니다. theme으로 지정된 스타일을 변경할 수 있습니다. `string`',
     },
     weight: {
       name: 'weight',
-      description: 'font-weight',
+      description: 'font-weight입니다. `string`',
       control: {
         type: 'select',
       },
@@ -31,16 +33,24 @@ export default {
     },
     size: {
       name: 'size',
-      description: 'font-size',
+      description: 'font-size입니다. `string`',
     },
     el: {
       name: 'el',
-      description: 'ReactElement. default tag is p',
+      description: '기본 태그는 p입니다. `ReactElement`',
     },
-  },
-  parameters: {
-    controls: {
-      exclude: ['css', 'type'],
+    color: {
+      name: 'color',
+      description: 'css color프로퍼티입니다.',
+      control: 'color',
+    },
+    type: {
+      name: 'type',
+      description: 'theme으로 지정된 Typography의 타입을 설정합니다. `string`',
+    },
+    css: {
+      name: 'css',
+      description: '인라인으로 지정하는 css 스타일입니다.',
     },
   },
   component: UI.Typography,
@@ -51,15 +61,13 @@ export const Typography: Story = {
   render: (args) => <UI.Typography {...args} />,
 };
 
+/**
+ * el: 'h1', size: 32, weight: 700의 제목 요소입니다.
+ */
 export const Heading: Story = {
   args: {
     el: 'h1',
     size: 32,
     weight: 700,
   },
-  render: ({ el, size, weight }) => (
-    <UI.Typography el={el} size={size} weight={weight}>
-      Heading
-    </UI.Typography>
-  ),
 };
