@@ -1,0 +1,21 @@
+import { Canvas, Meta, Controls, Story, Description } from '@storybook/blocks';
+import * as ButtonStories from './button.stories';
+import Button from './button.tsx';
+
+<Meta of={ButtonStories} />
+## Usage
+
+<Description of={ButtonStories.Disabled} />
+<Canvas>
+  <Story of={ButtonStories.Disabled} />
+</Canvas>
+
+<Description of={ButtonStories.RenderComponent} />
+<Canvas>
+  <Story of={ButtonStories.RenderComponent} />
+</Canvas>
+
+# Overview
+
+<Canvas of={ButtonStories.Button} />
+<Controls of={ButtonStories.Button} />
