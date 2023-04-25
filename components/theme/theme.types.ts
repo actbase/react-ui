@@ -10,6 +10,7 @@ import type { ListThemeType } from '../list/list.types';
 import type { ToastThemeType } from '../toast/toast.type';
 import { AlertThemeType } from '../alert';
 import { BlockThemeType } from '../block';
+import { SuspenseThemeType } from '../suspense/suspense.types';
 
 export type ThemeColorType = Record<string, string>;
 
@@ -28,6 +29,7 @@ export type ThemeType = {
     input?: InputThemeType;
     list?: ListThemeType;
     space?: SpaceThemeType;
+    suspense?: SuspenseThemeType;
     table?: {};
     toast?: ToastThemeType;
     typography?: TypographyThemeType;
