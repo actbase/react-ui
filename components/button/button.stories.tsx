@@ -10,14 +10,26 @@ export default {
     children: 'button',
   },
   argTypes: {
+    type: {
+      name: 'type',
+      description: 'theme으로 지정된 버튼의 타입을 설정합니다. `string`',
+    },
+    children: {
+      name: 'children',
+      description: '버튼 내부 텍스트입니다. `children`형태로 넘겨받습니다.',
+    },
     className: {
       name: 'className',
-      description: 'css className `string`',
+      description:
+        'css 클래스 명입니다. theme으로 지정된 스타일을 변경할 수 있습니다. `string`',
+      control: {
+        type: 'text',
+      },
     },
     htmlType: {
       name: 'htmlType',
       description:
-        'The type of button matching the HTML "type" attribute on the  tag',
+        'html의 type attribute와 동일합니다. `submit` `button` `reset`',
       control: {
         type: 'select',
       },
@@ -25,23 +37,27 @@ export default {
     },
     radius: {
       name: 'radius',
-      description: 'border-radius value',
+      description: '버튼의 border-radius값을 조절합니다. `number`',
+      control: {
+        type: 'text',
+      },
     },
     loading: {
       name: 'loading',
-      description: 'describe button loading state `boolean`',
+      description: '버튼의 loading여부를 나타냅니다. `boolean`',
       type: 'boolean',
       default: false,
     },
     disabled: {
       name: 'disabled',
-      description: 'describe button disabled state `boolean`',
+      description: '버튼의 disabled여부를 전달합니다 `boolean`',
       type: 'boolean',
       default: false,
     },
     renderLoadingComponent: {
       name: 'renderLoadingComponent',
-      description: 'render component while loading',
+      description:
+        'loading 상태일 때 버튼 내부에 넘겨받은 `ReactNode`요소를 렌더링합니다.',
     },
   },
   component: InitialButton,
@@ -54,48 +70,22 @@ export const Button: Story = {
 };
 
 /**
- * htmlType은 button의 type attribute와 동일합니다. `submit` `button` `reset`
+ * loading, 혹은 disabled를 props로 전달하면 버튼이 비활성화됩니다.
  */
-export const HtmlType: Story = {
-  args: {
-    htmlType: 'submit',
-  },
-  render: (args) => (
-    <div style={{ display: 'flex', gap: '10px' }}>
-      <InitialButton {...args} />
-      <InitialButton {...args} htmlType="button" />
-      <InitialButton {...args} htmlType="reset" />
-    </div>
-  ),
-};
-
-/**
- * loading, 혹은 disabled 상태에 따라 버튼을 비활성화할 수 있습니다.
- */
-export const Loading: Story = {
-  args: {
-    type: 'primary',
-    loading: true,
-  },
-  render: (args) => <InitialButton {...args} />,
-};
-
 export const Disabled: Story = {
   args: {
-    type: 'primary',
+    loading: true,
     disabled: true,
   },
-  render: (args) => <InitialButton {...args}>disabled</InitialButton>,
 };
 
 /**
- * renderLoadingComponent를 props로 전달하면 해당 ReactNode를 버튼 안에 렌더링합니다.
+ * `ReactNode`를 renderLoadingComponent에 전달하면 버튼 안에 렌더링합니다.
  */
 export const RenderComponent: Story = {
   args: {
-    type: 'primary',
-    loading: true,
-    renderLoadingComponent: () => <div>rendering...</div>,
+    renderLoadingComponent: () => {
+      return <div>rendering...</div>;
+    },
   },
-  render: (args) => <InitialButton {...args}>loading</InitialButton>,
 };
