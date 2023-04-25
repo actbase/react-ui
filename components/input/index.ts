@@ -9,6 +9,7 @@ export * from './date.types';
 export * from './email.types';
 export * from './file.types';
 export * from './password.types';
+export * from './select';
 export * from './radio.types';
 export * from './textarea.types';
 
@@ -18,6 +19,7 @@ import InputEmail from './email';
 import InputFile from './file';
 import InputPassword from './password';
 import InputNumber from './number';
+import InputSelect from './select';
 import InputRadio from './radio';
 import InputTextarea from './textarea';
 
@@ -28,6 +30,7 @@ const Input = InternalInput as typeof InternalInput & {
   Input: typeof InternalInput;
   Number: typeof InputNumber;
   Password: typeof InputPassword;
+  Select: typeof InputSelect;
   Radio: typeof InputRadio;
   Textarea: typeof InputTextarea;
 };
@@ -38,6 +41,7 @@ Input.Email = InputEmail;
 Input.File = InputFile;
 Input.Number = InputNumber;
 Input.Password = InputPassword;
+Input.Select = InputSelect;
 Input.Radio = InputRadio;
 Input.Textarea = InputTextarea;
 

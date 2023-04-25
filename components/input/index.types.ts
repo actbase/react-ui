@@ -4,10 +4,11 @@ import { InputColorThemeType } from './color.types';
 import { InputDateThemeType } from './date.types';
 import { InputFileThemeType } from './file.types';
 import { InputRadioThemeType } from './radio.types';
-import { InputTextareaThemeType } from './textarea.types';
 import { InputNumberThemeType } from './number.types';
 import { InputPasswordThemeType } from './password.types';
 import { InputEmailThemeType } from './email.types';
+import { InputSelectThemeType } from './select.types';
+import { InputTextareaThemeType } from './textarea.types';
 
 export type InputThemeType = InternalInputThemeType & {
   checkbox?: InputCheckboxThemeType;
@@ -18,5 +19,6 @@ export type InputThemeType = InternalInputThemeType & {
   number?: InputNumberThemeType;
   password?: InputPasswordThemeType;
   radio?: InputRadioThemeType;
+  select?: InputSelectThemeType;
   textarea?: InputTextareaThemeType;
 };
