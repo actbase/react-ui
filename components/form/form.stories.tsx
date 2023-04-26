@@ -5,6 +5,115 @@ import UI from '../ui';
 export default {
   title: 'Data Entry/Form',
   component: UI.Form,
+} satisfies Meta<typeof UI.Form>;
+
+type Story = StoryObj<typeof UI.Form>;
+export const Form: Story = {};
+
+/**
+ * Input요소는 placeholder를 통해 표시되는 문장을 수정할 수 있습니다.
+ */
+export const NormalInput: Story = {
+  args: {
+    placeholder: 'placeholder',
+  },
+  render: (args) => (
+    <UI.Form {...args}>
+      <UI.Form.Item name="input" label="Input">
+        <UI.Input placeholder={args.placeholder} />
+      </UI.Form.Item>
+      <UI.Space size={6} justify="end">
+        <UI.Button htmlType="reset" type="primary">
+          Reset
+        </UI.Button>
+        <UI.Button htmlType="submit" type="primary">
+          Submit
+        </UI.Button>
+      </UI.Space>
+    </UI.Form>
+  ),
+};
+
+/**
+ * PasswordInput은 hidden값에 따라 비밀번호 표시 여부를 전환합니다.
+ */
+export const PasswordInput: Story = {
+  args: {
+    placeholder: 'placeholder',
+    hidden: true,
+  },
+  render: (args) => (
+    <UI.Form {...args}>
+      <UI.Form.Item name="input" label="Input">
+        <UI.Input placeholder={args.placeholder} hidden={args.hidden} />
+      </UI.Form.Item>
+      <UI.Space size={6} justify="end">
+        <UI.Button htmlType="reset" type="primary">
+          Reset
+        </UI.Button>
+        <UI.Button htmlType="submit" type="primary">
+          Submit
+        </UI.Button>
+      </UI.Space>
+    </UI.Form>
+  ),
+};
+
+/**
+ * Radio는 Item간 같은 name을 공유한다면 하나의 값만 선택할 수 있습니다.
+ */
+export const RadioInput: Story = {
+  args: {},
+  render: (args) => (
+    <UI.Form {...args}>
+      <UI.Form.Item el="div" label="InputRadios">
+        <UI.Space direction="vertical" size={2}>
+          <UI.Input.Radio name="input_radios" value="1">
+            Radio 1
+          </UI.Input.Radio>
+          <UI.Input.Radio name="input_radios" value="2">
+            Radio 2
+          </UI.Input.Radio>
+          <UI.Input.Radio name="input_radios" value="3">
+            Radio 3
+          </UI.Input.Radio>
+        </UI.Space>
+      </UI.Form.Item>
+      <UI.Space size={6} justify="end">
+        <UI.Button htmlType="reset" type="primary">
+          Reset
+        </UI.Button>
+        <UI.Button htmlType="submit" type="primary">
+          Submit
+        </UI.Button>
+      </UI.Space>
+    </UI.Form>
+  ),
+};
+
+/**
+ * TextareaInput은 resize property를 통해 크기 조절여부를 지정할 수 있습니다.
+ */
+export const TextareaInput: Story = {
+  args: {},
+  render: (args) => (
+    <UI.Form {...args}>
+      <UI.Form.Item name="input_textarea" label="InputTextarea">
+        <UI.Input.Textarea placeholder="Textarea" rows={5} resize />
+      </UI.Form.Item>
+      <UI.Space size={6} justify="end">
+        <UI.Button htmlType="reset" type="primary">
+          Reset
+        </UI.Button>
+        <UI.Button htmlType="submit" type="primary">
+          Submit
+        </UI.Button>
+      </UI.Space>
+    </UI.Form>
+  ),
+};
+
+export const FormWithAllItems: Story = {
   argTypes: {
     children: {
       name: 'children',
@@ -123,10 +232,6 @@ export default {
       },
     },
   },
-} satisfies Meta<typeof UI.Form>;
-
-type Story = StoryObj<typeof UI.Form>;
-export const Form: Story = {
   render: (args) => (
     <UI.Form
       onSubmit={(data) => {
@@ -137,52 +242,52 @@ export const Form: Story = {
       {...args}
     >
       <UI.Space direction="vertical" size={16}>
-        <UI.Form.Item name="input" label="UI.Input">
+        <UI.Form.Item name="input" label="Input">
           <UI.Input placeholder="Input" />
         </UI.Form.Item>
-        <UI.Form.Item name="input_email" label="UI.Input.Email">
-          <UI.Input.Email placeholder="Input.Email" />
+        <UI.Form.Item name="input_email" label="InputEmail">
+          <UI.Input.Email placeholder="Email" />
         </UI.Form.Item>
-        <UI.Form.Item name="input_password" label="UI.Input.Password">
-          <UI.Input.Password placeholder="Input.Password" />
+        <UI.Form.Item name="input_password" label="InputPassword">
+          <UI.Input.Password placeholder="Password" />
         </UI.Form.Item>
-        <UI.Form.Item el="div" name="input_checkbox" label="UI.Input.Checkbox">
-          <UI.Input.Checkbox>Input.Checkbox</UI.Input.Checkbox>
+        <UI.Form.Item el="div" name="input_checkbox" label="InputCheckbox">
+          <UI.Input.Checkbox>Checkbox</UI.Input.Checkbox>
         </UI.Form.Item>
-        <UI.Form.Item el="div" label="UI.Input.Checkbox">
+        <UI.Form.Item el="div" label="InputCheckbox">
           <UI.Space direction="vertical" size={2}>
             <UI.Input.Checkbox name="input_checkbox_1">
-              UI.Input.Checkbox 1
+              Checkbox 1
             </UI.Input.Checkbox>
             <UI.Input.Checkbox name="input_checkbox_2">
-              UI.Input.Checkbox 2
+              Checkbox 2
             </UI.Input.Checkbox>
             <UI.Input.Checkbox name="input_checkbox_3">
-              UI.Input.Checkbox 3
+              Checkbox 3
             </UI.Input.Checkbox>
           </UI.Space>
         </UI.Form.Item>
-        <UI.Form.Item name="input_radio" label="UI.Input.Radio">
-          <UI.Input.Radio>Input.Radio</UI.Input.Radio>
+        <UI.Form.Item name="input_radio" label="InputRadio">
+          <UI.Input.Radio>Radio</UI.Input.Radio>
         </UI.Form.Item>
-        <UI.Form.Item el="div" label="UI.Input.Radios">
+        <UI.Form.Item el="div" label="InputRadios">
           <UI.Space direction="vertical" size={2}>
             <UI.Input.Radio name="input_radios" value="1">
-              UI.Input.Radio 1
+              Radio 1
             </UI.Input.Radio>
             <UI.Input.Radio name="input_radios" value="2">
-              UI.Input.Radio 2
+              Radio 2
             </UI.Input.Radio>
             <UI.Input.Radio name="input_radios" value="3">
-              UI.Input.Radio 3
+              Radio 3
             </UI.Input.Radio>
           </UI.Space>
         </UI.Form.Item>
-        <UI.Form.Item name="input_file" label="UI.Input.File">
+        <UI.Form.Item name="input_file" label="InputFile">
           <UI.Input.File />
         </UI.Form.Item>
-        <UI.Form.Item name="input_textarea" label="UI.Input.Textarea">
-          <UI.Input.Textarea placeholder="Input.Textarea" rows={5} />
+        <UI.Form.Item name="input_textarea" label="InputTextarea">
+          <UI.Input.Textarea placeholder="Textarea" rows={5} />
         </UI.Form.Item>
         <UI.Space size={6} justify="end">
           <UI.Button htmlType="reset" type="primary">

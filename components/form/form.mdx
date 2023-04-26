@@ -1,12 +1,27 @@
-import { Canvas, Meta, Controls } from '@storybook/blocks';
+import { Canvas, Meta, Controls, Description } from '@storybook/blocks';
 import * as FormStories from './form.stories';
 
 <Meta of={FormStories} />
 
+## Usage
+
+<Description of={FormStories.NormalInput} />
+<Canvas of={FormStories.NormalInput} />
+<Controls of={FormStories.NormalInput} />
+
+<Description of={FormStories.PasswordInput} />
+<Canvas of={FormStories.PasswordInput} />
+<Controls of={FormStories.PasswordInput} />
+
+<Description of={FormStories.RadioInput} />
+<Canvas of={FormStories.RadioInput} />
+<Controls of={FormStories.RadioInput} />
+
+<Description of={FormStories.TextareaInput} />
+<Canvas of={FormStories.TextareaInput} />
+
 # Form
 
-<Canvas of={FormStories.Form} />
-
+<Canvas of={FormStories.FormWithAllItems} />
 ## API
-
-<Controls of={FormStories.Form} />
+<Controls of={FormStories.FormWithAllItems} />
