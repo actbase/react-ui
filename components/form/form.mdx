@@ -1,9 +1,14 @@
 import { Canvas, Meta, Controls, Description } from '@storybook/blocks';
 import * as FormStories from './form.stories';
+import * as ItemStories from './item.stories';
 
 <Meta of={FormStories} />
 
 ## Usage
+
+<Description of={ItemStories.Item} />
+<Canvas of={ItemStories.Item} />
+<Controls of={ItemStories.Item} />
 
 <Description of={FormStories.NormalInputItem} />
 <Canvas of={FormStories.NormalInputItem} />
