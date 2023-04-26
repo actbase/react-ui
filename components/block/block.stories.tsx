@@ -7,13 +7,15 @@ export default {
   title: 'General/Block',
   args: {
     children: 'Block',
-    className: 'text block',
+    className: 'text-block',
+    el: 'div',
   },
   argTypes: {
     children: {
       name: 'children',
       description:
         '블록 내부 자식요소입니다. children형태로 내려받습니다. `ReactNode`',
+      table: { defaultValue: { summary: 'ReactNode' } },
     },
     className: {
       name: 'className',
@@ -23,6 +25,8 @@ export default {
     el: {
       name: 'el',
       description: '기본 태그는 p입니다. `ReactElement`',
+      control: 'text',
+      table: { type: { summary: 'text' }, defaultValue: { summary: 'div' } },
     },
     type: {
       name: 'type',
