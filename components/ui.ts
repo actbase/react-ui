@@ -145,6 +145,20 @@ import _Typography, {
   TypographyThemeType as _TypographyThemeType,
   TypographyType as _TypographyType,
 } from './typography';
+import _Modal, {
+  ModalThemeType as _ModalThemeType,
+  HandleModalType as _HandleModalType,
+  HandleModalDestroyType as _HandleModalDestroyType,
+  ModalOptions as _ModalOptions,
+  ModalContext as _ModalContext,
+  ModalCssPropsType as _ModalCssPropsType,
+  ModalProviderProps as _ModalProviderProps,
+  ModalProviderState as _ModalProviderState,
+  ModalTemplateProps as _ModalTemplateProps,
+  ModalProps as _ModalProps,
+  ModalTemplateType as _ModalTemplateType,
+  ModalType as _ModalType,
+} from './modal';
 
 namespace UI {
   export const mergeStyles = _mergeStyles;
@@ -299,6 +313,20 @@ namespace UI {
   export type TypographyCssPropsType = _TypographyCssPropsType;
   export type TypographyThemeType = _TypographyThemeType;
   export type TypographyType = _TypographyType;
+
+  export const Modal = _Modal;
+  export type ModalThemeType = _ModalThemeType;
+  export type HandleModalType = _HandleModalType;
+  export type HandleModalDestroyType = _HandleModalDestroyType;
+  export type ModalOptions = _ModalOptions;
+  export type ModalContext = _ModalContext;
+  export type ModalCssPropsType = _ModalCssPropsType;
+  export type ModalProviderProps = _ModalProviderProps;
+  export type ModalProviderState = _ModalProviderState;
+  export type ModalTemplateProps = _ModalTemplateProps;
+  export type ModalProps = _ModalProps;
+  export type ModalTemplateType = _ModalTemplateType;
+  export type ModalType = _ModalType;
 }
 
 export default UI;
