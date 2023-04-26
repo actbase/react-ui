@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InitialButton from './button';
+import UI from '../ui';
 
 export default {
   title: 'General/Button',
@@ -39,34 +39,44 @@ export default {
       name: 'radius',
       description: '버튼의 border-radius값을 조절합니다. `number`',
       control: {
-        type: 'text',
+        type: 'number',
       },
+      table: { type: { summary: 'number' }, defaultValue: { summary: 0 } },
     },
     loading: {
       name: 'loading',
       description: '버튼의 loading여부를 나타냅니다. `boolean`',
       type: 'boolean',
+      table: { type: { summary: 'boolean' }, defaultValue: { summary: false } },
       default: false,
     },
     disabled: {
       name: 'disabled',
       description: '버튼의 disabled여부를 전달합니다 `boolean`',
       type: 'boolean',
+      table: { type: { summary: 'boolean' }, defaultValue: { summary: false } },
       default: false,
     },
     renderLoadingComponent: {
       name: 'renderLoadingComponent',
       description:
         'loading 상태일 때 버튼 내부에 넘겨받은 `ReactNode`요소를 렌더링합니다.',
+      options: ['div'],
+      mapping: {
+        div: () => <div>div element를 받았습니다.</div>,
+      },
+      control: 'radio',
+      table: { type: { summary: 'radio' }, defaultValue: { summary: 'div' } },
+      defaultValue: 'div',
     },
   },
-  component: InitialButton,
-} satisfies Meta<typeof InitialButton>;
+  component: UI.Button,
+} satisfies Meta<typeof UI.Button>;
 
-type Story = StoryObj<typeof InitialButton>;
+type Story = StoryObj<typeof UI.Button>;
 
 export const Button: Story = {
-  render: (args) => <InitialButton {...args} />,
+  render: (args) => <UI.Button {...args} />,
 };
 
 /**
@@ -84,8 +94,20 @@ export const Disabled: Story = {
  */
 export const RenderComponent: Story = {
   args: {
-    renderLoadingComponent: () => {
-      return <div>rendering...</div>;
+    loading: true,
+  },
+  argTypes: {
+    renderLoadingComponent: {
+      name: 'renderLoadingComponent',
+      description:
+        'loading 상태일 때 버튼 내부에 넘겨받은 `ReactNode`요소를 렌더링합니다.',
+      options: ['div'],
+      mapping: {
+        div: () => <div>div element를 받았습니다.</div>,
+      },
+      table: { defaultValue: { summary: 'div' } },
+      control: 'radio',
     },
   },
+  render: (args) => <UI.Button {...args} />,
 };

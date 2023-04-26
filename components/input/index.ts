@@ -17,6 +17,8 @@ import InternalInput from './input';
 import InputCheckbox from './checkbox';
 import InputEmail from './email';
 import InputFile from './file';
+import InputDate from './date';
+import Inputcolor from './color';
 import InputPassword from './password';
 import InputNumber from './number';
 import InputSelect from './select';
@@ -33,6 +35,8 @@ const Input = InternalInput as typeof InternalInput & {
   Select: typeof InputSelect;
   Radio: typeof InputRadio;
   Textarea: typeof InputTextarea;
+  Date: typeof InputDate;
+  Color: typeof Inputcolor;
 };
 
 Input.Input = InternalInput;

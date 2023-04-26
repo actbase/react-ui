@@ -1,22 +1,22 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
+import UI from '../ui';
 import Button from '../button';
-import InternalAlert from './index';
 
 export default {
   title: 'Feedback/Alert',
-  component: InternalAlert,
-} satisfies Meta<typeof InternalAlert>;
+  component: UI.Alert,
+} satisfies Meta<typeof UI.Alert>;
 
-type Story = StoryObj<typeof InternalAlert>;
+type Story = StoryObj<typeof UI.Alert>;
 export const Alert: Story = {
   render: () => {
     return (
       <Button
         type="primary"
         onClick={() => {
-          InternalAlert.alert('Alert !', {
+          UI.Alert.alert('Alert !', {
             title: 'alert',
           });
         }}

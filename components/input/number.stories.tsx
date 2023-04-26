@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InternalInputNumber from './number';
+import UI from '../ui';
 
 export default {
   title: 'Data Entry/Input',
@@ -9,10 +9,10 @@ export default {
     hidden: true,
     placeholder: 'placeholder',
   },
-  component: InternalInputNumber,
-} satisfies Meta<typeof InternalInputNumber>;
+  component: UI.Input.Number,
+} satisfies Meta<typeof UI.Input.Number>;
 
-type Story = StoryObj<typeof InternalInputNumber>;
+type Story = StoryObj<typeof UI.Input.Number>;
 export const Number: Story = {
-  render: (args) => <InternalInputNumber {...args} />,
+  render: (args) => <UI.Input.Number {...args} />,
 };

@@ -1,24 +1,23 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InternalList from './list';
-import ListItem from './item';
+import UI from '../ui';
 
 export default {
   title: 'DataDisplay/List',
-  component: InternalList,
+  component: UI.List,
   args: {
     type: 'red',
   },
-} satisfies Meta<typeof InternalList>;
+} satisfies Meta<typeof UI.List>;
 
-type Story = StoryObj<typeof InternalList>;
+type Story = StoryObj<typeof UI.List>;
 export const List: Story = {
   render: (args) => (
-    <InternalList {...args}>
-      <ListItem>ListItem</ListItem>
-      <ListItem>ListItem</ListItem>
-      <ListItem>ListItem</ListItem>
-    </InternalList>
+    <UI.List {...args}>
+      <UI.List.Item>ListItem</UI.List.Item>
+      <UI.List.Item>ListItem</UI.List.Item>
+      <UI.List.Item>ListItem</UI.List.Item>
+    </UI.List>
   ),
 };

@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InternalTextarea from './textarea';
+import UI from '../ui';
 
 export default {
   title: 'Data Entry/Input',
@@ -11,10 +11,10 @@ export default {
     rows: 5,
     cols: 30,
   },
-  component: InternalTextarea,
-} satisfies Meta<typeof InternalTextarea>;
+  component: UI.Input.Textarea,
+} satisfies Meta<typeof UI.Input.Textarea>;
 
-type Story = StoryObj<typeof InternalTextarea>;
+type Story = StoryObj<typeof UI.Input.Textarea>;
 export const Textarea: Story = {
-  render: (args) => <InternalTextarea {...args} />,
+  render: (args) => <UI.Input.Textarea {...args} />,
 };

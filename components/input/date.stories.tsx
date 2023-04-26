@@ -1,15 +1,15 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InputDate from './date';
+import UI from '../ui';
 
 export default {
   title: 'Data Entry/Input',
   args: {},
-  component: InputDate,
-} satisfies Meta<typeof InputDate>;
+  component: UI.Input.Date,
+} satisfies Meta<typeof UI.Input.Date>;
 
-type Story = StoryObj<typeof InputDate>;
+type Story = StoryObj<typeof UI.Input.Date>;
 export const Date: Story = {
-  render: (args) => <InputDate {...args} />,
+  render: (args) => <UI.Input.Date {...args} />,
 };

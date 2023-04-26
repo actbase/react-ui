@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
-import InternalProvider from './provider';
+import UI from '../ui';
 
 export default {
   title: 'Other/Provider',
-  component: InternalProvider,
+  component: UI.Provider,
   argTypes: {
     theme: {
       type: {
@@ -18,7 +18,7 @@ export default {
       },
     },
   },
-} satisfies Meta<typeof InternalProvider>;
+} satisfies Meta<typeof UI.Provider>;
 
-type Story = StoryObj<typeof InternalProvider>;
+type Story = StoryObj<typeof UI.Provider>;
 export const Provider: Story = {};

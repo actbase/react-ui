@@ -1,22 +1,21 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InitialSpace from './space';
-import Typography from '../typography';
+import UI from '../ui';
 
 export default {
   title: 'Layout/Space',
-  component: InitialSpace,
-} satisfies Meta<typeof InitialSpace>;
+  component: UI.Space,
+} satisfies Meta<typeof UI.Space>;
 
-type Story = StoryObj<typeof InitialSpace>;
+type Story = StoryObj<typeof UI.Space>;
 export const Space: Story = {
   render: (props) => (
-    <InitialSpace {...props}>
-      <Typography>Test1</Typography>
-      <Typography>Test2</Typography>
-      <Typography>Test3</Typography>
-      <Typography>Test4</Typography>
-    </InitialSpace>
+    <UI.Space {...props}>
+      <UI.Typography>Test1</UI.Typography>
+      <UI.Typography>Test2</UI.Typography>
+      <UI.Typography>Test3</UI.Typography>
+      <UI.Typography>Test4</UI.Typography>
+    </UI.Space>
   ),
 };

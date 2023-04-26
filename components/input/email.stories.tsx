@@ -1,17 +1,17 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InternalInputEmail from './email';
+import UI from '../ui';
 
 export default {
   title: 'Data Entry/Input',
   args: {
     placeholder: 'placeholder',
   },
-  component: InternalInputEmail,
-} satisfies Meta<typeof InternalInputEmail>;
+  component: UI.Input.Email,
+} satisfies Meta<typeof UI.Input.Email>;
 
-type Story = StoryObj<typeof InternalInputEmail>;
+type Story = StoryObj<typeof UI.Input.Email>;
 export const Email: Story = {
-  render: (args) => <InternalInputEmail {...args} />,
+  render: (args) => <UI.Input.Email {...args} />,
 };

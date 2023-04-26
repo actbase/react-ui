@@ -1,22 +1,21 @@
-import React from 'react';
-import InternalFormItem from './item';
-import Input from '../input';
 import { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import UI from '../ui';
 
 export default {
   title: 'Data Entry/Form',
-  component: InternalFormItem,
+  component: UI.Form.Item,
   args: {
     label: 'label',
     error: 'error',
   },
-} satisfies Meta<typeof InternalFormItem>;
+} satisfies Meta<typeof UI.Form.Item>;
 
-type Story = StoryObj<typeof InternalFormItem>;
+type Story = StoryObj<typeof UI.Form.Item>;
 export const Item: Story = {
   render: (args) => (
-    <InternalFormItem {...args}>
-      <Input placeholder="placeholder" />
-    </InternalFormItem>
+    <UI.Form.Item {...args}>
+      <UI.Input placeholder="placeholder" />
+    </UI.Form.Item>
   ),
 };

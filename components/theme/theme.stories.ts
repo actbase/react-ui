@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
-import InitialThemeProvider from './provider';
+import UI from '../ui';
 
 export default {
   title: 'Other/ThemeProvider',
-  component: InitialThemeProvider,
+  component: UI.Theme.Provider,
   argTypes: {
     theme: {
       type: {
@@ -18,7 +18,7 @@ export default {
       },
     },
   },
-} satisfies Meta<typeof InitialThemeProvider>;
+} satisfies Meta<typeof UI.Theme.Provider>;
 
-type Story = StoryObj<typeof InitialThemeProvider>;
+type Story = StoryObj<typeof UI.Theme.Provider>;
 export const ThemeProvider: Story = {};

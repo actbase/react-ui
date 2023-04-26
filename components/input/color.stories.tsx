@@ -1,15 +1,15 @@
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
-import InputColor from './color';
+import UI from '../ui';
 
 export default {
   title: 'Data Entry/Input',
   args: {},
-  component: InputColor,
-} satisfies Meta<typeof InputColor>;
+  component: UI.Input.Color,
+} satisfies Meta<typeof UI.Input.Color>;
 
-type Story = StoryObj<typeof InputColor>;
+type Story = StoryObj<typeof UI.Input.Color>;
 export const Color: Story = {
-  render: (args) => <InputColor {...args} />,
+  render: (args) => <UI.Input.Color {...args} />,
 };
