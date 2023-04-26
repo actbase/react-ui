@@ -6,6 +6,36 @@ export default {
   title: 'Data Entry/Form',
   component: UI.Form,
   argTypes: {
+    children: {
+      name: 'children',
+      description: '`React.ReactNode`',
+    },
+    prevent: {
+      name: 'prevent',
+      description: 'prevent event when on submit',
+      type: {
+        name: 'boolean',
+        required: false,
+      },
+      defaultValue: false,
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
+    loading: {
+      name: 'loading',
+      description: 'loading state',
+      type: {
+        name: 'boolean',
+        required: false,
+      },
+      defaultValue: false,
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+    },
     defaultValues: {
       type: {
         // @ts-ignore
@@ -14,6 +44,10 @@ export default {
       },
       description: 'Default values',
       defaultValue: undefined,
+      table: {
+        type: { summary: 'object' },
+        defaultValue: { summary: undefined },
+      },
       control: {
         type: 'object',
       },
@@ -40,10 +74,30 @@ export default {
         name: 'object',
         required: false,
       },
-      description: 'Validates',
+      description: 'Validates `object`',
       defaultValue: undefined,
       control: {
         type: 'object',
+      },
+    },
+    validateTiming: {
+      name: 'validateTiming',
+      description: 'validate timing `ON_SUBMIT` | `ON_CHANGE`',
+      control: {
+        type: 'select',
+      },
+      options: ['ON_SUBMIT', 'ON_CHANGE'],
+      defaultValue: undefined,
+    },
+    onSubmit: {
+      type: {
+        name: 'function',
+        required: false,
+      },
+      description: 'callback when on submit  `function`',
+      defaultValue: undefined,
+      control: {
+        type: 'function',
       },
     },
     onSuccess: {
@@ -51,7 +105,18 @@ export default {
         name: 'function',
         required: false,
       },
-      description: 'callback when on success',
+      description: 'callback when on success `function`',
+      defaultValue: undefined,
+      control: {
+        type: 'function',
+      },
+    },
+    serialize: {
+      type: {
+        name: 'function',
+        required: false,
+      },
+      description: 'serialize form data when on submit',
       defaultValue: undefined,
       control: {
         type: 'function',
