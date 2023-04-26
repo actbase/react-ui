@@ -11,6 +11,7 @@ export default {
     weight: 400,
     type: 'h1',
     size: 16,
+    color: '#333',
   },
   argTypes: {
     children: {
@@ -22,10 +23,11 @@ export default {
       name: 'className',
       description:
         'css 클래스 명입니다. theme으로 지정된 스타일을 변경할 수 있습니다. `string`',
+      table: { defaultValue: { summary: '' } },
     },
     weight: {
       name: 'weight',
-      description: 'font-weight입니다. `string`',
+      description: 'font-weight입니다.',
       control: {
         type: 'select',
       },
@@ -33,11 +35,12 @@ export default {
     },
     size: {
       name: 'size',
-      description: 'font-size입니다. `string`',
+      description: 'font-size입니다.',
     },
     el: {
       name: 'el',
-      description: '기본 태그는 p입니다. `ReactElement`',
+      description: '`ReactElement`',
+      table: { defaultValue: { summary: 'p' } },
     },
     color: {
       name: 'color',
@@ -46,7 +49,7 @@ export default {
     },
     type: {
       name: 'type',
-      description: 'theme으로 지정된 Typography의 타입을 설정합니다. `string`',
+      description: 'theme으로 지정된 Typography의 타입을 설정합니다.',
     },
     css: {
       name: 'css',
@@ -62,7 +65,7 @@ export const Typography: Story = {
 };
 
 /**
- * el: 'h1', size: 32, weight: 700의 제목 요소입니다.
+ * `el: 'h1', size: 32, weight: 700`의 제목 요소입니다.
  */
 export const Heading: Story = {
   args: {
