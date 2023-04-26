@@ -13,7 +13,7 @@ export const Form: Story = {};
 /**
  * Input요소는 placeholder를 통해 표시되는 문장을 수정할 수 있습니다.
  */
-export const NormalInput: Story = {
+export const NormalInputItem: Story = {
   args: {
     placeholder: 'placeholder',
   },
@@ -37,10 +37,10 @@ export const NormalInput: Story = {
 /**
  * PasswordInput은 hidden값에 따라 비밀번호 표시 여부를 전환합니다.
  */
-export const PasswordInput: Story = {
+export const PasswordInputItem: Story = {
   args: {
     placeholder: 'placeholder',
-    hidden: true,
+    hidden: false,
   },
   render: (args) => (
     <UI.Form {...args}>
@@ -62,7 +62,7 @@ export const PasswordInput: Story = {
 /**
  * Radio는 Item간 같은 name을 공유한다면 하나의 값만 선택할 수 있습니다.
  */
-export const RadioInput: Story = {
+export const RadioInputItem: Story = {
   args: {},
   render: (args) => (
     <UI.Form {...args}>
@@ -94,7 +94,7 @@ export const RadioInput: Story = {
 /**
  * TextareaInput은 resize property를 통해 크기 조절여부를 지정할 수 있습니다.
  */
-export const TextareaInput: Story = {
+export const TextareaInputItem: Story = {
   args: {},
   render: (args) => (
     <UI.Form {...args}>
