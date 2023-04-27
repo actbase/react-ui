@@ -43,9 +43,12 @@ export const PasswordInputItem: Story = {
     hidden: false,
   },
   render: (args) => (
-    <UI.Form {...args}>
+    <UI.Form>
       <UI.Form.Item name="input" label="Input">
-        <UI.Input placeholder={args.placeholder} hidden={args.hidden} />
+        <UI.Input.Password
+          placeholder={args.placeholder}
+          hidden={args.hidden}
+        />
       </UI.Form.Item>
       <UI.Space size={6} justify="end">
         <UI.Button htmlType="reset" type="primary">
