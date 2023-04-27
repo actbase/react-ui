@@ -221,6 +221,7 @@ export default {
         border-radius: 8px;
         &:disabled {
           background-color: #cccccc !important;
+          border-color: #cccccc !important;
           cursor: not-allowed;
         }
       `,
