@@ -12,6 +12,10 @@ export default {
 } satisfies Meta<typeof UI.Form.Item>;
 
 type Story = StoryObj<typeof UI.Form.Item>;
+
+/**
+ * label과 error는 보기와 같은 위치에 표시됩니다.
+ */
 export const Item: Story = {
   render: (args) => (
     <UI.Form.Item {...args}>
