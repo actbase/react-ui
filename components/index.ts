@@ -24,6 +24,8 @@ export { default as Space } from './space';
 export { default as styles } from './styles';
 export * from './suspense';
 export { default as Suspense } from './suspense';
+export * from './table';
+export { default as Table } from './table';
 export * from './theme';
 export { default as Theme } from './theme';
 export * from './toast';

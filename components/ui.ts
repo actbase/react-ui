@@ -126,6 +126,20 @@ import _Suspense, {
   SuspenseProps as _SuspenseProps,
   SuspenseChildrenProps as _SuspenseChildrenProps,
 } from './suspense';
+import _Table, {
+  TableColThemeType as _TableColThemeType,
+  TableRowThemeType as _TableRowThemeType,
+  TableRowType as _TableRowType,
+  TableType as _TableType,
+  TableColProps as _TableColProps,
+  TableColCssPropsType as _TableColCssPropsType,
+  TableProps as _TableProps,
+  TableThemeType as _TableThemeType,
+  TableColType as _TableColType,
+  TableRowCssPropsType as _TableRowCssPropsType,
+  TableRowProps as _TableRowProps,
+  TableCssPropsType as _TableCssPropsType,
+} from './table';
 import _Theme, {
   ThemeType as _ThemeType,
   ThemeColorType as _ThemeColorType,
@@ -294,6 +308,20 @@ namespace UI {
   export type SuspenseThemeType = _SuspenseThemeType;
   export type SuspenseProps = _SuspenseProps;
   export type SuspenseChildrenProps = _SuspenseChildrenProps;
+
+  export const Table = _Table;
+  export type TableColThemeType = _TableColThemeType;
+  export type TableRowThemeType = _TableRowThemeType;
+  export type TableRowType = _TableRowType;
+  export type TableType = _TableType;
+  export type TableColProps = _TableColProps;
+  export type TableColCssPropsType = _TableColCssPropsType;
+  export type TableProps = _TableProps;
+  export type TableThemeType = _TableThemeType;
+  export type TableColType = _TableColType;
+  export type TableRowCssPropsType = _TableRowCssPropsType;
+  export type TableRowProps = _TableRowProps;
+  export type TableCssPropsType = _TableCssPropsType;
 
   export const Theme = _Theme;
   export type ThemeType = _ThemeType;
