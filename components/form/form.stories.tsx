@@ -92,7 +92,7 @@ export const RadioInputItem: Story = {
 };
 
 /**
- * TextareaInput은 resize property를 통해 크기 조절여부를 지정할 수 있습니다.
+ * TextareaInput은 resize property가 true이면 크기를 조절할 수 있습니다.
  */
 export const TextareaInputItem: Story = {
   args: {},
@@ -117,11 +117,12 @@ export const FormWithAllItems: Story = {
   argTypes: {
     children: {
       name: 'children',
-      description: '`React.ReactNode`',
+      description:
+        '내부에 넘겨받은 `ReactNode`요소를 렌더링합니다. `React.ReactNode`',
     },
     prevent: {
       name: 'prevent',
-      description: 'prevent event when on submit',
+      description: 'true일 때 onSubmit이벤트 발생을 중단합니다.',
       type: {
         name: 'boolean',
         required: false,
@@ -134,7 +135,7 @@ export const FormWithAllItems: Story = {
     },
     loading: {
       name: 'loading',
-      description: 'loading state',
+      description: 'item의 loading 상태를 나타냅니다. ',
       type: {
         name: 'boolean',
         required: false,
@@ -151,7 +152,7 @@ export const FormWithAllItems: Story = {
         name: 'object',
         required: false,
       },
-      description: 'Default values',
+      description: 'item의 기본 값을 나타냅니다.',
       defaultValue: undefined,
       table: {
         type: { summary: 'object' },
@@ -166,7 +167,7 @@ export const FormWithAllItems: Story = {
         name: 'boolean',
         required: false,
       },
-      description: 'Allow force submit',
+      description: 'true일 때 강제 submit을 허용합니다.',
       defaultValue: false,
       table: {
         defaultValue: {
@@ -183,7 +184,7 @@ export const FormWithAllItems: Story = {
         name: 'object',
         required: false,
       },
-      description: 'Validates `object`',
+      description: '유효성 검사 `object`',
       defaultValue: undefined,
       control: {
         type: 'object',
@@ -191,7 +192,8 @@ export const FormWithAllItems: Story = {
     },
     validateTiming: {
       name: 'validateTiming',
-      description: 'validate timing `ON_SUBMIT` | `ON_CHANGE`',
+      description:
+        '유효성 검사를 실행하는 타이밍을 지정합니다. `ON_SUBMIT` | `ON_CHANGE`',
       control: {
         type: 'select',
       },
@@ -203,7 +205,7 @@ export const FormWithAllItems: Story = {
         name: 'function',
         required: false,
       },
-      description: 'callback when on submit  `function`',
+      description: 'onSubmit이벤트 발생시 실행할 callback `function`',
       defaultValue: undefined,
       control: {
         type: 'function',
@@ -214,7 +216,7 @@ export const FormWithAllItems: Story = {
         name: 'function',
         required: false,
       },
-      description: 'callback when on success `function`',
+      description: 'onSubmit요청이 성공했을 때 실행할 callback `function`',
       defaultValue: undefined,
       control: {
         type: 'function',
@@ -225,7 +227,8 @@ export const FormWithAllItems: Story = {
         name: 'function',
         required: false,
       },
-      description: 'serialize form data when on submit',
+      description:
+        'onSubmit이벤트 발생 시 제출할 데이터를 직렬화하는 callback `function` ',
       defaultValue: undefined,
       control: {
         type: 'function',
