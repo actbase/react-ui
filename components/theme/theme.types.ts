@@ -12,6 +12,7 @@ import type { AlertThemeType } from '../alert';
 import type { BlockThemeType } from '../block';
 import type { SuspenseThemeType } from '../suspense';
 import type { ModalThemeType } from '../modal';
+import { TableThemeType } from '../table/table.types';
 
 export type ThemeColorType = Record<string, string>;
 
@@ -32,7 +33,7 @@ export type ThemeType = {
     modal?: ModalThemeType;
     space?: SpaceThemeType;
     suspense?: SuspenseThemeType;
-    table?: {};
+    table?: TableThemeType;
     toast?: ToastThemeType;
     typography?: TypographyThemeType;
   };
