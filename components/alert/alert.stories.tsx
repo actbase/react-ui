@@ -43,12 +43,12 @@ export const Alert: Story = {
         'theme에 저장된 스타일이 아니라 전달받은 template형태대로 렌더링되는 callback함수입니다.',
     },
   },
-  render: (args) => {
+  render: ({ children }) => {
     return (
       <Button
         type="primary"
         onClick={() => {
-          UI.Alert.alert(args.children, {
+          UI.Alert.alert(children, {
             title: 'alert',
           });
         }}
