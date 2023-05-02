@@ -25,7 +25,7 @@ export const List: Story = {
       name: 'list',
       description: 'ListItem을 감쌀 html tag입니다. 기본값은 `ul`입니다.',
       control: 'radio',
-      options: ['ul', 'div'],
+      options: ['ul'],
     },
     className: {
       name: 'className',
