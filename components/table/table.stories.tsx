@@ -27,9 +27,17 @@ export const Table: Story = {
       description:
         'css 클래스 명입니다. theme으로 지정된 스타일을 변경할 수 있습니다. `string`',
     },
+    type: {
+      name: 'type',
+      description: 'Theme에 규정된 타입 또는 인라인 스타일을 사용합니다.',
+    },
     style: {
       name: 'style',
-      description: 'Theme에 규정된 타입 또는 인라인 스타일을 사용합니다.',
+      description: 'Theme에 규정된 스타일 또는 인라인 스타일을 사용합니다.',
+    },
+    css: {
+      name: 'css',
+      description: 'Theme에 규정된 css 또는 인라인 스타일을 사용합니다.',
     },
   },
   render: (args) => (
