@@ -12,7 +12,7 @@ export default {
 type Story = StoryObj<typeof UI.Alert>;
 
 /**
- *  버튼의 onClick event에 `() => UI.Alert.alert(message, options)` callback을 전달하여 호출할 수 있습니다.
+ *  버튼의 onClick event에 `() => Alert.alert(message, options)` callback을 전달하여 호출할 수 있습니다.
  */
 export const Alert: Story = {
   args: {
